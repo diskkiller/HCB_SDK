@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent60">
+
+    <RelativeLayout
+        android:layout_width="840dp"
+        android:layout_height="715dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/download_outer_bg"
+        android:paddingLeft="30dp">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:src="@drawable/market_detail_top_bg" />
+
+        <TextView
+            android:id="@+id/tv_recharge_caidou_top_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:gravity="center"
+            android:text="金豆充值"
+            android:textColor="@color/private_black1"
+            android:textSize="36sp" />
+
+        <FrameLayout
+            android:id="@+id/btn_recharge_gold_close"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/close" />
+
+        </FrameLayout>
+
+
+        <View
+            android:id="@+id/view_market_top_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/tv_recharge_caidou_top_title"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="19dp"
+            android:background="@color/private_main_divider" />
+
+        <TextView
+            android:id="@+id/tv_recharge_gold_chongzhishulaing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_market_top_divider"
+            android:layout_marginTop="30dp"
+            android:text="充值数量"
+            android:textColor="@color/private_black2"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/rg_recharge_gold_choose"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/tv_recharge_gold_chongzhishulaing"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/private_grey_stroke_bg"
+            android:divider="@drawable/private_vertical_divider"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <RadioButton
+                android:id="@+id/rb_recharge_gold1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="5000 金豆"
+                android:textColor="@drawable/sl_recharge_choose_num"
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:id="@+id/rb_recharge_gold2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="10000 金豆"
+                android:textColor="@drawable/sl_recharge_choose_num"
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:id="@+id/rb_recharge_gold3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="20000 金豆"
+                android:textColor="@drawable/sl_recharge_choose_num"
+                android:textSize="24sp" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/et_recharge_gold_custom"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/rg_recharge_gold_choose"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/private_grey_stroke_bg"
+            android:gravity="center_vertical"
+            android:hint="请输入充值数量"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="7"
+            android:paddingLeft="20dp"
+            android:singleLine="true"
+            android:textColor="@color/private_black2"
+            android:textColorHint="@color/private_black2"
+            android:textCursorDrawable="@drawable/recharge_edit_cursor"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_recharge_gold_rule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_recharge_gold_custom"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:text="100 金豆/元 充值数量必须为 100 的倍数"
+            android:textColor="@color/private_black2"
+            android:textSize="20sp" />
+
+        <View
+            android:id="@+id/view_recharge_gold_bottom_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/tv_recharge_gold_rule"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/private_main_divider" />
+
+        <TextView
+            android:id="@+id/tv_recharge_gold_need_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/view_recharge_gold_bottom_divider"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:text="需支付  元"
+            android:textColor="@color/private_black2"
+            android:textSize="24sp"
+            android:visibility="invisible" />
+
+
+        <Button
+            android:id="@+id/btn_charge_gold_cancel"
+            android:layout_width="340dp"
+            android:layout_height="88dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#FE3334"
+            android:background="@drawable/private_sys_btn_cancle_bg"
+            android:textSize="30sp"
+            android:padding="3dp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/btn_recharge_gold_sure"
+            android:layout_width="340dp"
+            android:layout_height="88dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/private_sys_btn_bg"
+            android:gravity="center"
+            android:text="微信支付"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

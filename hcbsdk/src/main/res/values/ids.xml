@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- dynamic -->
+
+    <!-- Messages IDs -->
+
+
+    <!-- im dialog ids -->
+    <item name="im_dialog_edit" type="id"/>
+    <item name="im_dialog_ok" type="id"/>
+    <item name="im_dialog_cancel" type="id"/>
+    <item name="im_dialog_title" type="id"/>
+    <item name="im_dialog_msg" type="id"/>
+    <item name="im_contact_dialog_ok" type="id"/>
+
+    <!-- im note name -->
+    <item name="im_edit_notename" type="id"/>
+
+    <!-- im i -->
+    <!-- im friend info -->
+    <item name="im_friend_yuan_img" type="id"/>
+    <item name="im_friend_item_title" type="id"/>
+    <item name="im_friend_item_btn" type="id"/>
+    <item name="im_friend_item_head" type="id"/>
+    <item name="im_friend_item_name" type="id"/>
+    <item name="im_friend_item_nickname" type="id"/>
+    <item name="im_friend_progress" type="id"/>
+    <item name="im_friend_null" type="id"/>
+    <item name="im_friend_yuan_item" type="id"/>
+
+    <!-- im alert -->
+    <item name="im_alert_ids_send" type="id"/>
+    <item name="im_alert_ids_del" type="id"/>
+    <item name="im_alert_ids_bz" type="id"/>
+
+    <!-- im friend info -->
+    <item name="im_friend_ids_line" type="id"/>
+    <item name="im_progress_dialog_icon" type="id"/>
+    <item name="im_progress_dialog_msg" type="id"/>
+
+    <!-- SlotMachine -->
+
+    <item name="share_to_item_select" type="id"/>
+
+    <item name="scrollview" type="id"/>
+</resources>

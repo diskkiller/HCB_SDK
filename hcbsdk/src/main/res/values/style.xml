@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="dialog_full_screen">
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="dialog_untran" parent="dialog_tran">
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="dialog_tran" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+    <style name="NetworkStateViewTheme" parent="NetworkStateView.Style">
+        <item name="nsvTextSize">16sp</item>
+    </style>
+
+
+    <style name="sdktheme_transparent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/transparent_00</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="custom_checkbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checked_selecter</item>
+    </style>
+
+
+
+    /* met_floatingLabel: Floating label 应该怎样被展示。选项有：none, normal, highlight。 默认是 none.
+    met_floatingLabelText: 自定义 floating label 的文字。
+    met_floatingLabelTextSize: Floating label 的字体大小。默认为 12sp。*/
+    <style name="txt_lab" parent="TextAppearance.AppCompat">
+        <!-- 默认状态提示颜色和字体-->
+        <item name="android:textColorHint">#8c8c8c</item>
+        <item name="android:textSize">30sp</item>
+
+        <item name="android:textColorHighlight">#8c8c8c</item>
+        <item name="android:textColorLink">#8c8c8c</item>
+        <!-- 下面可以根据需要设置，如果没有将默认使用默认theme的颜色 -->
+        <!-- Label标签的颜色 -->
+        <!--<item name="colorAccent">#c6174e</item>-->
+        <!-- 默认状态状态设置底线颜色 -->
+        <item name="colorControlNormal">#3F51b5</item>
+        <!-- 选择的底线颜色 -->
+        <item name="colorControlActivated">#c6174e</item>
+        <!--<item name="textColorError">@color/design_textinput_error_color_light</item>-->
+    </style>
+
+
+    <style name="MyFloatingStyle">
+        <!-- Label标签的颜色 -->
+        <item name="android:textColor">#c6174e</item>
+        <!-- Label标签的大小 -->
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="MyFloatingErrorStyle">
+        <!-- Label标签的颜色 -->
+        <item name="android:textColor">#FFD50000</item>
+        <!-- Label标签的大小 -->
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
+
+    <style name="stxt_lab" parent="TextAppearance.AppCompat">
+        <!-- 默认状态提示颜色和字体-->
+        <item name="android:textColorHint">#8c8c8c</item>
+        <item name="android:textSize">18sp</item>
+
+        <item name="android:textColorHighlight">#8c8c8c</item>
+        <item name="android:textColorLink">#8c8c8c</item>
+        <!-- 下面可以根据需要设置，如果没有将默认使用默认theme的颜色 -->
+        <!-- Label标签的颜色 -->
+        <!--<item name="colorAccent">#c6174e</item>-->
+        <!-- 默认状态状态设置底线颜色 -->
+        <item name="colorControlNormal">#3F51b5</item>
+        <!-- 选择的底线颜色 -->
+        <item name="colorControlActivated">#c6174e</item>
+        <!--<item name="textColorError">@color/design_textinput_error_color_light</item>-->
+    </style>
+
+
+    <style name="sMyFloatingStyle">
+        <!-- Label标签的颜色 -->
+        <item name="android:textColor">#c6174e</item>
+        <!-- Label标签的大小 -->
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="sMyFloatingErrorStyle">
+        <!-- Label标签的颜色 -->
+        <item name="android:textColor">#FFD50000</item>
+        <!-- Label标签的大小 -->
+        <item name="android:textSize">15sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/activity_sdk_pay"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.hcb.hcbsdk.activity.PayActivityC"
+    android:background="@color/transparent60"
+>
+    <LinearLayout
+        android:id="@+id/rl_pay"
+        android:layout_width="850dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/sdk_dialog_bg"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+       >
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="55sp"
+            android:textColor="@color/gray"
+            android:text="金币购买"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            >
+
+
+            <TextView
+                android:id="@+id/tv_chang1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/gray"
+                android:text="金币不足，还需购买 "
+                />
+            <TextView
+                android:id="@+id/tv_need_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/orange"
+                android:text="1000"
+                />
+            <TextView
+                android:id="@+id/tv_chang2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/gray"
+                android:text=" 金币"
+                />
+            <TextView
+                android:id="@+id/tv_chang3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/gray"
+                android:text=" 送积分1000"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/ll_voucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="70dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            >
+
+            <CheckBox
+                android:checked="false"
+                android:id="@+id/child_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/custom_checkbox"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
+                android:text="已使用奖金"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_voucher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
+                android:text=" 0.00 元"
+                android:layout_marginLeft="20dp"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_has_to_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:layout_marginRight="70dp"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
+                android:text="还需支付 "
+                />
+            <TextView
+                android:id="@+id/tv_has_to_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/orange"
+                android:text="10.00"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="20sp"
+                android:textColor="@color/gray"
+                android:text=" 元"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            >
+
+            <Button
+                android:id="@+id/rb_cancel"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/bt_cancel_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="取  消"
+                android:textColor="@color/red"
+                android:textSize="30sp"/>
+
+            <Button
+                android:id="@+id/rb_confim"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="150dp"
+                android:background="@drawable/bt_confim_bg"
+                android:button="@null"
+                android:gravity="center"
+                android:text="确  认"
+                android:textColor="@color/white"
+                android:textSize="30sp"/>
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/rl_weixin_pay"
+        android:layout_width="850dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/sdk_dialog_bg"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            >
+
+
+            <TextView
+                android:id="@+id/tx_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/gray"
+                android:text="请用微信扫码支付"
+                />
+            <TextView
+                android:id="@+id/tv_weixin_need_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/orange"
+                android:text="1000"
+                />
+            <TextView
+                android:id="@+id/tv_yuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="30sp"
+                android:textColor="@color/gray"
+                android:text=" 元"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/sweepIV"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/sdk_code_error"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_net_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/iv_net_error"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/sdk_code_error"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="您的网络已断开，请检查网络！"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

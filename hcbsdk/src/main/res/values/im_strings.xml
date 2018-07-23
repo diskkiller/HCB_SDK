@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- 关于聊天 -->
+    <string name="im_phoncontact_title">手机联系人</string>
+	<string name="im_sysnofriend">您与%1$s不是好友关系，请先发送好友验证申请。 发送验证申请</string>
+    <string name="im_notinGroup">您已经不在群组了</string>
+	<string name="im_chat_voice">语音</string>
+	<string name="im_chat_image">图片</string>
+	<string name="im_chat_card">名片</string>
+	<string name="im_chat_location">位置</string>
+	<string name="im_chat_video">视频</string>
+	<string name="im_chat_tiger">请求</string>
+	<string name="im_chat_share">分享</string>
+	<string name="im_chat_tip">提示</string>
+	<string name="send_coin">赠币</string>
+	<string name="interest_circle_card">兴趣圈名片</string>
+    <string name="im_chat_operate">操作</string>
+	<string name="im_chat_copy">复制</string>
+	<string name="im_chat_delete">删除</string>
+	<string name="im_chat_srp_share">[分享]与%1$s相关的内容</string>
+	<string name="im_chat_gif">[动画表情]</string>
+    <!-- 修改备注名 -->
+    <string name="im_modify_notename">备注名</string>
+    <string name="im_modify_save">保存</string>
+	<!-- 用户信息 -->
+	<string name="im_friend_info_title">用户信息</string>
+	<string name="im_friend_info_lt">聊天</string>
+	<string name="im_friend_info_add">添加好友</string>
+	<string name="im_friend_yuan_null">暂无内容</string>
+	<string name="im_friend_info_pass">通过验证</string>
+	<string name="im_friend_yuan_contents">【%1$s】</string>
+	<!-- 用户信息弹出框 -->
+	<!-- 关于状态 -->
+	<string name="add_friends_status">添加</string>
+	<string name="already_friends_status">已添加</string>
+	<string name="request_friends_status">邀请</string>
+	<!-- dialog -->
+	<string name="im_dialog_ok">确定</string>
+	<string name="im_dialog_cancel">取消</string>
+	<string name="im_dialog_send">发送</string>
+	<string name="im_dialog_txt_num">15个汉字以内</string>
+	<string name="message_progress_def">加载中&#8230;</string>
+	<string name="im_dialog_title">好友验证申请</string>
+	<string name="im_contact_title">暂无手机联系人</string>
+	<string name="im_contact_subtitle">以下原因可能导致此问题</string>
+	<string name="im_contact_one">权限受限</string>
+	<string name="im_contact_two">手机中无联系人信息</string>
+	<string name="im_contact_one_1">尝试在系统设置或者安全管理类应用中开启权限，允许搜悦访问通讯录</string>
+	<string name="im_contact_back">返回</string>
+	<string name="im_no_result">无结果</string>
+	<string name="im_no_select">请选择消息</string>
+	<string name="im_delete_selected">确认要删除所选聊天内容吗</string>
+	<string name="im_copy">文本已复制到粘贴板</string>
+	<string name="im_blank">不能发送空白消息</string>
+	<string name="im_dialog_upload_contact_title">提示</string>
+	<string name="im_dialog_upload_contact_msgs">看看通讯录中还有谁在使用搜悦（不保存通讯录的任何信息）</string>
+	<string name="whisper">密信</string>
+    <string name="record_too_short">录音时间太短</string>
+	<string name="mygroupnickname_length_error">我的群昵称长度不符</string>
+    <string name="mygroupnickname_format_error">我的群昵称格式不正确</string>
+    <string name="mygroupnickname_no_empty">我的群昵称不能为空</string>
+    <string name="groupname_length_error">群名称长度不符</string>
+    <string name="groupname_format_error">群名称格式不正确</string>
+    <string name="groupname_no_empty">群名称不能为空</string>
+	<string name="appear_problem">貌似出问题了</string>
+    <string name="not_friend_for_two">你俩不是好友</string>
+    <string name="Permission_to_verify">权限验证失败</string>
+    <string name="group_member_transfinite">群人数超过上限</string>
+    <string name="group_member_little_ban">人太少了，不能建群</string>
+    <string name="group_not_exist">群不存在</string>
+    <string name="Kicked_out_group">你的搜悦帐号正在其它设备上使用，由此会导致本设备无法正常收发消息</string>
+    <string name="timeout">请求超时</string>
+    <string name="resquestfailed">请求失败，检查网络</string>
+	<string name="search_has_group">搜索好友，群聊</string>
+	<string name="search_net">可搜索 用户名/手机号/昵称/邮箱</string>
+
+</resources>

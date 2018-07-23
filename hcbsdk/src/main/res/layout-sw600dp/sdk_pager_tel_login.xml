@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:layout_marginTop="100dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:layout_centerHorizontal="true"
+        >
+
+
+        <!--  tel Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tel_input_layout"
+            android:layout_width="450dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/txt_lab"
+            app:hintTextAppearance="@style/MyFloatingStyle"
+            app:errorTextAppearance="@style/MyFloatingErrorStyle"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            >
+            <EditText android:id="@+id/et_phone"
+                android:layout_width="450dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/ae6058"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:hint="手机号"
+                android:text=""
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <!--  Password Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/vecode_input_layout"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:theme="@style/txt_lab"
+                app:hintTextAppearance="@style/MyFloatingStyle"
+                app:errorTextAppearance="@style/MyFloatingErrorStyle"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                >
+                <EditText android:id="@+id/et_vercode"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ae6058"
+                    android:maxLength="6"
+                    android:inputType="number"
+                    android:hint="验证码"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/bt_send"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bt_ver_code_bg"
+                android:gravity="center"
+                android:minWidth="100dp"
+                android:text="获取验证码"
+                android:textColor="@color/ffffff"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="350dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bt_default_bg"
+            android:padding="12dp"
+            android:textSize="23sp"
+            android:text="登   录"/>
+
+        <TextView android:id="@+id/link_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="No account yet? Create one"
+            android:gravity="center"
+            android:textSize="16dip"/>
+
+    </LinearLayout>
+</ScrollView>

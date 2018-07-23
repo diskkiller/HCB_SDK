@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/activity_wechat_capture"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent60"
+>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/rl_login"
+        android:layout_width="850dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/sdk_dialog_bg"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+    >
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="600dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_tel"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/jia_chat_selector_left"
+                android:button="@null"
+                android:gravity="center"
+                android:text="手机登录"
+                android:textColor="@drawable/jia_title"
+                android:textSize="30sp"/>
+
+            <RadioButton
+                android:id="@+id/rb_weixin"
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/jia_chat_selector_right"
+                android:button="@null"
+                android:gravity="center"
+                android:text="微信登录"
+                android:textColor="@drawable/jia_title"
+                android:textSize="30sp"/>
+        </RadioGroup>
+
+
+        <com.hcb.hcbsdk.activity.ParentViewPager
+            android:id="@+id/pager_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+   <!-- <com.hcb.hcbsdk.activity.WifiStateView
+        android:id="@+id/iv_wifi"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/ae6058"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="50dp"
+        />
+    <com.hcb.hcbsdk.activity.WifiStateTXView
+        android:id="@+id/tv_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:background="@color/yellow"
+        android:layout_alignParentRight="true"
+        android:text="11111"
+        android:textSize="18sp"
+        android:textColor="@color/red"
+        android:layout_marginTop="220dp"
+        android:layout_marginRight="60dp"
+        />-->
+
+</RelativeLayout>
