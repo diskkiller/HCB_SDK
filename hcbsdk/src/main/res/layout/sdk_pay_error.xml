@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="850dp"
+    android:layout_height="550dp"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="200dp"
+    >
+
+
+    <LinearLayout
+        android:layout_width="850dp"
+        android:layout_height="550dp"
+        android:background="@drawable/sdk_dialog_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_net_error"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@drawable/sdk_code_error" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="您的网络已断开，请检查网络！"
+            android:textColor="@color/orange" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_error_closed"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/close_icon"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        />
+
+
+</RelativeLayout>
+
+
+

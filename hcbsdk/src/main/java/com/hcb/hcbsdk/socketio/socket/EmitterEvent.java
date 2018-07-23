@@ -23,6 +23,7 @@ public class EmitterEvent {
 
     public EmitterEvent() {
         emitterEventMap.put(Manager.EVENT_TRANSPORT, null);
+        emitterEventMap.put(Manager.EVENT_CONNECT_CANCLE, null);
         emitterEventMap.put(Socket.EVENT_CONNECT_ERROR, null);
         emitterEventMap.put(Socket.EVENT_CONNECT_TIMEOUT, null);
         emitterEventMap.put(Socket.EVENT_CONNECT, null);
@@ -35,15 +36,16 @@ public class EmitterEvent {
         emitterEventMap.put(Socket.EVENT_RECONNECTING, null);
 
         emitterEventMap.put(IConstants.LOGIN, null);
-        emitterEventMap.put(IConstants.COUNT_BOUNS, null);
-        emitterEventMap.put(IConstants.PAY_NOTIFY, null);
+        emitterEventMap.put(IConstants.LOGIN_OUT_EQUIP, null);
+//        emitterEventMap.put(IConstants.PAY_NOTIFY, null);
+//        emitterEventMap.put(IConstants.COIN_PAY, null);
+//        emitterEventMap.put(IConstants.COIN_CONSUME, null);
         emitterEventMap.put(IConstants.BATTLE, null);
-        emitterEventMap.put(IConstants.EVENT_WINNER, null);
         emitterEventMap.put(IConstants.EVENT_TEST, null);
-        emitterEventMap.put(IConstants.EVENT_USER_CHANGE, null);
-        emitterEventMap.put(IConstants.EVENT_USER_LOGOUT, null);
         emitterEventMap.put(IConstants.EVENT_SEND_LOG, null);
         emitterEventMap.put(IConstants.EVENT_USER_REFUND, null);
+
+        emitterEventMap.put("login_test", null);
 
     }
 

@@ -5,6 +5,7 @@ import com.hcb.hcbsdk.okhttp.client.CommonOkHttpClient;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataHandle;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.util.C;
+import com.hcb.hcbsdk.util.L;
 
 /**
  * <br/>
@@ -22,38 +23,33 @@ public class RequestCenter {
     public static void postLogRequest(String url, RequestParams params,
                                    DisposeDataListener listener) {
         CommonOkHttpClient.request(CommonRequest.
-                createPostRequest("http://192.168.1.112:3000"+url, params), new DisposeDataHandle(listener));
+                createPostRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener));
     }
     public static void getRequest(String url, RequestParams params,
                                   DisposeDataListener listener, Class<?> clazz) {
         CommonOkHttpClient.request(CommonRequest.
-                createGetRequest(url, params), new DisposeDataHandle(listener, clazz));
+                createGetRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener, clazz));
     }
     public static void getRequest(String url, RequestParams params,
                                   DisposeDataListener listener) {
         CommonOkHttpClient.request(CommonRequest.
-                createGetRequest(url, params), new DisposeDataHandle(listener));
+                createGetRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener));
+    }
+public static void deletRequest(String url, RequestParams params,
+                                  DisposeDataListener listener) {
+        CommonOkHttpClient.request(CommonRequest.
+                createDeletRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener));
     }
 
-    /**
-     *
-     */
-    public static void getDMcode(String code, DisposeDataListener listener) {
-
-        RequestParams params = new RequestParams();
-        params.put("t", code);
-        params.put("m", "8");
-        params.put("e", "8");
-        RequestCenter.getRequest(C.DM_URL, params, listener);
-    }
     /**
      * 获取验证码请求
      */
-    public static void getVercode(String mobile, DisposeDataListener listener) {
+    public static void getVercode(String mobile,String type, DisposeDataListener listener) {
 
         RequestParams params = new RequestParams();
         params.put("mobile", mobile);
-        RequestCenter.postRequest(C.API_SERVER_VERCODE_URL, params, listener);
+        params.put("type", type);
+        RequestCenter.getRequest(C.API_SERVER_VERCODE_URL, params, listener);
     }
     /**
      * 二维码请求
@@ -61,114 +57,222 @@ public class RequestCenter {
     public static void getAuthorize(String deviceNo, DisposeDataListener listener) {
 
         RequestParams params = new RequestParams();
-        params.put("deviceNo", deviceNo);
-        RequestCenter.postRequest(C.API_SERVER_AUTHORIZE_URL, params, listener);
+        params.put("snNo", deviceNo);
+        RequestCenter.getRequest(C.API_SERVER_AUTHORIZE_URL, params, listener);
     }
 
-
-    public static void test(String pid,DisposeDataListener listener) {
-
-        RequestParams params = new RequestParams();
-        params.put("pid", pid);
-        RequestCenter.postRequest(C.API_TEST, params, listener);
-    }
-    public static void sendLog(String mobile,DisposeDataListener listener) {
-
-        RequestParams params = new RequestParams();
-        params.put("mobile", mobile);
-        RequestCenter.postRequest(C.API_SEND_LOG, params, listener);
-    }
 
 
     /**
      * 用户登录请求
      */
-    public static void userLogin(String mobile, String code,String deviceNo,DisposeDataListener listener) {
+    public static void userLogin(String mobile, String code,String snNo,DisposeDataListener listener) {
 
         RequestParams params = new RequestParams();
         params.put("mobile", mobile);
-        params.put("code", code);
-        params.put("deviceNo", deviceNo);
+        params.put("smsCode", code);
+        params.put("snNo", snNo);
         RequestCenter.postRequest(C.API_SERVER_LOGIN_URL, params, listener);
     }
+
 
     /**
      * 用户退出登录请求
      */
-    public static void userLogout(String deviceNo,DisposeDataListener listener) {
+    public static void userLogout(String snNo,DisposeDataListener listener) {
 
         RequestParams params = new RequestParams();
-        params.put("deviceNo", deviceNo);
-        RequestCenter.postRequest(C.API_SERVER_LOGOUT_URL, params, listener);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("snNo", snNo);
+        RequestCenter.postRequest(C.API_SERVER_LOGIN_OUT_URL, params, listener);
+    }
+
+
+
+
+
+
+
+    /**
+     * 清除服务器用户缓存请求
+     */
+    public static void clearServerUserData(String snNo,DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        params.put("snNo", snNo);
+        RequestCenter.postRequest(C.API_SERVER_CLEAR_SERVER_USERDATA_URL, params, listener);
+    }
+
+    /**
+     * 查询订单
+     */
+    public static void queryPayInfo(String orderId,DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        params.put("orderId", orderId);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.getRequest(C.API_SERVER_QUERY_DETAIL_URL, params, listener);
+    }
+
+    /**
+     * 取消订单
+     */
+    public static void cancelOrder(String orderId,DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        params.put("orderId", orderId);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_SERVER_CANCEL_ORDER_URL, params, listener);
+    }
+
+
+    /**
+     * 微信金豆充值下单
+     */
+    public static void goldCoinCharge(String appid,String deviceNo,String goldCoinCount,String totalMoney,DisposeDataListener listener) {
+        L.info("","consumeGoldCoinCount totalMoney------------: "+totalMoney);
+
+        RequestParams params = new RequestParams();
+        params.put("appId", appid);
+        params.put("snNo", deviceNo);
+        params.put("totalMoney", totalMoney);
+        params.put("goldCoinCount", goldCoinCount);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_SERVER_GOLDCOINCHARGE_URL, params, listener);
     }
     /**
-     * 查询付款单
+     * 微信金豆消耗
      */
-    public static void queryPayInfo(String payId,DisposeDataListener listener) {
+    public static void consumeGoldCoin(String appid,String deviceNo,String consumeGoldCoinCount,DisposeDataListener listener) {
 
         RequestParams params = new RequestParams();
-        params.put("pid", payId);
-        RequestCenter.postRequest(C.API_SERVER_QUERY_PAY_INFO_URL, params, listener);
+        params.put("appId", appid);
+        params.put("snNo", deviceNo);
+        params.put("consumeGoldCoinCount", consumeGoldCoinCount);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_SERVER_CONSUMEGOLDCOIN_URL, params, listener);
     }
+
     /**
-     * 生成付款单
+     * 实名认真
      */
-    public static void creatPayInfo(String uid,String deviceNo,String type,String num,DisposeDataListener listener) {
+    public static void auUser(String name,String idCard,DisposeDataListener listener) {
 
         RequestParams params = new RequestParams();
-        params.put("uid", uid);
-        params.put("deviceNo", deviceNo);
-        params.put("num", num);
-        params.put("launcher", "0");
-        RequestCenter.postRequest(C.API_SERVER_QUERY_PAY_CHARGE_URL, params, listener);
+        params.put("name", name);
+        params.put("idCard", idCard);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_SERVER_USER_AUTHENTICATION_URL, params, listener);
     }
+
+
     /**
-     * 金豆消耗与增加
+     * 轮询——支付
+     * @param snNo
+     * @param disposeDataListener
      */
-    public static void payOrExpendGold(String uid,String deviceNo,String appId,String num,DisposeDataListener listener) {
-
+    public static void confirm_payInfo(String snNo, DisposeDataListener disposeDataListener) {
         RequestParams params = new RequestParams();
-        params.put("uid", uid);
-        params.put("deviceNo", deviceNo);
-        params.put("num", num);
-        params.put("appId", appId);
-        RequestCenter.postRequest(C.API_SERVER_USER_USER_GOLD_URL, params, listener);
-    }
-    /**
-     * 用户确认付款单支付
-     */
-    public static void userPayOrder(String uid,String deviceNo,String pid,DisposeDataListener listener) {
-
-        RequestParams params = new RequestParams();
-        params.put("uid", uid);
-        params.put("deviceNo", deviceNo);
-        params.put("pid", pid);
-        RequestCenter.postRequest(C.API_SERVER_USER_PAY_ORDER_URL, params, listener);
-    }
-    /**
-     * 用户充值
-     */
-    public static void userRecharge(String uid,String deviceNo,String num,String notify,DisposeDataListener listener) {
-
-        RequestParams params = new RequestParams();
-        params.put("uid", uid);
-        params.put("deviceNo", deviceNo);
-        params.put("type", "gold");
-        params.put("num", num);
-        params.put("notify", notify);
-        RequestCenter.postRequest(C.API_SERVER_USER_RECHARGE_GOLD_URL, params, listener);
-    }
-
-
-
-    public static void confirm_payInfo(String pid, DisposeDataListener disposeDataListener) {
-        RequestParams params = new RequestParams();
-        params.put("pid", pid);
+        params.put("snNo", snNo);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
         RequestCenter.postRequest(C.API_USER_PAY_CONFIRM_PAYINFO, params, disposeDataListener);
     }
+    /**
+     * 轮询——支付
+     * @param snNo
+     * @param disposeDataListener
+     */
+    public static void confirm_goldPayInfo(String snNo, DisposeDataListener disposeDataListener) {
+        RequestParams params = new RequestParams();
+        params.put("snNo", snNo);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_SERVER_COINPOLLING_PAY_URL, params, disposeDataListener);
+    }
+
+    /**
+     * 轮询——登陆
+     * @param deviceNo
+     * @param disposeDataListener
+     */
     public static void confirm_login(String deviceNo, DisposeDataListener disposeDataListener) {
         RequestParams params = new RequestParams();
-        params.put("deviceNo", deviceNo);
+        params.put("snNo", deviceNo);
         RequestCenter.postRequest(C.API_USER_PAY_CONFIRM_LOGIN, params, disposeDataListener);
+    }
+
+    /**
+     * 象棋游戏金豆（+ - ）
+     * @param goldNum
+     * @param type 1(增加) 2减少
+     * @param disposeDataListener
+     */
+    public static void goldCoinAddOrLess(String appId,String goldNum, String type,DisposeDataListener disposeDataListener) {
+        RequestParams params = new RequestParams();
+        params.put("appId", appId);
+        params.put("goldNum", goldNum);
+        params.put("type", type);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_SERVER_USER_GOLDCOINADDORLESS_URL, params, disposeDataListener);
+    }
+
+
+
+    /**
+     *
+     */
+    public static void order(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+//        params.put("snNo", "A8A198FFD48C335");
+        params.put("snNo", "D428D5116ACE596");
+        params.put("singles", "2599");
+        params.put("amount", "30");
+        params.put("lotteryId", "39");
+        RequestCenter.postRequest(C.API_SERVER_USER_ORDER_URL, params, listener);
+    }
+    /**
+     * 锁票
+     * 彩票id
+     * 1:整包 2:单张
+     */
+    public static void ticketLock(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("id", "2599");
+        params.put("type", "2");
+        RequestCenter.postRequest(C.API_SERVER_USER_LOCK_URL, params, listener);
+    }
+
+    public static void orderList(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("start", "1");
+        params.put("type", "1");
+        params.put("count", "10");
+        RequestCenter.getRequest(C.API_SERVER_USER_OEDER_URL, params, listener);
+    }
+
+    public static void delOrderList(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("id", "1017");
+        RequestCenter.deletRequest(C.API_SERVER_USER_OEDER_URL, params, listener);
     }
 }

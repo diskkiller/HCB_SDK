@@ -35,6 +35,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.hcb.hcbsdk.R;
 import com.hcb.hcbsdk.manager.SDKManager;
+import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
 import com.hcb.hcbsdk.service.TuitaData;
@@ -43,6 +44,7 @@ import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.DeviceUtil;
 import com.hcb.hcbsdk.util.PermissionUtils;
+import com.hcb.hcbsdk.util.StringUtils;
 import com.hcb.hcbsdk.util.Utils;
 import com.hcb.hcbsdk.util.dodo.FileUtil;
 import com.hcb.hcbsdk.util.dodo.NetStatus;
@@ -51,6 +53,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
+import static com.hcb.hcbsdk.util.C.KEY_FILE_NAME;
+import static com.hcb.hcbsdk.util.C.key;
 
 
 public class LoginActivity extends JKCBaseActivity {
@@ -72,8 +78,8 @@ public class LoginActivity extends JKCBaseActivity {
     private final int TIME = 60;
     //倒计时
     private int recLen = TIME;
-    private TextInputLayout tel_input_layout,vecode_input_layout;
-    private View weixi_login,tel_login;
+    private TextInputLayout tel_input_layout, vecode_input_layout;
+    private View weixi_login, tel_login;
 
 
     private ParentViewPager pager_login;
@@ -82,7 +88,8 @@ public class LoginActivity extends JKCBaseActivity {
     private View mBtn_login;
     private BroadcastReceiver mRecever;
     private View activity_wechat_capture;
-    private TextView tx_tips;
+    private TextView tx_tips, link_signup;
+    private View ib_closed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +100,6 @@ public class LoginActivity extends JKCBaseActivity {
         hideSystemUI(this);
         setContentView(R.layout.sdk_login);
 
-        readExternalStorage();
-
         initUI();
 
         getAuthorize();
@@ -104,40 +109,10 @@ public class LoginActivity extends JKCBaseActivity {
     }
 
 
-    public void readExternalStorage() {
-        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_EXTERNAL_STORAGE, mPermissionGrant);
-    }
-
-    private PermissionUtils.PermissionGrant mPermissionGrant = new PermissionUtils.PermissionGrant() {
-        @Override
-        public void onPermissionGranted(int requestCode) {
-            switch (requestCode) {
-
-                case PermissionUtils.CODE_READ_EXTERNAL_STORAGE:
-                    break;
-                case PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE:
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mPermissionGrant);
-    }
-
-
-
     private void getAuthorize() {
 
-        if(!NetStatus.getNetStatus(this)){
-            Utils.showToastCenter(this,"您的网络已断开，请检查网络！");
+        if (!NetStatus.getNetStatus(this)) {
+            Utils.showToastCenter(this, "您的网络已断开，请检查网络！");
             tx_tips.setText("网络差，二维码加载失败");
             return;
         }
@@ -147,18 +122,17 @@ public class LoginActivity extends JKCBaseActivity {
             public void onSuccess(Object responseObj) {
 
                 try {
-                    int status =((JSONObject)responseObj).getInt("status");
-                    if(status == 10000){
-                        String authorizeUrl = ((JSONObject)responseObj).getString("data");
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
+                        String authorizeUrl = ((JSONObject) responseObj).getString("data");
                         Bitmap bitmap = Utils.createQRImage(authorizeUrl);
-                        if(bitmap != null){
+                        if (bitmap != null) {
                             tx_tips.setText("请用微信扫码登录");
                             sweepIV.setImageBitmap(bitmap);
                         }
-                    }
-                    else
+                    } else
                         Utils.showToastCenter(LoginActivity.this, "网络差，二维码加载失败");
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -176,11 +150,20 @@ public class LoginActivity extends JKCBaseActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(IConstants.LOGIN);
         mRecever = new MyRecever();
-        this.registerReceiver(mRecever,filter);
+        this.registerReceiver(mRecever, filter);
 
 
         activity_wechat_capture = findViewById(R.id.activity_wechat_capture);
         activity_wechat_capture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                finish();
+            }
+        });
+
+        rl_login = findViewById(R.id.rl_login);
+        ib_closed = findViewById(R.id.ib_closed);
+        ib_closed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -188,18 +171,14 @@ public class LoginActivity extends JKCBaseActivity {
         });
 
 
-
-        rl_login = findViewById(R.id.rl_login);
-
-        weixi_login = View.inflate(this,R.layout.sdk_pager_weixin_login,null);
+        weixi_login = View.inflate(this, R.layout.sdk_pager_weixin_login, null);
         sweepIV = (ImageView) weixi_login.findViewById(R.id.sweepIV);
 
-        tel_login = View.inflate(this,R.layout.sdk_pager_tel_login,null);
+        tel_login = View.inflate(this, R.layout.sdk_pager_tel_login, null);
         bt_send = (Button) tel_login.findViewById(R.id.bt_send);
         et_vercode = (EditText) tel_login.findViewById(R.id.et_vercode);
         et_phone = (EditText) tel_login.findViewById(R.id.et_phone);
         tx_tips = (TextView) weixi_login.findViewById(R.id.tx_tips);
-
 
 
         mBtn_login = tel_login.findViewById(R.id.btn_login);
@@ -208,12 +187,20 @@ public class LoginActivity extends JKCBaseActivity {
         mBtn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!NetStatus.getNetStatus(LoginActivity.this)){
-                    Utils.showToastCenter(LoginActivity.this,"您的网络已断开，请检查网络！");
+                if (!NetStatus.getNetStatus(LoginActivity.this)) {
+                    Utils.showToastCenter(LoginActivity.this, "您的网络已断开，请检查网络！");
                     return;
                 }
                 showProgress("登陆中...");
                 attemptLogin();
+            }
+        });
+
+        link_signup = (TextView) tel_login.findViewById(R.id.link_signup);
+        link_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SDKManager.getInstance().startAboutPage(LoginActivity.this);
             }
         });
 
@@ -256,8 +243,8 @@ public class LoginActivity extends JKCBaseActivity {
             @Override
             public void onClick(View v) {
 
-                if(!NetStatus.getNetStatus(LoginActivity.this)){
-                    Utils.showToastCenter(LoginActivity.this,"您的网络已断开，请检查网络！");
+                if (!NetStatus.getNetStatus(LoginActivity.this)) {
+                    Utils.showToastCenter(LoginActivity.this, "您的网络已断开，请检查网络！");
                     return;
                 }
 
@@ -269,7 +256,7 @@ public class LoginActivity extends JKCBaseActivity {
                     et_vercode.requestFocus();
                     getVercode();
 
-                }else{
+                } else {
                     tel_input_layout.setErrorEnabled(true);
                     tel_input_layout.setError("请输入正确的手机号");
                 }
@@ -302,11 +289,11 @@ public class LoginActivity extends JKCBaseActivity {
                     }
                 }
                 vercode = et_vercode.getText().toString();
-                if (registVerify() && vercode.length() == 6){
+                if (registVerify() && vercode.length() == 6) {
                     mBtn_login.setClickable(true);
                     mBtn_login.setEnabled(true);
                     mBtn_login.setBackgroundResource(R.drawable.bt_confim_bg);
-                }else{
+                } else {
                     mBtn_login.setClickable(false);
                     mBtn_login.setEnabled(false);
                     mBtn_login.setBackgroundResource(R.drawable.bt_default_bg);
@@ -330,18 +317,18 @@ public class LoginActivity extends JKCBaseActivity {
 
                 String trimStr = s.toString();
 
-                if (s.length()>6){
+                if (s.length() > 6) {
                     vecode_input_layout.setErrorEnabled(true);
                     vecode_input_layout.setError("验证码长度不能超过6个");
-                }else{
+                } else {
                     vecode_input_layout.setErrorEnabled(false);
                     vercode = trimStr;
                     phone = et_phone.getText().toString();
-                    if (registVerify() && vercode.length() == 6){
+                    if (registVerify() && vercode.length() == 6) {
                         mBtn_login.setClickable(true);
                         mBtn_login.setEnabled(true);
                         mBtn_login.setBackgroundResource(R.drawable.bt_confim_bg);
-                    }else{
+                    } else {
                         mBtn_login.setClickable(false);
                         mBtn_login.setEnabled(false);
                         mBtn_login.setBackgroundResource(R.drawable.bt_default_bg);
@@ -356,7 +343,7 @@ public class LoginActivity extends JKCBaseActivity {
     }
 
     private void getVercode() {
-        RequestCenter.getVercode(phone, new DisposeDataListener() {
+        RequestCenter.getVercode(phone, "6", new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
 
@@ -364,13 +351,12 @@ public class LoginActivity extends JKCBaseActivity {
 
 //                    AESUtil.encrypt("AES");
 
-                    int status =((JSONObject)responseObj).getInt("status");
-                    if(status == 10000){
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
                         startTimer();
                         Utils.showToastCenter(LoginActivity.this, "验证码已发送");
-                    }
-                    else
-                        Utils.showToastCenter(LoginActivity.this, "验证码发送失败");
+                    } else
+                        Utils.showToastCenter(LoginActivity.this, ((JSONObject) responseObj).getString("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -388,37 +374,39 @@ public class LoginActivity extends JKCBaseActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (IConstants.LOGIN.equals(intent.getAction())){
+            if (IConstants.LOGIN.equals(intent.getAction())) {
                 Utils.showToastCenter(LoginActivity.this, "登陆成功");
+
+                /*if(StringUtils.isEmpty(SDKManager.getInstance().getUser().getIdCard())){
+                    SDKManager.getInstance().startUserAuPage(LoginActivity.this);
+                }*/
+
                 finish();
+
             }
         }
     }
 
 
-
-
     private void attemptLogin() {
 
-        RequestCenter.userLogin(phone,et_vercode.getText().toString(),DeviceUtil.getDeviceId2Ipad(this), new DisposeDataListener() {
+        RequestCenter.userLogin(phone, et_vercode.getText().toString(), DeviceUtil.getDeviceId2Ipad(this), new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
 
                 dismissProgress();
                 try {
-                    int status =((JSONObject)responseObj).getInt("status");
-                    String data = ((JSONObject)responseObj).toString();
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    String data = ((JSONObject) responseObj).toString();
                     LoginReslut loginReslut = new Gson().fromJson(data, LoginReslut.class);
-                    if(status == 10000){
-                        Utils.showToastCenter(LoginActivity.this, "登陆成功");
+                    if (status == 1) {
 
-                        FileUtil.writeFile(FileUtil.getSDDir("sdk_user") + "/sdk_user.txt",data, false);
+                        FileUtil.writeFile(FileUtil.getSDDir(KEY_DIR_NAME) + KEY_FILE_NAME, data, false);
 
                         TuitaData.getInstance().setUser(loginReslut.getData());
 
-                        BroadcastUtil.sendBroadcastToUI(LoginActivity.this,IConstants.LOGIN,((JSONObject)responseObj).toString());
-                    }
-                    else
+                        BroadcastUtil.sendBroadcastToUI(LoginActivity.this, IConstants.LOGIN, ((JSONObject) responseObj).toString());
+                    } else
                         Utils.showToastCenter(LoginActivity.this, "登录失败");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -432,15 +420,8 @@ public class LoginActivity extends JKCBaseActivity {
 
                     dismissProgress();
 
-                    int status =((JSONObject)reasonObj).getInt("status");
 
-                    if(status == 10001){
-                        Utils.showToastCenter(LoginActivity.this, "验证码错误");
-                        return;
-                    }
-
-
-                    Utils.showToastCenter(LoginActivity.this, "登录失败");
+                    Utils.showToastCenter(LoginActivity.this, ((OkHttpException) reasonObj).getMsg().toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -448,25 +429,12 @@ public class LoginActivity extends JKCBaseActivity {
         });
 
 
-
-        /*if (!AppSocket.getInstance().isConnected()) {
-            Toast.makeText(this, R.string.socket_connect_fail, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        AppSocket.getInstance().sdk_login(phone,et_vercode.getText().toString(),IConstants.LOGIN);*/
-
     }
-
-
-
-
-
 
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        if(hasFocus)
+        if (hasFocus)
             hideSystemUI(this);
         super.onWindowFocusChanged(hasFocus);
     }
@@ -523,9 +491,9 @@ public class LoginActivity extends JKCBaseActivity {
 
     private void startAnimation() {
         animationSet = new AnimationSet(true);
-        Animation alpha = new AlphaAnimation( 0, 1);
+        Animation alpha = new AlphaAnimation(0, 1);
         alpha.setDuration(mDuration * 3 / 2);
-        Animation scale = new ScaleAnimation(2, 1, 2,1,Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        Animation scale = new ScaleAnimation(2, 1, 2, 1, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scale.setDuration(mDuration);
 
         animationSet.addAnimation(alpha);
@@ -539,8 +507,8 @@ public class LoginActivity extends JKCBaseActivity {
 
     @Override
     protected void onDestroy() {
-        Utils.closeKeybord(et_vercode,this);
-        Utils.closeKeybord(et_phone,this);
+        Utils.closeKeybord(et_vercode, this);
+        Utils.closeKeybord(et_phone, this);
         handler.removeCallbacksAndMessages(null);
         unregisterReceiver(mRecever);
         SDKManager.getInstance().cancleScheduledTask();

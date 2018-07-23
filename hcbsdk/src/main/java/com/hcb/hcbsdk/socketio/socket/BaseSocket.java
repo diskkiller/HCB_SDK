@@ -1,9 +1,11 @@
 package com.hcb.hcbsdk.socketio.socket;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.hcb.hcbsdk.logutils.save.imp.LogWriter;
 import com.hcb.hcbsdk.socketio.listener.IEmitterListener;
+import com.hcb.hcbsdk.util.L;
 
 import java.net.URISyntaxException;
 
@@ -41,7 +43,7 @@ public class BaseSocket {
         options.transports = builder.transports;
         try {
             mSocket = IO.socket(builder.socketHost, options);
-            LogWriter.writeLog("PushService", "Socket连接----socketHost: " + builder.socketHost);
+            L.info("PushService", "Socket连接----socketHost: " + builder.socketHost);
             mIEmitterListener = builder.emitterListener;
             initEmitterEvent(mIEmitterListener);
             isSocketInit = true;
@@ -70,12 +72,15 @@ public class BaseSocket {
 
     public void disConnnect() {
         if (socketIsNotNullAndInit()) {
+            Log.i("pushservice","disConnnect  mSocket: "+mSocket);
             mSocket.disconnect();
 //            offEmitterListener();
         }
     }
 
     public void offEmitterListener() {
+        Log.i("pushservice","offEmitterListener  mSocket: "+mSocket);
+
         mEmitterEvent.offEmitterEvent(mSocket);
     }
 

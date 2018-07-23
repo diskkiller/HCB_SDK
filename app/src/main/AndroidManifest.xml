@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name="com.hcb.hcbsdk.service.PushService"
+            android:name="com.hcb.hcbsdk.service.HCBPushService"
             android:exported="true"
             android:label="PushService"
             />

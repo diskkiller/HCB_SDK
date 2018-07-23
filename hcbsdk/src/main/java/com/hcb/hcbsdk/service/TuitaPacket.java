@@ -81,7 +81,7 @@ public class TuitaPacket implements Serializable {
 
 			dataBean = new BattleLog.DataBean(key,num,appId,
 					DeviceUtil.getDeviceId2Ipad(SDKManager.getInstance().getCtx()),
-					SDKManager.getInstance().getUser().getUid());
+					SDKManager.getInstance().getUser().getMobile());
 		}else{
 			L.info("PushService", "第三方发送数据----user  null");
 			return null;

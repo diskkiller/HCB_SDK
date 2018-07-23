@@ -4,21 +4,21 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.diskkiller'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
-        ndk {
-            abiFilters 'armeabi-v7a'
-        }
+        /*ndk {
+            abiFilters "armeabi"
+        }*/
 
     }
     buildTypes {
@@ -31,11 +31,11 @@ android {
         }
     }
 
-    externalNativeBuild {
+    /*externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
         }
-    }
+    }*/
 
 
 
@@ -47,7 +47,6 @@ android {
     }
 
 
-
 }
 
 dependencies {
@@ -55,12 +54,14 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:25.3.1'
-    implementation 'com.android.support:design:25.3.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
     testImplementation 'junit:junit:4.12'
     implementation files('libs/okio-1.13.0.jar')
     implementation files('libs/okhttp-3.9.1.jar')
     implementation files('libs/gson-2.8.2.jar')
     implementation files('libs/libphonenumber-7.7.2.jar')
     implementation files('libs/hcb_log_sdk.jar')
+    implementation files('libs/nineoldandroids-2.4.0.jar')
+
 }

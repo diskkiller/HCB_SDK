@@ -1,8 +1,16 @@
 package com.hcb.hcbsdk.manager.schedulerTask;
 
+import android.content.Context;
+
+import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
+import com.hcb.hcbsdk.socketio.listener.IConstants;
+import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.L;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author WangGuoWei
@@ -40,10 +48,12 @@ import com.hcb.hcbsdk.util.L;
 public class PayScheduledExecutor implements Runnable {
 
 
-    private final String pid;
+    private final String snNo;
+    private Context ctx;
 
-    public PayScheduledExecutor(String pid) {
-        this.pid = pid;
+    public PayScheduledExecutor(String snNo, Context ctx) {
+        this.ctx = ctx;
+        this.snNo = snNo;
     }
 
     @Override
@@ -51,22 +61,37 @@ public class PayScheduledExecutor implements Runnable {
         L.info("PushService", "支付----开始任务----  "+Thread.currentThread().getName());
 
 
-        test();
+        confirm_payInfo();
     }
 
 
-    private void test() {
+    private void confirm_payInfo() {
 
 
-        RequestCenter.confirm_payInfo(pid,new DisposeDataListener() {
+        RequestCenter.confirm_payInfo(snNo,new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
-                L.info("PushService", "支付----定时请求成功  "+responseObj.toString());
+
+                L.info("PushService", "支付----定时请求成功。。。。。  "+responseObj.toString());
+                JSONObject data = (JSONObject) responseObj;
+                try {
+                    if(data.get("data").equals("success")){
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS,null);
+                        L.info("PushService", "支付----定时请求支付成功-----  "+responseObj.toString());
+                    }else if(data.get("data").equals("fail")){
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,null);
+                        L.info("PushService", "支付----定时请求支付失败-----  "+responseObj.toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
             public void onFailure(Object reasonObj) {
-                L.info("PushService", "支付----定时请求失败  ");
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
+                L.info("PushService", "支付----定时请求失败。。。。。  ");
             }
         });
     }

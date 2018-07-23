@@ -25,12 +25,21 @@
             android:screenOrientation="landscape" />
         <activity
             android:theme="@style/sdktheme_transparent"
-            android:name="com.hcb.hcbsdk.activity.PayActivity"
+            android:name="com.hcb.hcbsdk.activity.PayActivityC"
             android:screenOrientation="landscape" />
         <activity
             android:theme="@style/sdktheme_transparent"
-            android:name="com.hcb.hcbsdk.activity.PayActivityC"
+            android:name="com.hcb.hcbsdk.activity.TestLottieAnimaActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:theme="@style/sdktheme_transparent"
+            android:name="com.hcb.hcbsdk.activity.AboutActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:theme="@style/sdktheme_transparent"
+            android:name="com.hcb.hcbsdk.activity.UserAuthenticationActivity"
+            android:screenOrientation="landscape" />
+
         <activity
             android:theme="@style/sdktheme_transparent"
             android:name="com.hcb.hcbsdk.activity.RechargeGoldActivity"
@@ -39,7 +48,8 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:configChanges="orientation|keyboardHidden"
 
-        />
+            />
+
 
 
         <service android:name=".logutils.upload.UploadService" />

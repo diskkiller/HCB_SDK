@@ -55,6 +55,7 @@ public class Socket extends Emitter {
     public static final String EVENT_CONNECT_ERROR = Manager.EVENT_CONNECT_ERROR;
 
     public static final String EVENT_CONNECT_TIMEOUT = Manager.EVENT_CONNECT_TIMEOUT;
+    public static final String EVENT_CONNECT_CANCLE = Manager.EVENT_CONNECT_CANCLE;
 
     public static final String EVENT_RECONNECT = Manager.EVENT_RECONNECT;
 
@@ -84,6 +85,7 @@ public class Socket extends Emitter {
         put(EVENT_RECONNECTING, 1);
         put(EVENT_PING, 1);
         put(EVENT_PONG, 1);
+        put(EVENT_CONNECT_CANCLE, 1);
     }};
 
     /*package*/ String id;
@@ -421,6 +423,8 @@ public class Socket extends Emitter {
             // clean subscriptions to avoid reconnection
             for (On.Handle sub : this.subs) {
                 sub.destroy();
+                Log.i("pushservice","socket destroy------- ");
+
             }
             this.subs = null;
         }
@@ -437,6 +441,7 @@ public class Socket extends Emitter {
         EventThread.exec(new Runnable() {
             @Override
             public void run() {
+                Log.i("pushservice","socket close------- ");
                 if (Socket.this.connected) {
                     if (logger.isLoggable(Level.FINE)) {
                         logger.fine(String.format("performing disconnect (%s)", Socket.this.nsp));
@@ -447,6 +452,8 @@ public class Socket extends Emitter {
                 Socket.this.destroy();
 
                 if (Socket.this.connected) {
+                    Log.i("pushservice","socket onclose----------------- ");
+
                     Socket.this.onclose("io client disconnect");
                 }
             }

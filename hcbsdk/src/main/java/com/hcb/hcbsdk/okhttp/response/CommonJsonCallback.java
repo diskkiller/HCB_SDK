@@ -8,6 +8,7 @@ import com.hcb.hcbsdk.logutils.save.imp.LogWriter;
 import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataHandle;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
+import com.hcb.hcbsdk.util.L;
 import com.hcb.hcbsdk.util.ResponseEntityToModule;
 
 import org.json.JSONObject;
@@ -27,8 +28,8 @@ public class CommonJsonCallback implements Callback {
 
 
     protected final String RESULT_CODE = "status";
-    protected final int RESULT_CODE_VALUE = 10000;
-    protected final String ERROR_MSG = "emsg";
+    protected final int RESULT_CODE_VALUE = 1;
+    protected final String ERROR_MSG = "message";
     protected final String EMPTY_MSG = "";
     protected final String COOKIE_STORE = "Set-Cookie";
 
@@ -65,7 +66,7 @@ public class CommonJsonCallback implements Callback {
     @Override
     public void onResponse(final Call call, final Response response) throws IOException {
         final String result = response.body().string();
-        LogWriter.writeLog("PushService", "服务器返回数据----url:" + call.request().url()+"  data:"+result.toString());
+        L.info("PushService", "服务器返回数据----url:" + call.request().url()+"  data:"+result.toString());
         mDeliveryHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -138,7 +139,7 @@ public class CommonJsonCallback implements Callback {
         try {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.has(RESULT_CODE)) {
-                // 取出响应码，如果响应码为0，说明响应成功
+                // 取出响应码，如果响应码为1，说明响应成功
                 if (jsonObject.optInt(RESULT_CODE) == RESULT_CODE_VALUE) {
                     if (mClass == null) {
                         /*if(url.toString().contains("user/login")){
@@ -160,8 +161,11 @@ public class CommonJsonCallback implements Callback {
                         }
                     }
                 } else {
-                    // 响应码不为0
-                    mListener.onFailure(jsonObject);
+                    // 响应码不为1
+                    if (jsonObject.has(ERROR_MSG)) {
+                        mListener.onFailure(new OkHttpException(OTHER_ERROR,
+                                jsonObject.optString(ERROR_MSG)));
+                    }
                 }
             } else {
                 if (jsonObject.has(ERROR_MSG)) {
@@ -170,7 +174,7 @@ public class CommonJsonCallback implements Callback {
                 }
             }
         } catch (Exception e) {
-            LogWriter.writeLog("PushService", "服务器返回数据----"+e.getMessage()+"  "+e.toString());
+            L.info("PushService", "服务器返回数据----"+e.getMessage()+"  "+e.toString());
             mListener.onFailure(new OkHttpException(OTHER_ERROR, e.getMessage()));
         }
     }

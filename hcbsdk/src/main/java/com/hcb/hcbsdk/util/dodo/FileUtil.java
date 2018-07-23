@@ -53,7 +53,7 @@ public class FileUtil
 
 
 
-	private static final String ROOT_DIR = "jkc_sdk_root";
+	private static final String ROOT_DIR = "hcb_sdk_root";
 	/**
 	 * 获取到sd卡的目录
 	 *

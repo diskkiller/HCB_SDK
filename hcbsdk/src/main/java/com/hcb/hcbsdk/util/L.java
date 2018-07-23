@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.hcb.hcbsdk.manager.SDKManager;
 
+import static com.hcb.hcbsdk.util.C.PUSH_SERVICE_LOG_TAG;
+
 /**
  * @author
  * @ClassName: L
@@ -16,22 +18,24 @@ public class L {
     /**
      *
      */
-    public static boolean debug = false;
+    public static boolean debug = true;
     public static boolean debugLog = true;
     public static boolean changeModle = false;
     public static boolean isConnected = false;
+    public static String deviceNo = "";
 
     public static void debug(String TAG, String info) {
         if (debugLog) {
             Log.d(TAG, "" + info);
         }
     }
-    public static void info(String TAG, String info) {
+    public static void info(String TAG,String info) {
         if (debugLog) {
-            Log.i(TAG, "" + info);
+            Log.i(PUSH_SERVICE_LOG_TAG, "" + info);
             SDKManager.getInstance().sendLog(info);
         }
     }
+
 
     public static void error(String TAG, String info) {
         if (debugLog) {

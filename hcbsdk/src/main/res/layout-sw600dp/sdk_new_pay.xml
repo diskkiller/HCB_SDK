@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sdk_pay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent60"
+    tools:context="com.hcb.hcbsdk.activity.PayActivityC">
+
+
+
+    <include android:id="@+id/sdk_authorize_code" layout="@layout/sdk_authorize_code" android:visibility="gone"/>
+    <include android:id="@+id/sdk_gold_buy" layout="@layout/sdk_gold_buy" android:visibility="gone"/>
+    <include android:id="@+id/sdk_jkc_pay" layout="@layout/sdk_jkc_pay" android:visibility="gone"/>
+    <include android:id="@+id/sdk_pay_error" layout="@layout/sdk_pay_error" android:visibility="gone"/>
+
+
+
+
+
+
+</RelativeLayout>

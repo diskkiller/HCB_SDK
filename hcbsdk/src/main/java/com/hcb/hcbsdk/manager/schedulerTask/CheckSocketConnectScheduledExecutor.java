@@ -9,6 +9,7 @@ import com.hcb.hcbsdk.util.CheckUtil;
 import com.hcb.hcbsdk.util.L;
 import com.hcb.hcbsdk.util.dodo.NetStatus;
 
+import static com.hcb.hcbsdk.util.C.SERVICE_NAME;
 import static com.hcb.hcbsdk.util.L.isConnected;
 
 /**
@@ -60,14 +61,21 @@ public class CheckSocketConnectScheduledExecutor implements Runnable {
 
         if(isConnected){
             L.info("PushService", "Socket已经连接！！！--------------");
+
+            if(SDKManager.getInstance().getUser()!=null)
+                L.info("PushService", "登陆用户：----------->   "+
+                        SDKManager.getInstance().getUser().getNickname()+"   Gold: "+SDKManager.getInstance().getUser().getGoldCoin());
+            else
+                L.info("PushService", "用户未登陆。。。");
+
             return;
         }
 
 
-        if(C.SOCKET_CONNECT_COUNT>2){
+        /*if(C.SOCKET_CONNECT_COUNT>2){
             L.info("PushService", "Socket重连次数-------ConnectCount: "+C.SOCKET_CONNECT_COUNT
-                    +"  -----isServiceWorked   "+CheckUtil.isServiceWorked(ctx,"com.hcb.hcbsdk.service.PushService"));
-            if(CheckUtil.isServiceWorked(ctx,"com.hcb.hcbsdk.service.PushService")){
+                    +"  -----isServiceWorked   "+CheckUtil.isServiceWorked(ctx,SERVICE_NAME));
+            if(CheckUtil.isServiceWorked(ctx,SERVICE_NAME)){
                 if(NetStatus.getNetStatus(ctx)){
                     C.SOCKET_RECONNECT = true;
                     SDKManager.getInstance().destroy();
@@ -77,7 +85,10 @@ public class CheckSocketConnectScheduledExecutor implements Runnable {
             return;
         }
 
-        C.SOCKET_CONNECT_COUNT++;
+            C.SOCKET_CONNECT_COUNT++;
+
+        */
+
         L.info("PushService", "Socket已经断开！！！开始重连....--------------ConnectCount: "+C.SOCKET_CONNECT_COUNT);
         SDKManager.getInstance().startconnect();
 

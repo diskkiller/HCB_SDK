@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="sdk.hecaibao.com.hcb_sdk.MainActivity"
+    tools:context="sdk.com.huacai.hcb_sdk.MainActivity"
     android:orientation="vertical"
     >
 
@@ -20,13 +20,13 @@
 
 
 
-    <com.airbnb.lottie.LottieAnimationView
+    <!--<com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieView"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:lottie_fileName="AndroidWave.json"
         app:lottie_loop="true"
-        app:lottie_autoPlay="true"/>
+        app:lottie_autoPlay="true"/>-->
 
 
 </LinearLayout>

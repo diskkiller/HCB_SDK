@@ -29,6 +29,10 @@ public class CommonRequest {
         return createGetRequest(url, params, null);
     }
 
+    public static Request createDeletRequest(String url, RequestParams params) {
+        return createDeletRequest(url, params, null);
+    }
+
     /**
      * 可以带请求头的Get请求
      */
@@ -47,11 +51,42 @@ public class CommonRequest {
             }
         }
         Headers mHeader = mHeaderBuild.build();
+        L.info("PushService", "GET请求数据----url:  "+ urlBuilder.toString());
         return new Request.Builder().
                 url(urlBuilder.substring(0, urlBuilder.length() - 1))
                 .get()
                 .headers(mHeader)
                 .build();
+
+
+    }
+
+    /**
+     * 可以带请求头的Get请求
+     */
+    public static Request createDeletRequest(String url, RequestParams params, RequestParams headers) {
+        StringBuilder urlBuilder = new StringBuilder(url).append("?");
+        if (params != null) {
+            for (Map.Entry<String, String> entry : params.urlParams.entrySet()) {
+                urlBuilder.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+            }
+        }
+        //添加请求头
+        Headers.Builder mHeaderBuild = new Headers.Builder();
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.urlParams.entrySet()) {
+                mHeaderBuild.add(entry.getKey(), entry.getValue());
+            }
+        }
+        Headers mHeader = mHeaderBuild.build();
+        L.info("PushService", "GET请求数据----url:  "+ urlBuilder.toString());
+        return new Request.Builder().
+                url(urlBuilder.substring(0, urlBuilder.length() - 1))
+                .delete()
+                .headers(mHeader)
+                .build();
+
+
     }
 
     /**
@@ -94,7 +129,7 @@ public class CommonRequest {
                 headers(mHeader)
                 .build();
         JSONObject jsonObject = new JSONObject(params.urlParams);
-        L.info("PushService", "请求数据----url:"+url+"  data:" + jsonObject.toString());
+        L.info("PushService", "请求数据----url:  "+url+"  data:  " + jsonObject.toString());
         return request;
     }
 

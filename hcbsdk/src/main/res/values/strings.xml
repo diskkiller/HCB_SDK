@@ -13,6 +13,7 @@
     <string name="noNetwork">NoNetwork</string>
     <string name="empty">Empty</string>
 
+    <string name="scratch_percent">Scratch Percent: %1$s </string>
 
     <string name="permission_camera_user_hint">test onRequestPermissionsResult: 没有此权限，无法开启这个功能，请开启权限。请打开照相机权限</string>
     <string name="permission_camera_user_hint1">test shouldShowRequestPermissionRationale: 没有此权限，无法开启这个功能，请开启权限。请打开照相机权限</string>

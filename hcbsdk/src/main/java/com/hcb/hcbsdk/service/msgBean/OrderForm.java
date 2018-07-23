@@ -63,127 +63,44 @@ public class OrderForm {
 
     public static class Order {
         /**
-         * payId : 5a76d656c6ee40581f3fed6f
-         * total : 1000
-         * num : 1000
-         * balance : 0.0  //已使用的奖金（需要支付2000金币，余额有1000，后台自动扣除奖券相当于1000金币的奖券1元，必须勾选）
-         * cash : 0.0  //二维码显示的金额
-         * bit : 1000
-         * type : gold
-         * deviceNo : 0123456789ABCDE
-         * appId : 5a7317d1f763e74421a104ab
-         * appName : 财神来
+         * lotteryName,count,money
          */
 
-        private String payId;
-        private int total;
-        private int num;
-        private double balance;
-        private double cash;
-        private int bit;
-        private String type;
-        private String deviceNo;
-        private String appId;
-        private String appName;
-        private boolean charge;
+        private String lotteryName;
+        private int count;
+        private double money;
+        private String price;
 
-        public boolean getCharge() {
-            return charge;
+        public String getPrice() {
+            return price;
         }
 
-        public void setCharge(boolean charge) {
-            this.charge = charge;
+        public void setPrice(String price) {
+            this.price = price;
         }
 
-
-        public String getQrcode() {
-            return qrcode;
+        public String getLotteryName() {
+            return lotteryName;
         }
 
-        public void setQrcode(String qrcode) {
-            this.qrcode = qrcode;
+        public void setLotteryName(String lotteryName) {
+            this.lotteryName = lotteryName;
         }
 
-        private String qrcode;
-
-        public String getPayId() {
-            return payId;
+        public int getCount() {
+            return count;
         }
 
-        public void setPayId(String payId) {
-            this.payId = payId;
+        public void setCount(int count) {
+            this.count = count;
         }
 
-        public int getTotal() {
-            return total;
+        public double getMoney() {
+            return money;
         }
 
-        public void setTotal(int total) {
-            this.total = total;
-        }
-
-        public int getNum() {
-            return num;
-        }
-
-        public void setNum(int num) {
-            this.num = num;
-        }
-
-        public double getBalance() {
-            return balance;
-        }
-
-        public void setBalance(double balance) {
-            this.balance = balance;
-        }
-
-        public double getCash() {
-            return cash;
-        }
-
-        public void setCash(double cash) {
-            this.cash = cash;
-        }
-
-        public int getBit() {
-            return bit;
-        }
-
-        public void setBit(int bit) {
-            this.bit = bit;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getDeviceNo() {
-            return deviceNo;
-        }
-
-        public void setDeviceNo(String deviceNo) {
-            this.deviceNo = deviceNo;
-        }
-
-        public String getAppId() {
-            return appId;
-        }
-
-        public void setAppId(String appId) {
-            this.appId = appId;
-        }
-
-        public String getAppName() {
-            return appName;
-        }
-
-        public void setAppName(String appName) {
-            this.appName = appName;
+        public void setMoney(double money) {
+            this.money = money;
         }
     }
 }

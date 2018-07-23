@@ -98,7 +98,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.height = ViewGroup.LayoutParams.MATCH_PARENT;
         params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        getWindow().setAttributes((android.view.WindowManager.LayoutParams) params);
+        getWindow().setAttributes((WindowManager.LayoutParams) params);
 
     }
 

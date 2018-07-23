@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,14 +34,17 @@ import com.hcb.hcbsdk.socketio.listener.IConstants;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import sdk.hecaibao.com.hcb_sdk.http.TestRequestCenter;
-import sdk.hecaibao.com.hcb_sdk.utils.BarcodeUtils;
+import io.socket.client.Socket;
+import sdk.com.huacai.hcb_sdk.ImProgressMsgDialog;
+import sdk.com.huacai.hcb_sdk.JData;
+import sdk.com.huacai.hcb_sdk.http.TestRequestCenter;
+import sdk.com.huacai.hcb_sdk.pushRecyclerViewAdapter;
 
 
 public class MainActivity extends Activity {
 
     private Toast mToast;
-    private Button bt_startLoginpage,bt_startgoldpage,bt_startLog,bt_endLog;
+    private Button bt_startLoginpage,bt_startgoldpage,bt_startLog,bt_endLog,bt_startpointpage;
     private TextView tx_double,tx_socket_status;
     private double hasPayNum = 129.98;
     private ImProgressMsgDialog progressDialog;
@@ -49,33 +53,55 @@ public class MainActivity extends Activity {
     private boolean isdebug = true;
     private MyRecever mRecever;
     private EditText et_deviceno;
-    private String  deviceNo = "2aa5f1a4";
+    private String deviceNo = "2aa5f1a4";
+    private AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
-        SDKManager.getInstance().init(MainActivity.this,"5aa66b95f3745e62ffd44a8e");
+        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",false);
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
+        bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);
         bt_startLog = (Button)findViewById(R.id.bt_startLog);
-        bt_endLog = (Button)findViewById(R.id.bt_endLog);
-        tx_double = (TextView)findViewById(R.id.tx_double);
-        mSweepIV = (ImageView) findViewById(com.hcb.hcbsdk.R.id.sweepIV);
+        bt_endLog = (Button)findViewById( R.id.bt_endLog);
+        tx_double = (TextView)findViewById( R.id.tx_double);
+        mSweepIV = (ImageView) findViewById( R.id.sweepIV);
 
 
-        tx_socket_status = (TextView)findViewById(R.id.tx_socket_status);
-        et_deviceno = (EditText)findViewById(R.id.et_deviceno);
+        tx_socket_status = (TextView)findViewById( R.id.tx_socket_status);
+        et_deviceno = (EditText)findViewById( R.id.et_deviceno);
 
 
         tx_double.setText(SDKManager.getInstance().getSocketURL());
 
 
 //        Bitmap bitmap = createQRImage("35029234309580522280593353757");
-        Bitmap bitmap = BarcodeUtils.createBarcode("35029234309580522280593353757", null,QR_WIDTH, QR_HEIGHT, BarcodeFormat.DATA_MATRIX, Color.BLACK, Color.WHITE);
+        Bitmap bitmap = SDKManager.getInstance().createDMBarcode("35043301502110193127163766318",QR_WIDTH, QR_HEIGHT);
         mSweepIV.setImageBitmap(bitmap);
+//        mSweepIV.setImageResource(R.drawable.xadsdk_ad_loading_anim);
+//        animationDrawable=(AnimationDrawable)mSweepIV.getDrawable();
+//        animationDrawable.start();
+
+        bt_startpointpage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*if(SDKManager.getInstance().serverIslive())
+                    SDKManager.getInstance().killServer();
+                else
+                    SDKManager.getInstance().startServices();*/
+
+//                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
+                SDKManager.getInstance().delOrderList();
+
+            }
+        });
 
 
         bt_startLoginpage.setOnClickListener(new View.OnClickListener() {
@@ -85,12 +111,14 @@ public class MainActivity extends Activity {
 
 //                tx_double.setText(""+(((float) hasPayNum)*100));
 
-//                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,null);
+//                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
+                SDKManager.getInstance().delOrderList();
 //                AppSocket.getInstance().sdk_logout();
 
                 //                SDKManager.getInstance().runPayScheduledTask();
                 //                test();
-                SDKManager.getInstance().startPayPage("5abdf845a209f21fdadf264e");
+//                SDKManager.getInstance().startPayPage("5abdf845a209f21fdadf264e","");
+//                SDKManager.getInstance().startAboutPage(MainActivity.this);
 //                SDKManager.getInstance().stopconnect();
 
 
@@ -119,15 +147,26 @@ public class MainActivity extends Activity {
         bt_startgoldpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SDKManager.getInstance().changeModle(isdebug,"5aa66b95f3745e62ffd44a8e");
-                isdebug = !isdebug;
+                /*SDKManager.getInstance().changeModle(isdebug,"5aa66b95f3745e62ffd44a8e");
+                isdebug = !isdebug;*/
+
             }
         });
         bt_startLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                SDKManager.getInstance().startPayPage("5abdf845a209f21fdadf264e");
+//                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,null);
+                SDKManager.getInstance().startLoginPage();
+//                SDKManager.getInstance().ScratchDemoActivity(MainActivity.this);
 
-                getDMcode();
+
+
+
+
+//                SDKManager.getInstance().startAboutPage(MainActivity.this);
+
+//                getDMcode();
 
                 /*if(et_deviceno.getText() != null && !et_deviceno.getText().toString().equals(""))
                     deviceNo = et_deviceno.getText().toString();
@@ -137,16 +176,32 @@ public class MainActivity extends Activity {
         bt_endLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(et_deviceno.getText() != null && !et_deviceno.getText().equals(""))
-                    deviceNo = et_deviceno.getText().toString();
-                SDKManager.getInstance().endSendLog(deviceNo);
+//                SDKManager.getInstance().logOut();
+//                SDKManager.getInstance().startPayPage("442","weixin://wxpay/bizpayurl?pr=TaUckqR",1,"0");
+
+//                if(et_deviceno.getText() != null && !et_deviceno.getText().equals(""))
+//                    deviceNo = et_deviceno.getText().toString();
+//                SDKManager.getInstance().endSendLog(deviceNo);
+//                Log.i("pushservice",SDKManager.getInstance().serverIslive()+"----------");
+
+
+
+//                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this);
+//                SDKManager.getInstance().startGamePayPage("",110);
+//                SDKManager.getInstance().startUserAuPage(MainActivity.this);
+//                SDKManager.getInstance().startTestLottieAnimaPage(MainActivity.this);
+//                SDKManager.getInstance().goldCoinAddOrLess("","100","1");
+                SDKManager.getInstance().orderList();
+
+
             }
         });
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(IConstants.EVENT_RECEIVE_LOG);
-        filter.addAction(IConstants.LOG_EVENT_CONNECT);
-        filter.addAction(IConstants.LOG_EVENT_DISCONNECT);
+        filter.addAction(IConstants.EVENT_CONNECT);
+        filter.addAction(Socket.EVENT_DISCONNECT);
+        filter.addAction("login_test");
         mRecever = new MyRecever();
         this.registerReceiver(mRecever,filter);
 
@@ -155,7 +210,7 @@ public class MainActivity extends Activity {
 
     public void getDMcode(){
 
-        TestRequestCenter.getDMcode("35029234309580522280593353757", new DisposeDataListener() {
+        TestRequestCenter.getDMcode("35043301502110193127163766318", new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
 
@@ -179,15 +234,15 @@ public class MainActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(IConstants.EVENT_RECEIVE_LOG.equals(intent.getAction())){
+            if("login_test".equals(intent.getAction())){
                 String msg= intent.getStringExtra(IConstants.EXTRA_MESSAGE);
                 modelList.add(new JData(msg));
                 setInstentIntrceAdapter();
-            }else if(IConstants.LOG_EVENT_CONNECT.equals(intent.getAction())){
+            }else if(IConstants.EVENT_CONNECT.equals(intent.getAction())){
                 tx_socket_status.setTextColor(Color.GREEN);
                 tx_socket_status.setText("当前设备已连接");
 
-            }else if(IConstants.LOG_EVENT_DISCONNECT.equals(intent.getAction())){
+            }else if(Socket.EVENT_DISCONNECT.equals(intent.getAction())){
                 tx_socket_status.setTextColor(Color.RED);
                 tx_socket_status.setText("当前设备未连接");
             }
@@ -302,9 +357,15 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         Log.i("pushservice", "onDestroy: --------");
-        SDKManager.getInstance().destroy();
+//        SDKManager.getInstance().killServer();
         super.onDestroy();
     }
 }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/transparent60"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/sdk_dialog_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp">
+
+        <TextView
+            android:layout_width="814dp"
+            android:layout_height="120dp"
+            android:background="#EEEEEE"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="        为履行《国家体育总局体育彩票管理中心》相关规定，未满18周岁的未成年人不得购买彩票及兑奖！请您进行实名认证后进行购彩。"
+            android:textColor="@color/red"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:layout_width="814dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="20dp"
+            android:background="#EEEEEE"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--  tel Label -->
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/name_input_layout"
+                    android:layout_width="600dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="10dp"
+                    android:theme="@style/txt_lab"
+                    app:errorTextAppearance="@style/MyFloatingErrorStyle"
+                    app:hintTextAppearance="@style/MyFloatingStyle">
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="600dp"
+                        android:layout_height="wrap_content"
+                        android:hint="真实姓名"
+                        android:text=""
+                        android:textColor="@color/ae6058" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <!--  Password Label -->
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/vecode_input_layout"
+                        android:layout_width="600dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:theme="@style/txt_lab"
+                        app:errorTextAppearance="@style/MyFloatingErrorStyle"
+                        app:hintTextAppearance="@style/MyFloatingStyle">
+
+                        <EditText
+                            android:id="@+id/et_vercode"
+                            android:layout_width="600dp"
+                            android:layout_height="wrap_content"
+                            android:hint="身份证号"
+                            android:textColor="@color/ae6058" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/rb_cancel"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="@drawable/jia_shape_uncheck_bt"
+                android:button="@null"
+                android:gravity="center"
+                android:text="取  消"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/rb_confim"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="100dp"
+                android:background="@drawable/jia_shape_check_bt"
+                android:button="@null"
+                android:gravity="center"
+                android:text="确  认"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

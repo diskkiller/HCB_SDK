@@ -101,6 +101,7 @@
     <color name="color_story_desc">#d0021b</color>
     <color name="color_story_friends">#f56123</color>
     <color name="color_story_mystory">#f5a623</color>
+    <color name="tx_orange">#FF9903</color>
 
 
     <!-- pickview-->

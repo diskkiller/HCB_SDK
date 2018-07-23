@@ -5,8 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/transparent60">
 
+
+
+
     <RelativeLayout
-        android:layout_width="840dp"
+        android:layout_width="940dp"
         android:layout_height="715dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
@@ -72,8 +75,7 @@
             android:layout_below="@id/tv_recharge_gold_chongzhishulaing"
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/private_grey_stroke_bg"
-            android:divider="@drawable/private_vertical_divider"
+            android:background="@null"
             android:orientation="horizontal"
             android:showDividers="middle">
 
@@ -81,6 +83,7 @@
                 android:id="@+id/rb_recharge_gold1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:background="@drawable/sdk_pay_selector"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
@@ -92,7 +95,9 @@
                 android:id="@+id/rb_recharge_gold2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
                 android:layout_weight="1"
+                android:background="@drawable/sdk_pay_selector"
                 android:button="@null"
                 android:gravity="center"
                 android:text="10000 金豆"
@@ -103,6 +108,8 @@
                 android:id="@+id/rb_recharge_gold3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/sdk_pay_selector"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center"
@@ -139,18 +146,18 @@
             android:layout_below="@id/et_recharge_gold_custom"
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
-            android:text="100 金豆/元 充值数量必须为 100 的倍数"
+            android:text="注：100 金豆/元，充值数量必须为 100 的倍数"
             android:textColor="@color/private_black2"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <View
             android:id="@+id/view_recharge_gold_bottom_divider"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="2px"
             android:layout_below="@id/tv_recharge_gold_rule"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="30dp"
-            android:background="@color/private_main_divider" />
+            android:layout_marginTop="20dp"
+            android:background="@color/tx_orange" />
 
         <TextView
             android:id="@+id/tv_recharge_gold_need_money"
@@ -176,7 +183,7 @@
             android:layout_marginLeft="30dp"
             android:gravity="center"
             android:text="取消"
-            android:textColor="#FE3334"
+            android:textColor="#FF9903"
             android:background="@drawable/private_sys_btn_cancle_bg"
             android:textSize="30sp"
             android:padding="3dp">
@@ -200,5 +207,7 @@
 
 
     </RelativeLayout>
+
+
 
 </RelativeLayout>

@@ -17,5 +17,5 @@ public interface SocketPushDataListener {
     /**
      * 请求失败回调事件处理
      */
-    void onFailure(String responseCode,Object reasonObj);
+    void onFailure(String responseCode, Object reasonObj);
 }

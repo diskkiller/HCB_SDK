@@ -29,7 +29,7 @@ public class PollingXHR extends Polling {
 
     private static boolean LOGGABLE_FINE = logger.isLoggable(Level.FINE);
 
-    public PollingXHR(Transport.Options opts) {
+    public PollingXHR(Options opts) {
         super(opts);
     }
 
@@ -47,13 +47,13 @@ public class PollingXHR extends Polling {
         Request req = new Request(opts);
 
         final PollingXHR self = this;
-        req.on(Request.EVENT_REQUEST_HEADERS, new Emitter.Listener() {
+        req.on(Request.EVENT_REQUEST_HEADERS, new Listener() {
             @Override
             public void call(Object... args) {
                 // Never execute asynchronously for support to modify headers.
                 self.emit(Transport.EVENT_REQUEST_HEADERS, args[0]);
             }
-        }).on(Request.EVENT_RESPONSE_HEADERS, new Emitter.Listener() {
+        }).on(Request.EVENT_RESPONSE_HEADERS, new Listener() {
             @Override
             public void call(final Object... args) {
                 EventThread.exec(new Runnable() {
@@ -83,7 +83,7 @@ public class PollingXHR extends Polling {
         opts.data = data;
         Request req = this.request(opts);
         final PollingXHR self = this;
-        req.on(Request.EVENT_SUCCESS, new Emitter.Listener() {
+        req.on(Request.EVENT_SUCCESS, new Listener() {
             @Override
             public void call(Object... args) {
                 EventThread.exec(new Runnable() {
@@ -94,7 +94,7 @@ public class PollingXHR extends Polling {
                 });
             }
         });
-        req.on(Request.EVENT_ERROR, new Emitter.Listener() {
+        req.on(Request.EVENT_ERROR, new Listener() {
             @Override
             public void call(final Object... args) {
                 EventThread.exec(new Runnable() {
@@ -114,7 +114,7 @@ public class PollingXHR extends Polling {
         logger.fine("xhr poll");
         Request req = this.request();
         final PollingXHR self = this;
-        req.on(Request.EVENT_DATA, new Emitter.Listener() {
+        req.on(Request.EVENT_DATA, new Listener() {
             @Override
             public void call(final Object... args) {
                 EventThread.exec(new Runnable() {
@@ -130,7 +130,7 @@ public class PollingXHR extends Polling {
                 });
             }
         });
-        req.on(Request.EVENT_ERROR, new Emitter.Listener() {
+        req.on(Request.EVENT_ERROR, new Listener() {
             @Override
             public void call(final Object... args) {
                 EventThread.exec(new Runnable() {

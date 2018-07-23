@@ -1,5 +1,6 @@
 package com.hcb.hcbsdk.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
@@ -38,7 +39,7 @@ public class DeviceUtil {
      */
     public static String getPhoneModel(Context context){
 
-        return android.os.Build.MODEL;
+        return Build.MODEL;
     }
 
     /**
@@ -48,12 +49,12 @@ public class DeviceUtil {
     @SuppressWarnings("deprecation")
 	public static String getSDKVersion(Context context){
 
-        return android.os.Build.VERSION.SDK;
+        return Build.VERSION.SDK;
     }
 
     public static String getDeviceId2Ipad(Context context){
 
-        return "0123456789ABCDE";
+        return L.deviceNo;//Build.SERIAL;
     }
 
     /**
@@ -62,7 +63,7 @@ public class DeviceUtil {
      */
 	public static String getRelaseVersion(Context context){
 
-        return android.os.Build.VERSION.RELEASE;
+        return Build.VERSION.RELEASE;
     }
 
 	/**
@@ -71,7 +72,7 @@ public class DeviceUtil {
      */
 	public static String getManufacturer(Context context){
 
-		return android.os.Build.MANUFACTURER;
+		return Build.MANUFACTURER;
     }
 	
     /**
@@ -84,6 +85,7 @@ public class DeviceUtil {
      *
      * @return
      */
+    @SuppressLint("MissingPermission")
     public static String getDeviceId(Context context){
 
         TelephonyManager telephonyMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -129,6 +131,7 @@ public class DeviceUtil {
      *
      * @return
      */
+    @SuppressLint("MissingPermission")
     public static String getBluetoothAddress(){
 
         BluetoothAdapter m_BluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -143,6 +146,7 @@ public class DeviceUtil {
      *
      * @return
      */
+    @SuppressLint("MissingPermission")
     public static String getSerialNumber(Context context){
 
         TelephonyManager telephonyMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -158,6 +162,7 @@ public class DeviceUtil {
      *
      * @return
      */
+    @SuppressLint("MissingPermission")
     public static String getPhoneNumber(Context context){
 
         TelephonyManager telephonyMgr = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);

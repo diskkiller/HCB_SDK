@@ -17,7 +17,6 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:layout_centerInParent="true"
-        android:visibility="gone"
        >
 
 
@@ -66,15 +65,6 @@
                 android:textColor="@color/gray"
                 android:text=" 金币"
                 />
-            <TextView
-                android:id="@+id/tv_chang3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/gray"
-                android:text=" 送积分1000"
-                />
 
         </LinearLayout>
 
@@ -88,44 +78,6 @@
             />
 
 
-        <LinearLayout
-            android:id="@+id/ll_voucher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="70dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            >
-
-            <CheckBox
-                android:checked="false"
-                android:id="@+id/child_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/custom_checkbox"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/gray"
-                android:text="已使用奖金"
-                android:layout_marginLeft="10dp"
-                />
-
-            <TextView
-                android:id="@+id/tv_voucher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/gray"
-                android:text=" 0.00 元"
-                android:layout_marginLeft="20dp"
-                />
-
-        </LinearLayout>
 
 
         <LinearLayout

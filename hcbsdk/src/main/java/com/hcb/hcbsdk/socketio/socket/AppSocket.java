@@ -14,6 +14,7 @@ import com.hcb.hcbsdk.util.L;
 public class AppSocket extends BaseSocket {
 
     private static volatile AppSocket INSTANCE = null;
+    private Builder builder;
 
     public static AppSocket getInstance() {
         if (INSTANCE == null) {
@@ -30,9 +31,12 @@ public class AppSocket extends BaseSocket {
     private AppSocket(Builder builder) {
         super(builder);
         INSTANCE = this;
+        this.builder = builder;
     }
 
-
+    public Builder getBuilder() {
+        return builder;
+    }
 
     /**
      * 登录
@@ -41,19 +45,19 @@ public class AppSocket extends BaseSocket {
     public void sdk_login(String phone,String vercode,String eventCode) {
 
         String msg = TuitaPacket.createLogintPacket(phone,vercode,eventCode);
-        LogWriter.writeLog("PushService", "发送登录数据----" + msg);
+        L.info("PushService", "发送登录数据----" + msg);
         mSocket.emit(IConstants.LOGIN, msg);
     }
-    /**
-     * 退出
-     *
-     */
-    public void sdk_logout() {
-
-        String msg = TuitaPacket.createLogoutPacket();
-        LogWriter.writeLog("PushService", "发送退出登录数据----" + msg);
-        mSocket.emit(IConstants.EVENT_USER_LOGOUT, msg);
-    }
+//    /**
+//     * 退出
+//     *
+//     */
+//    public void sdk_logout() {
+//
+//        String msg = TuitaPacket.createLogoutPacket();
+//        LogWriter.writeLog("PushService", "发送退出登录数据----" + msg);
+//        mSocket.emit(IConstants.EVENT_USER_LOGOUT, msg);
+//    }
 
     /**
      * 第三方发送日志

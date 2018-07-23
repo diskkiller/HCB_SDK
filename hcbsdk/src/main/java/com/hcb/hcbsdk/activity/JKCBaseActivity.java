@@ -2,9 +2,11 @@ package com.hcb.hcbsdk.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.hcb.hcbsdk.dialog.ImProgressMsgDialog;
+import com.hcb.hcbsdk.util.PermissionUtils;
 
 /**
  * @author WangGuoWei
@@ -41,10 +43,41 @@ import com.hcb.hcbsdk.dialog.ImProgressMsgDialog;
  */
 public class JKCBaseActivity extends Activity {
     private ImProgressMsgDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this, getClass());
+        readExternalStorage();
+    }
+
+
+    public void readExternalStorage() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_EXTERNAL_STORAGE, mPermissionGrant);
+    }
+
+    private PermissionUtils.PermissionGrant mPermissionGrant = new PermissionUtils.PermissionGrant() {
+        @Override
+        public void onPermissionGranted(int requestCode) {
+            switch (requestCode) {
+
+                case PermissionUtils.CODE_READ_EXTERNAL_STORAGE:
+                    break;
+                case PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE:
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    /**
+     * Callback received when a permissions request has been completed.
+     */
+    @Override
+    public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mPermissionGrant);
     }
 
     @Override

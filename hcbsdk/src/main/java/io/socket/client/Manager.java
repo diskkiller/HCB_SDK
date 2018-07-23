@@ -1,5 +1,9 @@
 package io.socket.client;
 
+import android.util.Log;
+
+import com.hcb.hcbsdk.util.C;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
@@ -69,6 +73,7 @@ public class Manager extends Emitter {
     public static final String EVENT_RECONNECT_ERROR = "reconnect_error";
 
     public static final String EVENT_RECONNECT_FAILED = "reconnect_failed";
+    public static final String EVENT_CONNECT_CANCLE = "connect_cancle";
 
     public static final String EVENT_RECONNECT_ATTEMPT = "reconnect_attempt";
 
@@ -247,12 +252,14 @@ public class Manager extends Emitter {
 
     private void maybeReconnectOnOpen() {
         // Only try to reconnect if it's the first time we're connecting
+
         if (!this.reconnecting && this._reconnection && this.backoff.getAttempts() == 0) {
             this.reconnect();
         }
     }
 
     public Manager open(){
+
         return open(null);
     }
 
@@ -263,6 +270,7 @@ public class Manager extends Emitter {
      * @return a reference to this object.
      */
     public Manager open(final OpenCallback fn) {
+
         EventThread.exec(new Runnable() {
             @Override
             public void run() {
@@ -315,6 +323,13 @@ public class Manager extends Emitter {
                     }
                 });
 
+                if(C.IS_SOCKET_CLOSE){
+                    self.emitAll(EVENT_CONNECT_CANCLE);
+                    openSub.destroy();
+                    socket.close();
+                    return;
+                }
+
                 if (Manager.this._timeout >= 0) {
                     final long timeout = Manager.this._timeout;
                     logger.fine(String.format("connection attempt will timeout after %d", timeout));
@@ -326,6 +341,7 @@ public class Manager extends Emitter {
                             EventThread.exec(new Runnable() {
                                 @Override
                                 public void run() {
+
                                     logger.fine(String.format("connect attempt timed out after %d", timeout));
                                     openSub.destroy();
                                     socket.close();
@@ -546,17 +562,23 @@ public class Manager extends Emitter {
     }
 
     private void onclose(String reason) {
+        Log.i("pushservice","onclose  "+this._reconnection+"   "+this.skipReconnect);
         logger.fine("onclose");
         this.cleanup();
         this.backoff.reset();
         this.readyState = ReadyState.CLOSED;
         this.emit(EVENT_CLOSE, reason);
         if (this._reconnection && !this.skipReconnect) {
+            Log.i("pushservice","222222222222222  : ");
+
             this.reconnect();
         }
     }
 
     private void reconnect() {
+        Log.i("pushservice","reconnect  : "+this.reconnecting+"-------"+this.skipReconnect);
+
+
         if (this.reconnecting || this.skipReconnect) return;
 
         final Manager self = this;
@@ -575,6 +597,7 @@ public class Manager extends Emitter {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
+
                     EventThread.exec(new Runnable() {
                         @Override
                         public void run() {
@@ -610,6 +633,7 @@ public class Manager extends Emitter {
             this.subs.add(new On.Handle() {
                 @Override
                 public void destroy() {
+
                     timer.cancel();
                 }
             });

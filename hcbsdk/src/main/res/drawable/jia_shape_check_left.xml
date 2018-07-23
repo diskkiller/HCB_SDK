@@ -9,8 +9,8 @@
         />
 
     <gradient
-        android:startColor="#FF5364"
-        android:endColor="#FF7F59"
+        android:startColor="#FF9903"
+        android:endColor="#FF9903"
         android:angle="180" />
 
     <!--&lt;!&ndash;填充  填充的颜色&ndash;&gt;
@@ -25,7 +25,7 @@
     <!--描边 -->
     <stroke
         android:width="0.5dp"
-        android:color="#f75354"/>
+        android:color="#FF9903"/>
 
 
 </shape>

@@ -59,7 +59,7 @@ abstract public class Polling extends Transport {
                     if (Polling.this.polling) {
                         logger.fine("we are currently polling - waiting to pause");
                         total[0]++;
-                        Polling.this.once(EVENT_POLL_COMPLETE, new Emitter.Listener() {
+                        Polling.this.once(EVENT_POLL_COMPLETE, new Listener() {
                             @Override
                             public void call(Object... args) {
                                 logger.fine("pre-pause polling complete");
@@ -73,7 +73,7 @@ abstract public class Polling extends Transport {
                     if (!Polling.this.writable) {
                         logger.fine("we are currently writing - waiting to pause");
                         total[0]++;
-                        Polling.this.once(EVENT_DRAIN, new Emitter.Listener() {
+                        Polling.this.once(EVENT_DRAIN, new Listener() {
                             @Override
                             public void call(Object... args) {
                                 logger.fine("pre-pause writing complete");
@@ -154,7 +154,7 @@ abstract public class Polling extends Transport {
     protected void doClose() {
         final Polling self = this;
 
-        Emitter.Listener close = new Emitter.Listener() {
+        Listener close = new Listener() {
             @Override
             public void call(Object... args) {
                 logger.fine("writing close packet");

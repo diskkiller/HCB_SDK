@@ -83,27 +83,32 @@ public class LoginReslut {
          * gold : 0
          */
 
-        private String uid;
+//        headPortrait,nickname,mobile,goldCoin
         private String nickname;
         private String mobile;
-        private String avatar;
-        private String storeNo;
-        private String superNo;
-        private String agentNo;
-        private String deviceNo;
-        private double bean;
-        private double point;
-        private double balance;
-        private double coupon;
-        private double gold;
+        private String headPortrait;
+        private double goldCoin;
+        private String token;
+        private String idCard;//
 
-        public String getUid() {
-            return uid;
+
+        public String getIdCard() {
+            return idCard;
         }
 
-        public void setUid(String uid) {
-            this.uid = uid;
+        public void setIdCard(String idCard) {
+            this.idCard = idCard;
         }
+
+        public String getToken() {
+            return token;
+
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
 
         public String getNickname() {
             return nickname;
@@ -121,102 +126,30 @@ public class LoginReslut {
             this.mobile = mobile;
         }
 
-        public String getAvatar() {
-            return avatar;
+        public String getHeadPortrait() {
+            return headPortrait;
         }
 
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
+        public void setHeadPortrait(String headPortrait) {
+            this.headPortrait = headPortrait;
         }
 
-        public String getStoreNo() {
-            return storeNo;
+        public double getGoldCoin() {
+            return goldCoin;
         }
 
-        public void setStoreNo(String storeNo) {
-            this.storeNo = storeNo;
-        }
-
-        public String getSuperNo() {
-            return superNo;
-        }
-
-        public void setSuperNo(String superNo) {
-            this.superNo = superNo;
-        }
-
-        public String getAgentNo() {
-            return agentNo;
-        }
-
-        public void setAgentNo(String agentNo) {
-            this.agentNo = agentNo;
-        }
-
-        public String getDeviceNo() {
-            return deviceNo;
-        }
-
-        public void setDeviceNo(String deviceNo) {
-            this.deviceNo = deviceNo;
-        }
-
-        public double getBean() {
-            return bean;
-        }
-
-        public void setBean(double bean) {
-            this.bean = bean;
-        }
-
-        public double getPoint() {
-            return point;
-        }
-
-        public void setPoint(double point) {
-            this.point = point;
-        }
-
-        public double getBalance() {
-            return balance;
-        }
-
-        public void setBalance(double balance) {
-            this.balance = balance;
-        }
-
-        public double getCoupon() {
-            return coupon;
-        }
-
-        public void setCoupon(double coupon) {
-            this.coupon = coupon;
-        }
-
-        public double getGold() {
-            return gold;
-        }
-
-        public void setGold(double gold) {
-            this.gold = gold;
+        public void setGoldCoin(double goldCoin) {
+            this.goldCoin = goldCoin;
         }
 
         @Override
         public String toString() {
             return "User{" +
-                    "uid='" + uid + '\'' +
-                    ", nickname='" + nickname + '\'' +
+                    "nickname='" + nickname + '\'' +
                     ", mobile='" + mobile + '\'' +
-                    ", avatar='" + avatar + '\'' +
-                    ", storeNo='" + storeNo + '\'' +
-                    ", superNo='" + superNo + '\'' +
-                    ", agentNo='" + agentNo + '\'' +
-                    ", deviceNo='" + deviceNo + '\'' +
-                    ", bean=" + bean +
-                    ", point=" + point +
-                    ", balance=" + balance +
-                    ", coupon=" + coupon +
-                    ", gold=" + gold +
+                    ", headPortrait='" + headPortrait + '\'' +
+                    ", goldCoin=" + goldCoin +
+                    ", token='" + token + '\'' +
                     '}';
         }
     }

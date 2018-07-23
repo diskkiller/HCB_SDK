@@ -19,8 +19,8 @@ import com.hcb.hcbsdk.util.L;
  * @author
  *
  */
-public class PushService extends Service{
-	private static final String LOGTAG = PushService.class.getSimpleName();
+public class HCBPushService extends Service{
+	private static final String LOGTAG = HCBPushService.class.getSimpleName();
 	private static final String ACTION_PREFIX = "com.tuita.sdk";
 	private static final String ACTION_START = ACTION_PREFIX + ".START";
 	private static final String ACTION_STOP = ACTION_PREFIX + ".STOP";
@@ -28,18 +28,18 @@ public class PushService extends Service{
 	public PushServerConnection mPushConn;
 
 	public static void setTest(Context ctx, int ifTest) {
-		Intent i = new Intent(ctx, PushService.class);
+		Intent i = new Intent(ctx, HCBPushService.class);
 		i.setAction(ACTION_SET_TEST);
 		i.putExtra("test", ifTest);
 		ctx.startService(i);
 	}
 	public static void startService(Context ctx) {
-		Intent i = new Intent(ctx, PushService.class);
+		Intent i = new Intent(ctx, HCBPushService.class);
 		i.setAction(ACTION_START);
 		ctx.startService(i);
 	}
 	public static void stopService(Context ctx) {
-		Intent i = new Intent(ctx, PushService.class);
+		Intent i = new Intent(ctx, HCBPushService.class);
 		i.setAction(ACTION_STOP);
 		ctx.stopService(i);
 	}
@@ -51,8 +51,8 @@ public class PushService extends Service{
 	}
 
 	public final class LocalBinder extends Binder {
-		public PushService getService() {
-			return PushService.this;
+		public HCBPushService getService() {
+			return HCBPushService.this;
 		}
 	}
 
@@ -62,7 +62,7 @@ public class PushService extends Service{
 		super.onCreate();
 		mPushConn = new PushServerConnection(getApplicationContext());
 		startForeground();
-		initCrashReport();
+//		initCrashReport();
 	}
 
 
@@ -124,18 +124,21 @@ public class PushService extends Service{
 	public void startLoginPage() {
 		mPushConn.startLoginPage();
 	}
-	public void startPayPage(String payId) {
-		mPushConn.startPayPage(payId);
+	public void startPayPage(String appid,String orderId,String authorizeUrl,int orderType,String consumeGoldCoinCount,String ticketNum,int numType) {
+		mPushConn.startPayPage(appid,orderId,authorizeUrl,orderType,consumeGoldCoinCount,ticketNum,numType);
 	}
 
-	public void push_connect(int code, String appid) {
-		mPushConn.push_connect(code,appid);
+	public void push_connect(int code, String deviceNo) {
+		mPushConn.push_connect(code,deviceNo);
 	}
 	public void stop_connect() {
 		mPushConn.stopConnection();
 	}
 	public void close_connect() {
 		mPushConn.closeConnection();
+	}
+	public void offEmitterListener(){
+		mPushConn.offEmitterListener();
 	}
 
 	private void startForeground() {
@@ -155,7 +158,6 @@ public class PushService extends Service{
 	public void stop() {
 		L.info(LOGTAG, "service stop");
 		mPushConn.stopConnection();
-//		logclose_connect();
 		BroadcastUtil.sendBroadcastToUI(this, IConstants.SERVICE_STOP,null);
 	}
 
