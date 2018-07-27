@@ -43,6 +43,8 @@ import com.hcb.hcbsdk.util.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import okhttp3.internal.Util;
+
 /**
  * @author WangGuoWei
  * @time 2018/4/13 16:34
@@ -194,7 +196,7 @@ public class RechargeGoldActivity extends JKCBaseActivity {
         etCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                rechargeNum = "";
             }
         });
         etCustom.addTextChangedListener(new TextWatcher() {
@@ -255,6 +257,7 @@ public class RechargeGoldActivity extends JKCBaseActivity {
                 rgChoose.check(-1);
                 rechargeNum = "";
                 dialog.dismiss();
+                Utils.closeKeybord(RechargeGoldActivity.this);
             }
         });
 
@@ -361,8 +364,10 @@ public class RechargeGoldActivity extends JKCBaseActivity {
                             sweepIV.setImageBitmap(bitmap);
                             tvNeedMoney.setText("需支付 " + (double) (Integer.parseInt(rechargeNum) / 100) + " 元");
                         }
-                        if(dialog!=null&&dialog.isShowing())
+                        if(dialog!=null&&dialog.isShowing()){
                             dialog.dismiss();
+                            Utils.closeKeybord(RechargeGoldActivity.this);
+                        }
                     } else {
                         Utils.showToastCenter(RechargeGoldActivity.this, ((JSONObject) responseObj).getString("message"));
                     }

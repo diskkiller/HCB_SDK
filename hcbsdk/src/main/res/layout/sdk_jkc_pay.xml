@@ -226,6 +226,7 @@
             android:drawablePadding="@dimen/y10"
             android:text="支付过程中请勿关闭页面"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/x15" />
 
