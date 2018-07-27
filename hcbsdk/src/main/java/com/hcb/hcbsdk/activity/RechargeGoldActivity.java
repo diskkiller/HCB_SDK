@@ -165,7 +165,6 @@ public class RechargeGoldActivity extends JKCBaseActivity {
                     startChooseAnimation(edt);
 
                     if(checkedId == R.id.rb_recharge_gold5){
-                        rechargeNum = "";
                         showDialog();
 
                     }else{
@@ -218,7 +217,7 @@ public class RechargeGoldActivity extends JKCBaseActivity {
 
 
                 if (!StringUtils.isEmpty(rechargeNum)) {
-                    if (!L.debug || Integer.parseInt(rechargeNum) % 100 != 0) {
+                    if (Integer.parseInt(rechargeNum) % 100 != 0) {
                         gold_input_layout.setErrorEnabled(true);
                         gold_input_layout.setError("请输入正确的金额!");
                     } else {
@@ -234,9 +233,10 @@ public class RechargeGoldActivity extends JKCBaseActivity {
         btnSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rechargeNum = etCustom.getText().toString().trim();
                 if (!StringUtils.isEmpty(rechargeNum)){
 
-                    if (rechargeNum.equals("") || !L.debug && Integer.parseInt(rechargeNum) < 100 || Integer.parseInt(rechargeNum) % 100 != 0) {
+                    if (rechargeNum.equals("") || Integer.parseInt(rechargeNum) < 100 || Integer.parseInt(rechargeNum) % 100 != 0) {
                         Utils.showToastCenter(RechargeGoldActivity.this, "请输入正确的金额！");
                     } else {
                         if(edt!=null)
@@ -244,6 +244,8 @@ public class RechargeGoldActivity extends JKCBaseActivity {
                         rgChoose.check(-1);
                         charge();
                     }
+                }else{
+                    Utils.showToastCenter(RechargeGoldActivity.this, "请输入金额！");
                 }
             }
         });
