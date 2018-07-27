@@ -85,7 +85,6 @@ public class RechargeGoldActivity extends JKCBaseActivity {
     EditText etCustom;
     Button btnSure, btnCancle;
     String rechargeNum = "";
-    String totalMoney = "";
     TextView tvNeedMoney;
     private View btnClose;
     private OrderData mOrderData;
