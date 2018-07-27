@@ -165,7 +165,7 @@ public class RechargeGoldActivity extends JKCBaseActivity {
                     startChooseAnimation(edt);
 
                     if(checkedId == R.id.rb_recharge_gold5){
-
+                        rechargeNum = "";
                         showDialog();
 
                     }else{
@@ -195,7 +195,7 @@ public class RechargeGoldActivity extends JKCBaseActivity {
         etCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rechargeNum = "";
+
             }
         });
         etCustom.addTextChangedListener(new TextWatcher() {
