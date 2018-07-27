@@ -12,8 +12,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:gravity="center"
-        android:minHeight="@dimen/im_NormalListHeight"
-        android:padding="@dimen/im_NormalPadding">
+        android:minHeight="@dimen/x64"
+        android:padding="@dimen/x12">
 
         <ProgressBar
             android:id="@id/im_progress_dialog_icon"
@@ -25,10 +25,10 @@
             android:id="@id/im_progress_dialog_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="200.0dip"
-            android:minWidth="150.0dip"
+            android:maxWidth="@dimen/x200"
+            android:minWidth="@dimen/x150"
             android:textColor="@color/white"
-            android:textSize="@dimen/im_NormalTextSize" />
+            android:textSize="@dimen/x16" />
     </LinearLayout>
 
 </LinearLayout>

@@ -36,7 +36,6 @@ import java.util.HashMap;
 
 import io.socket.client.Socket;
 import sdk.com.huacai.hcb_sdk.http.TestRequestCenter;
-import sdk.hecaibao.com.hcb_sdk.R;
 
 
 public class MainActivity extends Activity {
@@ -81,8 +80,8 @@ public class MainActivity extends Activity {
 
 
 //        Bitmap bitmap = createQRImage("35029234309580522280593353757");
-        Bitmap bitmap = SDKManager.getInstance().createDMBarcode("35043301502110193127163766318",QR_WIDTH, QR_HEIGHT);
-        mSweepIV.setImageBitmap(bitmap);
+//        Bitmap bitmap = SDKManager.getInstance().createDMBarcode("35043301502110193127163766318",QR_WIDTH, QR_HEIGHT);
+//        mSweepIV.setImageBitmap(bitmap);
 //        mSweepIV.setImageResource(R.drawable.xadsdk_ad_loading_anim);
 //        animationDrawable=(AnimationDrawable)mSweepIV.getDrawable();
 //        animationDrawable.start();

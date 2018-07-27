@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="400dp"
-    android:layout_height="300dp"
+    android:layout_width="@dimen/x1200"
+    android:layout_height="@dimen/y700"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="150dp"
+    android:layout_marginTop="@dimen/y150"
     >
 
 
     <LinearLayout
         android:id="@+id/rl_weixin_pay"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/x1200"
+        android:layout_height="@dimen/y700"
         android:background="@drawable/sdk_paybg"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -21,15 +21,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/y200"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/ll_jkc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/x250"
+                android:layout_marginTop="@dimen/y70"
                 android:orientation="vertical">
 
                 <TextView
@@ -37,14 +37,14 @@
                     android:layout_height="wrap_content"
                     android:text="订单信息"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/x25" />
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/y30"
                     >
 
 
@@ -53,22 +53,22 @@
                         android:layout_height="wrap_content"
                         android:text="购买 "
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
 
                     <TextView
                         android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        android:text="20"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/x28" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 元 面值的 "
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
 
                     <TextView
                         android:id="@+id/tv_jkc_name"
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:text="财神驾到 "
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
 
                     <TextView
                         android:id="@+id/tv_jkc_num"
@@ -84,14 +84,14 @@
                         android:layout_height="wrap_content"
                         android:text="100"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/x28" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 张"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
                 </LinearLayout>
 
 
@@ -100,7 +100,7 @@
                     android:id="@+id/ll_jkc_ticket_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/y30"
                     android:orientation="horizontal"
                     >
 
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:text="票号："
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
 
                     <TextView
                         android:id="@+id/tv_jkc_ticket_num"
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:text="123456789012345678"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/x28" />
 
 
                 </LinearLayout>
@@ -131,7 +131,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/y30"
                     android:orientation="horizontal">
 
                     <TextView
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:text="支付金额："
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
 
                     <TextView
                         android:id="@+id/tv_jkc_paynum"
@@ -147,14 +147,14 @@
                         android:layout_height="wrap_content"
                         android:text="100"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/x28" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 元"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="@dimen/x20" />
 
                 </LinearLayout>
 
@@ -167,25 +167,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/y50"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="请使用微信扫码支付"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/x15" />
                 <ImageView
                     android:id="@+id/sweepIV"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_marginTop="@dimen/y10"
+                    android:layout_width="@dimen/x250"
+                    android:layout_height="@dimen/x250"
                     android:background="@color/white" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/y10"
                     android:orientation="horizontal">
 
                     <TextView
@@ -193,7 +193,7 @@
                         android:layout_height="wrap_content"
                         android:text="请在 "
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15" />
 
                     <com.hcb.hcbsdk.activity.widget.TasktimerView
                         android:id="@+id/tv_jkc_paytime"
@@ -201,14 +201,14 @@
                         android:layout_height="wrap_content"
                         android:text="100"
                         android:textColor="@color/white"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/x20" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" 内进行支付"
                         android:textColor="@color/white"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/x15" />
 
                 </LinearLayout>
 
@@ -223,23 +223,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/sdk_ts"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/y10"
             android:text="支付过程中请勿关闭页面"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x15" />
 
     </LinearLayout>
 
 
     <ImageButton
         android:id="@+id/ib_closed"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
         android:background="@drawable/sdk_closed"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginTop="@dimen/y20"
         />
 
 

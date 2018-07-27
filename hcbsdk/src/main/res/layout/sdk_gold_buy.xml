@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="850dp"
-    android:layout_height="550dp"
+    android:layout_width="@dimen/x850"
+    android:layout_height="@dimen/y550"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="200dp">
+    android:layout_marginTop="@dimen/y200">
 
     <LinearLayout
         android:id="@+id/rl_pay"
-        android:layout_width="850dp"
-        android:layout_height="550dp"
+        android:layout_width="@dimen/x850"
+        android:layout_height="@dimen/y550"
         android:background="@drawable/sdk_dialog_bg"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -18,15 +18,15 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/y30"
             android:text="金币购买"
             android:textColor="@color/gray"
-            android:textSize="55sp" />
+            android:textSize="@dimen/x55" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="@dimen/y30"
             android:orientation="horizontal">
 
 
@@ -34,37 +34,37 @@
                 android:id="@+id/tv_chang1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/y30"
                 android:text="金币不足，还需购买 "
                 android:textColor="@color/gray"
-                android:textSize="30sp" />
+                android:textSize="@dimen/x30" />
 
             <TextView
                 android:id="@+id/tv_need_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/y30"
                 android:text="1000"
                 android:textColor="@color/orange"
-                android:textSize="30sp" />
+                android:textSize="@dimen/x30" />
 
             <TextView
                 android:id="@+id/tv_chang2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/y30"
                 android:text=" 金币"
                 android:textColor="@color/gray"
-                android:textSize="30sp" />
+                android:textSize="@dimen/x30" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:layout_marginTop="50dp"
+            android:layout_height="@dimen/y2"
+            android:layout_marginLeft="@dimen/x70"
+            android:layout_marginRight="@dimen/x70"
+            android:layout_marginTop="@dimen/y50"
             android:background="@color/gray" />
 
 
@@ -73,67 +73,67 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginRight="70dp"
+            android:layout_marginRight="@dimen/x70"
             android:orientation="horizontal">
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/y30"
                 android:text="还需支付 "
                 android:textColor="@color/gray"
-                android:textSize="20sp" />
+                android:textSize="@dimen/x20" />
 
             <TextView
                 android:id="@+id/tv_has_to_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/y30"
                 android:text="10.00"
                 android:textColor="@color/orange"
-                android:textSize="20sp" />
+                android:textSize="@dimen/x20" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/y30"
                 android:text=" 元"
                 android:textColor="@color/gray"
-                android:textSize="20sp" />
+                android:textSize="@dimen/x20" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="@dimen/y70"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/y50"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/rb_cancel"
-                android:layout_width="300dp"
+                android:layout_width="@dimen/x300"
                 android:layout_height="match_parent"
                 android:background="@drawable/bt_cancel_bg"
                 android:button="@null"
                 android:gravity="center"
                 android:text="取  消"
                 android:textColor="@color/red"
-                android:textSize="30sp" />
+                android:textSize="@dimen/x30" />
 
             <Button
                 android:id="@+id/rb_confim"
-                android:layout_width="300dp"
+                android:layout_width="@dimen/x300"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="150dp"
+                android:layout_marginLeft="@dimen/x150"
                 android:background="@drawable/bt_confim_bg"
                 android:button="@null"
                 android:gravity="center"
                 android:text="确  认"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="@dimen/x30" />
         </LinearLayout>
 
 
@@ -141,12 +141,12 @@
 
     <ImageButton
         android:id="@+id/ib_gold_closed"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
         android:background="@drawable/close_icon"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginTop="@dimen/y20"
         />
 
 

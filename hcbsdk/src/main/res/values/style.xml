@@ -40,7 +40,7 @@
     <style name="txt_lab" parent="TextAppearance.AppCompat">
         <!-- 默认状态提示颜色和字体-->
         <item name="android:textColorHint">#8c8c8c</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">@dimen/x30</item>
 
         <item name="android:textColorHighlight">#8c8c8c</item>
         <item name="android:textColorLink">#8c8c8c</item>
@@ -59,13 +59,13 @@
         <!-- Label标签的颜色 -->
         <item name="android:textColor">#c6174e</item>
         <!-- Label标签的大小 -->
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/x20</item>
     </style>
     <style name="MyFloatingErrorStyle">
         <!-- Label标签的颜色 -->
         <item name="android:textColor">#FFD50000</item>
         <!-- Label标签的大小 -->
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/x15</item>
     </style>
 
 
@@ -73,7 +73,7 @@
     <style name="stxt_lab" parent="TextAppearance.AppCompat">
         <!-- 默认状态提示颜色和字体-->
         <item name="android:textColorHint">#8c8c8c</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/x18</item>
 
         <item name="android:textColorHighlight">#8c8c8c</item>
         <item name="android:textColorLink">#8c8c8c</item>
@@ -92,13 +92,13 @@
         <!-- Label标签的颜色 -->
         <item name="android:textColor">#c6174e</item>
         <!-- Label标签的大小 -->
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/x15</item>
     </style>
     <style name="sMyFloatingErrorStyle">
         <!-- Label标签的颜色 -->
         <item name="android:textColor">#FFD50000</item>
         <!-- Label标签的大小 -->
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/x15</item>
     </style>
 
 </resources>

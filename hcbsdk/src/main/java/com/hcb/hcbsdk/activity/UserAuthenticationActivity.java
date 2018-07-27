@@ -39,6 +39,11 @@ public class UserAuthenticationActivity extends JKCBaseActivity {
     private Button rb_cancel, rb_confim;
 
     @Override
+    public void showProgress(String message) {
+        super.showProgress(message);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);

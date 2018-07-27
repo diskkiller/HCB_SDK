@@ -7,30 +7,30 @@
 
 
 <RelativeLayout
-    android:layout_width="1200dp"
-    android:layout_height="800dp"
+    android:layout_width="@dimen/x1200"
+    android:layout_height="@dimen/y800"
     android:id="@+id/recharge_gold"
     android:layout_centerHorizontal="true"
-    android:layout_marginTop="50dp"
+    android:layout_marginTop="@dimen/y50"
     >
     <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="@dimen/y80"
         android:background="@drawable/download_outer_bg"
-        android:paddingLeft="30dp">
+        android:paddingLeft="@dimen/x30">
 
 
         <FrameLayout
             android:id="@+id/btn_recharge_gold_close"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
+            android:layout_width="@dimen/x88"
+            android:layout_height="@dimen/x88"
             android:layout_alignParentRight="true">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
                 android:layout_gravity="center"
                 android:src="@drawable/close" />
 
@@ -41,8 +41,8 @@
 
         <RadioGroup
             android:id="@+id/rg_recharge_gold_choose"
-            android:layout_width="1200dp"
-            android:layout_height="280dp"
+            android:layout_width="@dimen/x1200"
+            android:layout_height="@dimen/y280"
             android:layout_below="@id/btn_recharge_gold_close"
             android:layout_centerHorizontal="true"
             android:background="@null"
@@ -54,74 +54,74 @@
             <RadioButton
                 android:id="@+id/rb_recharge_gold1"
                 android:layout_width="0dp"
-                android:layout_height="240dp"
+                android:layout_height="@dimen/y240"
                 android:background="@drawable/d1"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center|bottom"
-                android:paddingBottom="40dp"
+                android:paddingBottom="@dimen/x40"
                 android:textStyle="bold"
                 android:text="500"
                 android:textColor="#EA6F5A"
-                android:textSize="24sp" />
+                android:textSize="@dimen/x24" />
 
             <RadioButton
                 android:id="@+id/rb_recharge_gold2"
                 android:layout_width="0dp"
-                android:layout_height="240dp"
-                android:layout_marginLeft="30dp"
+                android:layout_height="@dimen/y240"
+                android:layout_marginLeft="@dimen/x30"
                 android:layout_weight="1"
                 android:background="@drawable/d2"
                 android:button="@null"
                 android:gravity="center|bottom"
-                android:paddingBottom="40dp"
+                android:paddingBottom="@dimen/y40"
                 android:textStyle="bold"
                 android:text="1000"
                 android:textColor="#EA6F5A"
-                android:textSize="24sp" />
+                android:textSize="@dimen/x24" />
 
             <RadioButton
                 android:id="@+id/rb_recharge_gold3"
                 android:layout_width="0dp"
-                android:layout_height="240dp"
-                android:layout_marginLeft="30dp"
+                android:layout_height="@dimen/y240"
+                android:layout_marginLeft="@dimen/x30"
                 android:background="@drawable/d3"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center|bottom"
-                android:paddingBottom="40dp"
+                android:paddingBottom="@dimen/y40"
                 android:textStyle="bold"
                 android:text="2000"
                 android:textColor="#EA6F5A"
-                android:textSize="24sp" />
+                android:textSize="@dimen/x24" />
             <RadioButton
                 android:id="@+id/rb_recharge_gold4"
                 android:layout_width="0dp"
-                android:layout_height="240dp"
-                android:layout_marginLeft="30dp"
+                android:layout_height="@dimen/y240"
+                android:layout_marginLeft="@dimen/x30"
                 android:background="@drawable/d4"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center|bottom"
-                android:paddingBottom="40dp"
+                android:paddingBottom="@dimen/y40"
                 android:textStyle="bold"
                 android:text="3000"
                 android:textColor="#EA6F5A"
-                android:textSize="24sp" />
+                android:textSize="@dimen/x24" />
             <RadioButton
                 android:id="@+id/rb_recharge_gold5"
                 android:layout_width="0dp"
-                android:layout_height="240dp"
-                android:layout_marginLeft="30dp"
+                android:layout_height="@dimen/y240"
+                android:layout_marginLeft="@dimen/x30"
                 android:background="@drawable/d5"
                 android:layout_weight="1"
                 android:button="@null"
                 android:gravity="center|bottom"
-                android:paddingBottom="40dp"
+                android:paddingBottom="@dimen/y40"
                 android:textStyle="bold"
                 android:text="其它数量"
                 android:textColor="#EA6F5A"
-                android:textSize="24sp" />
+                android:textSize="@dimen/x24" />
 
         </RadioGroup>
 
@@ -131,19 +131,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rg_recharge_gold_choose"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/x100"
+            android:layout_marginTop="@dimen/y10"
             android:text="注：100 金豆/元，充值数量必须为 100 的倍数"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/x18" />
 
         <View
             android:id="@+id/view_recharge_gold_bottom_divider"
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="@dimen/y2"
             android:layout_below="@id/tv_recharge_gold_rule"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/y10"
             android:background="@color/tx_orange"
             android:visibility="invisible"
             />
@@ -154,11 +154,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_below="@id/view_recharge_gold_bottom_divider"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginTop="@dimen/y10"
             android:text="需支付  元"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="@dimen/x18"
             android:visibility="visible" />
 
 
@@ -169,20 +169,20 @@
             android:layout_below="@id/tv_recharge_gold_need_money"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/y20"
             android:layout_centerHorizontal="true"
             >
             <ImageView
                 android:id="@+id/sweepIV"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="@dimen/x180"
+                android:layout_height="@dimen/x180"
                 android:background="@color/red"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textSize="15sp"
+                android:layout_marginTop="@dimen/y15"
+                android:textSize="@dimen/x15"
                 android:textColor="@color/white"
                 android:text="请使用微信扫码支付"
                 />
@@ -192,10 +192,10 @@
 
 
     <ImageView
-        android:layout_width="450dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/x450"
+        android:layout_height="@dimen/y100"
         android:background="@drawable/sdk_gold_pay_tittle"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/y20"
         android:layout_centerHorizontal="true"
         />
 

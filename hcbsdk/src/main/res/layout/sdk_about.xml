@@ -8,14 +8,14 @@
 
     <RelativeLayout
         android:id="@+id/rl_login"
-        android:layout_width="1380dp"
+        android:layout_width="@dimen/x1380"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         >
 
         <LinearLayout
-            android:layout_width="1380dp"
-            android:layout_height="830dp"
+            android:layout_width="@dimen/x1380"
+            android:layout_height="@dimen/y830"
             android:layout_centerHorizontal="true"
             android:background="@drawable/sdk_dialog_bg"
             android:gravity="center_horizontal"
@@ -28,16 +28,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
+                android:textSize="@dimen/x18"
+                android:layout_marginTop="@dimen/y20"
                 android:textColor="#666666"
                 />
 
             <WebView
                 android:id="@+id/wv_about"
-                android:layout_width="1300dp"
-                android:layout_height="710dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="@dimen/x1300"
+                android:layout_height="@dimen/y710"
+                android:layout_marginTop="@dimen/y20"
                 android:background="#666666"
                 ></WebView>
 
@@ -106,11 +106,11 @@
 
         <ImageButton
             android:id="@+id/ib_closed"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/x40"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y10"
             android:background="@drawable/close_icon" />
 
     </RelativeLayout>

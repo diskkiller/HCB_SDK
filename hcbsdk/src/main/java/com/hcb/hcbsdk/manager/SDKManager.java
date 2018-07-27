@@ -362,6 +362,7 @@ public class SDKManager {
         Intent intent = new Intent(activity, UserAuthenticationActivity.class);
         activity.startActivity(intent);
     }
+
     public void startTestLottieAnimaPage(Activity activity) {
 
         if (Utils.isFastClick(1000)) {
@@ -486,9 +487,10 @@ public class SDKManager {
         DataCleanManager.deleteFolderFile(FileUtil.getSDDir(KEY_DIR_NAME), true);
 
     }
+
     public void order() {
 
-        RequestCenter.order( new DisposeDataListener() {
+        RequestCenter.order(new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
@@ -497,7 +499,7 @@ public class SDKManager {
 
                         Order mOrder = new Gson().fromJson(((JSONObject) responseObj).toString(), Order.class);
                         if (mOrder != null)
-                            startPayPage(mOrder.getData().getOrderId()+"",mOrder.getData().getUrl(),1,"0");
+                            startPayPage(mOrder.getData().getOrderId() + "", mOrder.getData().getUrl(), 1, "0");
 
                     } else
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
@@ -517,7 +519,7 @@ public class SDKManager {
 
     public void ticketLock() {
 
-        RequestCenter.ticketLock( new DisposeDataListener() {
+        RequestCenter.ticketLock(new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
@@ -540,9 +542,10 @@ public class SDKManager {
         });
 
     }
-public void orderList() {
 
-        RequestCenter.orderList( new DisposeDataListener() {
+    public void orderList() {
+
+        RequestCenter.orderList(new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
@@ -566,7 +569,7 @@ public void orderList() {
 
     public void delOrderList() {
 
-        RequestCenter.delOrderList( new DisposeDataListener() {
+        RequestCenter.delOrderList(new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
@@ -609,18 +612,19 @@ public void orderList() {
             }
         });
     }
-    public void goldCoinAddOrLess(String appId,String goldNum, String type) {
-        RequestCenter.goldCoinAddOrLess( appId,goldNum,  type, new DisposeDataListener() {
+
+    public void goldCoinAddOrLess(String appId, String goldNum, String type) {
+        RequestCenter.goldCoinAddOrLess(appId, goldNum, type, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
-                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_SUCCESS,null);
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_SUCCESS, null);
 
                         L.info("PushService", "象棋游戏金豆...成功！！！  ");
-                    } else{
-                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL,null);
+                    } else {
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
 
                         L.info("PushService", "象棋游戏金豆...失败！！！  ");
                     }
@@ -631,7 +635,7 @@ public void orderList() {
 
             @Override
             public void onFailure(Object reasonObj) {
-                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL,null);
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
 
                 L.info("PushService", ((OkHttpException) reasonObj).getMsg() + "");
             }

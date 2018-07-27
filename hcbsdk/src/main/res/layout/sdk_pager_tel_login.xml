@@ -4,15 +4,14 @@
     android:layout_height="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    >
+    android:layout_marginTop="@dimen/y70">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
+        android:paddingTop="@dimen/y30"
         android:layout_centerHorizontal="true"
         >
 
@@ -20,16 +19,16 @@
         <!--  tel Label -->
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tel_input_layout"
-            android:layout_width="350dp"
+            android:layout_width="@dimen/x450"
             android:layout_height="wrap_content"
-            android:theme="@style/stxt_lab"
-            app:hintTextAppearance="@style/sMyFloatingStyle"
-            app:errorTextAppearance="@style/sMyFloatingErrorStyle"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:theme="@style/txt_lab"
+            app:hintTextAppearance="@style/MyFloatingStyle"
+            app:errorTextAppearance="@style/MyFloatingErrorStyle"
+            android:layout_marginTop="@dimen/y8"
+            android:layout_marginBottom="@dimen/y8"
             >
             <EditText android:id="@+id/et_phone"
-                android:layout_width="350dp"
+                android:layout_width="@dimen/x450"
                 android:layout_height="wrap_content"
                 android:textColor="@color/ae6058"
                 android:inputType="phone"
@@ -43,21 +42,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/y10"
             >
 
             <!--  Password Label -->
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/vecode_input_layout"
-                android:layout_width="250dp"
+                android:layout_width="@dimen/x340"
                 android:layout_height="wrap_content"
-                android:theme="@style/stxt_lab"
-                app:hintTextAppearance="@style/sMyFloatingStyle"
-                app:errorTextAppearance="@style/sMyFloatingErrorStyle"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:theme="@style/txt_lab"
+                app:hintTextAppearance="@style/MyFloatingStyle"
+                app:errorTextAppearance="@style/MyFloatingErrorStyle"
+                android:layout_marginTop="@dimen/y8"
+                android:layout_marginBottom="@dimen/y8"
                 >
                 <EditText android:id="@+id/et_vercode"
-                    android:layout_width="250dp"
+                    android:layout_width="@dimen/x350"
                     android:layout_height="wrap_content"
                     android:textColor="@color/ae6058"
                     android:maxLength="6"
@@ -69,15 +69,15 @@
             <Button
                 android:id="@+id/bt_send"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/y50"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:background="@drawable/bt_ver_code_bg"
                 android:gravity="center"
-                android:minWidth="100dp"
+                android:minWidth="@dimen/x100"
                 android:text="获取验证码"
                 android:textColor="@color/ffffff"
-                android:textSize="13sp"
+                android:textSize="@dimen/x16"
                 android:layout_gravity="center"
                 />
 
@@ -86,21 +86,37 @@
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_login"
-            android:layout_width="350dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/x350"
+            android:layout_height="@dimen/y70"
+            android:layout_marginTop="@dimen/y24"
+            android:layout_marginBottom="@dimen/y24"
             android:background="@drawable/bt_default_bg"
-            android:padding="5dp"
-            android:textSize="15sp"
+            android:padding="@dimen/y12"
+            android:textSize="@dimen/x23"
             android:text="登   录"/>
 
-        <TextView android:id="@+id/link_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="No account yet? Create one"
-            android:gravity="center"
-            android:textSize="16dip"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/y24"
+            >
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="登录华彩宝代表您已同意"
+                android:textColor="#8c8c8c"
+                android:gravity="center"
+                android:textSize="@dimen/x16"/>
+            <TextView android:id="@+id/link_signup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="《华彩宝用户服务协议》"
+                android:textColor="@color/ff008cd6"
+                android:gravity="center"
+                android:textSize="@dimen/x16"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
