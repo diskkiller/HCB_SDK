@@ -257,7 +257,7 @@ public class SDKManager {
             else
                 return null;
         } catch (Exception e) {
-            throw new Error("PushService is null");
+            return null;
         }
     }
 
@@ -376,6 +376,11 @@ public class SDKManager {
     }
 
 
+    /**
+     * 金豆充值页面
+     * @param activity
+     * @param appid
+     */
     public void startRechargeGoldPage(Activity activity, String appid) {
 
         if (Utils.isFastClick(1000)) {
@@ -389,14 +394,35 @@ public class SDKManager {
         activity.startActivity(intent);
     }
 
+    /**
+     * 支付/充值 调用
+     * @param orderId
+     * @param authorizeUrl
+     * @param orderType orderType = 0（金豆消耗）；1（彩票支付）；2（金豆充值）；3（金豆消耗）
+     * @param consumeGoldCoinCount
+     */
     public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount) {
         mPushService.startPayPage("", orderId, authorizeUrl, orderType, consumeGoldCoinCount, null, 0);
     }
 
+    /**
+     * 好运来一包/好运来一张 调用 需显示彩票包号票号
+     * @param orderId
+     * @param authorizeUrl
+     * @param orderType
+     * @param consumeGoldCoinCount
+     * @param ticketNum
+     * @param numType 0（单张购买）；1（整包购买）
+     */
     public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType) {
         mPushService.startPayPage("", orderId, authorizeUrl, orderType, consumeGoldCoinCount, ticketNum, numType);
     }
 
+    /**
+     * 游戏支付充值 调用
+     * @param appid
+     * @param consumeGoldCoinCount
+     */
     public void startGamePayPage(String appid, int consumeGoldCoinCount) {
         mPushService.startPayPage(appid, "", "", 3, consumeGoldCoinCount + "", null, 0);
     }

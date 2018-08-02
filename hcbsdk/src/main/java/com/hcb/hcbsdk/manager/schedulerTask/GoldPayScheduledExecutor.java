@@ -61,7 +61,7 @@ public class GoldPayScheduledExecutor implements Runnable {
     private final int orderType;
     private Context ctx;
 
-    public GoldPayScheduledExecutor(String snNo, Context ctx,int orderType) {
+    public GoldPayScheduledExecutor(String snNo, Context ctx, int orderType) {
         this.ctx = ctx;
         this.snNo = snNo;
         this.orderType = orderType;
@@ -70,7 +70,7 @@ public class GoldPayScheduledExecutor implements Runnable {
 
     @Override
     public void run() {
-        L.info("PushService", "支付----开始任务----  "+Thread.currentThread().getName());
+        L.info("PushService", "支付----开始任务----  " + Thread.currentThread().getName());
 
 
         confirm_payInfo();
@@ -80,44 +80,42 @@ public class GoldPayScheduledExecutor implements Runnable {
     private void confirm_payInfo() {
 
 
-        RequestCenter.confirm_goldPayInfo(snNo,new DisposeDataListener() {
+        RequestCenter.confirm_goldPayInfo(snNo, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
 
-                L.info("PushService", "金豆支付----定时请求成功。。。。。  "+responseObj.toString());
+                L.info("PushService", "金豆支付----定时请求成功。。。。。  " + responseObj.toString());
 
 
-                    try {
+                try {
 
-                     JSONObject data = (JSONObject) responseObj;
-                     int status =((JSONObject)responseObj).getInt("status");
-                     if(status == 1){
+                    JSONObject data = (JSONObject) responseObj;
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
 
-                        if(data.get("data").equals(""))return;
+                        if (data.get("data").equals("")) return;
 
                         LoginReslut consumeReslut = new Gson().fromJson(data.toString(), LoginReslut.class);
-                        FileUtil.writeFile(FileUtil.getSDDir(KEY_DIR_NAME) + KEY_FILE_NAME,data.toString(), false);
+                        FileUtil.writeFile(FileUtil.getSDDir(KEY_DIR_NAME) + KEY_FILE_NAME, data.toString(), false);
                         TuitaData.getInstance().setUser(consumeReslut.getData());
 
-                        BroadcastUtil.sendBroadcastToUI(ctx,IConstants.PAY_SUCCESS,orderType+"");
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS, orderType + "");
 
-                         SDKManager.getInstance().cancleScheduledTask();
+                        SDKManager.getInstance().cancleScheduledTask();
 
-                    }
-                    else
-                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,orderType+"");
+                    } else
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, orderType + "");
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             }
 
             @Override
             public void onFailure(Object reasonObj) {
-                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, ((OkHttpException) reasonObj).getMsg().toString());
                 L.info("PushService", "支付----定时请求失败。。。。。  ");
             }
         });
