@@ -153,8 +153,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 //                SDKManager.getInstance().startPayPage("5abdf845a209f21fdadf264e");
-                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,null);
-//                SDKManager.getInstance().startLoginPage();
+//                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,null);
+                SDKManager.getInstance().startLoginPage();
 //                SDKManager.getInstance().ScratchDemoActivity(MainActivity.this);
 
 
