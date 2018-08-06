@@ -509,9 +509,6 @@ public class SDKManager {
             }
         });
 
-        TuitaData.getInstance().setUser(null);
-        DataCleanManager.deleteFolderFile(FileUtil.getSDDir(KEY_DIR_NAME), true);
-
     }
 
     public void order() {
