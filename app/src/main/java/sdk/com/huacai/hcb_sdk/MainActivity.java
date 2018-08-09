@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
 
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
-        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",false);
+        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",true);
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);
@@ -188,7 +188,8 @@ public class MainActivity extends Activity {
 //                SDKManager.getInstance().startUserAuPage(MainActivity.this);
 //                SDKManager.getInstance().startTestLottieAnimaPage(MainActivity.this);
 //                SDKManager.getInstance().goldCoinAddOrLess("","100","1");
-                SDKManager.getInstance().orderList();
+//                SDKManager.getInstance().orderList();
+                SDKManager.getInstance().goldCoinAddOrLess("ZTHC2F32A135A23DC3B4","10");
 
 
             }

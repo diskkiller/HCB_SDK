@@ -636,16 +636,22 @@ public class SDKManager {
         });
     }
 
-    public void goldCoinAddOrLess(String appId, String goldNum, String type) {
+    public void goldCoinAddOrLess(String appId, String goldNum,String type) {
         RequestCenter.goldCoinAddOrLess(appId, goldNum, type, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
+
+                        JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
+                        int goldCoin = data.getInt("goldCoin");
+                        SDKManager.getInstance().getUser().setGoldCoin(goldCoin);
+
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_SUCCESS, null);
 
-                        L.info("PushService", "象棋游戏金豆...成功！！！  ");
+                        L.info("PushService", "象棋游戏金豆...成功！！！  goldCoin: "+goldCoin);
+                        L.info("PushService", "象棋游戏金豆...成功！！！  user_goldCoin: "+SDKManager.getInstance().getUser().getGoldCoin());
                     } else {
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
 
