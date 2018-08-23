@@ -44,7 +44,7 @@ public class EmitterEvent {
         emitterEventMap.put(IConstants.EVENT_TEST, null);
         emitterEventMap.put(IConstants.EVENT_SEND_LOG, null);
         emitterEventMap.put(IConstants.EVENT_USER_REFUND, null);
-        emitterEventMap.put(IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL, null);
+//        emitterEventMap.put(IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL, null);
 
         emitterEventMap.put("login_test", null);
 
