@@ -184,12 +184,12 @@ public class MainActivity extends Activity {
 
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this);
-//                SDKManager.getInstance().startGamePayPage("",110);
+                SDKManager.getInstance().startGamePayPage("",110);
 //                SDKManager.getInstance().startUserAuPage(MainActivity.this);
 //                SDKManager.getInstance().startTestLottieAnimaPage(MainActivity.this);
 //                SDKManager.getInstance().goldCoinAddOrLess("","100","1");
 //                SDKManager.getInstance().orderList();
-                SDKManager.getInstance().goldCoinAddOrLess("ZTHC2F32A135A23DC3B4","10");
+//                SDKManager.getInstance().goldCoinAddOrLess("ZTHC2F32A135A23DC3B4","10");
 
 
             }

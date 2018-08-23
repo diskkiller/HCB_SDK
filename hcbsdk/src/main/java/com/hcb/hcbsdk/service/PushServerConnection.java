@@ -350,6 +350,14 @@ public class PushServerConnection implements IEmitterListener {
 
                 break;
 
+
+             case IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL:
+                 L.info(LOGTAG, "购买彩票通知的socket事件=================>>>>  " + args[0].toString());
+
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL, args[0].toString());
+
+                break;
+
             case IConstants.LOGIN:
 
                 if (!IS_LAUNCHER)

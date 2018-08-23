@@ -55,6 +55,10 @@ public interface IConstants {
     String EVENT_USER_REFUND = ACTION+"user_refund";
 
 
+    //购买彩票通知的socket事件名
+    String EVENT_HCB_LOTTERY_PURCHASE_ALL = ACTION+"lottery_purchase_all";
+
+
     //====================LOG==========================================
 
 

@@ -16,7 +16,8 @@ public class C {
 
 
     public static final String SOCKET = "http://123.56.11.82:9999?snNo=";
-    public static final String DEBUG_SOCKET = "http://mtest.zthuacai.com:9999?snNo=";
+//    public static final String DEBUG_SOCKET = "http://mtest.zthuacai.com:9999?snNo=";
+    public static final String DEBUG_SOCKET = "http://47.104.104.40:9999?snNo=";
     public static final String APIURL = "https://m.zthuacai.com";
     public static final String DEBUG_APIURL = "http://mtest.zthuacai.com";
 
