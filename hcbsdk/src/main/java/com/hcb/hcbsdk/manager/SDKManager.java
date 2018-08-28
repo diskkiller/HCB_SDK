@@ -121,7 +121,7 @@ public class SDKManager {
     }
 
 
-    public void init(Context ctx, String deviceNo, boolean isDebug) {
+    private void init(Context ctx, String deviceNo, boolean isDebug) {
         if (ctx == null) {
             L.info("", "WARNING ============>> ctx is null,service start failed...");
             return;
@@ -149,13 +149,13 @@ public class SDKManager {
         return ctx;
     }
 
-    public void initImServices() {
+    private void initImServices() {
 
         Intent intent = new Intent(ctx, HCBPushService.class);
         ctx.bindService(intent, conn, ctx.BIND_AUTO_CREATE);
     }
 
-    public void startServices() {
+    private void startServices() {
         IntentFilter mFilter = new IntentFilter();
         mFilter.addAction(IConstants.SERVICE_STOP);
         ctx.registerReceiver(mReceiver, mFilter);
@@ -233,7 +233,7 @@ public class SDKManager {
     private int QR_WIDTH = 300;
     private int QR_HEIGHT = 300;
 
-    public Bitmap createDMBarcode(String content, int width, int height) {
+    private Bitmap createDMBarcode(String content, int width, int height) {
 
         if (width != 0)
             QR_HEIGHT = width;
@@ -327,11 +327,11 @@ public class SDKManager {
         }
     };
 
-    public void startLoginPage() {
+    private void startLoginPage() {
         mPushService.startLoginPage();
     }
 
-    public void startLoginPage(Activity activity) {
+    private void startLoginPage(Activity activity) {
 
         if (Utils.isFastClick(1000)) {
             return;
@@ -343,7 +343,7 @@ public class SDKManager {
         activity.startActivity(intent);
     }
 
-    public void startAboutPage(Activity activity) {
+    private void startAboutPage(Activity activity) {
 
         if (Utils.isFastClick(1000)) {
             return;
@@ -355,7 +355,7 @@ public class SDKManager {
         activity.startActivity(intent);
     }
 
-    public void startUserAuPage(Activity activity) {
+    private void startUserAuPage(Activity activity) {
 
         if (Utils.isFastClick(1000)) {
             return;
@@ -367,7 +367,7 @@ public class SDKManager {
         activity.startActivity(intent);
     }
 
-    public void startTestLottieAnimaPage(Activity activity) {
+    private void startTestLottieAnimaPage(Activity activity) {
 
         if (Utils.isFastClick(1000)) {
             return;

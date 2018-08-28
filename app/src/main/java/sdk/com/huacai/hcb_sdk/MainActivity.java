@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
 
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
-        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",true);
+        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685");
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);
@@ -154,7 +154,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
 //                SDKManager.getInstance().startPayPage("5abdf845a209f21fdadf264e");
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,null);
-                SDKManager.getInstance().startLoginPage();
+//                SDKManager.getInstance().startLoginPage();
 //                SDKManager.getInstance().ScratchDemoActivity(MainActivity.this);
 
 
