@@ -134,10 +134,14 @@ public class SDKManager {
         mFilter.addAction(IConstants.SERVICE_STOP);
         ctx.registerReceiver(mReceiver, mFilter);
 
-        if (IS_NEED_LOG) {
-            LOGSDKManager.getInstance().setApiUrl("http://39.107.107.82:3000");
-            LOGSDKManager.getInstance().init(ctx);
-        }
+//        if (IS_NEED_LOG) {
+//            LOGSDKManager.getInstance().setApiUrl("http://39.107.107.82:3000");
+//            LOGSDKManager.getInstance().init(ctx);
+//        }
+
+    }
+    public void init(Context ctx, String deviceNo) {
+      init(ctx,deviceNo,true);
 
     }
 
