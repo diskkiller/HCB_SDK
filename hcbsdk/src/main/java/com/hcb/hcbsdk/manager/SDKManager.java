@@ -398,7 +398,7 @@ public class SDKManager {
      * 支付/充值 调用
      * @param orderId
      * @param authorizeUrl
-     * @param orderType orderType = 0（金豆消耗）；1（彩票支付）；2（金豆充值）；3（金豆消耗）
+     * @param orderType orderType = 0（金豆消耗）；1（彩票支付）；2（金豆充值 废弃）；3（金豆消耗）(不够显示充值二维码)
      * @param consumeGoldCoinCount
      */
     public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount) {
@@ -419,7 +419,7 @@ public class SDKManager {
     }
 
     /**
-     * 游戏支付充值 调用
+     * 游戏支付充值 调用（金豆消耗）(不够显示充值二维码)
      * @param appid
      * @param consumeGoldCoinCount
      */
