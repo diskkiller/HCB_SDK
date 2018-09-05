@@ -29,6 +29,7 @@ import com.google.zxing.datamatrix.encoder.SymbolShapeHint;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.hcb.hcbsdk.manager.SDKManager;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
+import com.hcb.hcbsdk.service.ServiceConnectListener;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 
 import java.util.ArrayList;
@@ -62,7 +63,17 @@ public class MainActivity extends Activity {
 
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
-        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685");
+        SDKManager.getInstance().init(MainActivity.this,  new ServiceConnectListener() {
+            @Override
+            public void onSuccess() {
+                //初始化成功
+            }
+
+            @Override
+            public void onFailure() {
+                //初始化失败
+            }
+        });
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);

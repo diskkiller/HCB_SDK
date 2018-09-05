@@ -22,14 +22,15 @@ import com.hcb.hcbsdk.activity.TestLottieAnimaActivity;
 import com.hcb.hcbsdk.activity.UserAuthenticationActivity;
 import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
+import com.hcb.hcbsdk.okhttp.listener.SDKGoldDisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
 import com.hcb.hcbsdk.service.HCBPushService;
 import com.hcb.hcbsdk.service.SendTask;
+import com.hcb.hcbsdk.service.ServiceConnectListener;
 import com.hcb.hcbsdk.service.ThreadPoolFactory;
 import com.hcb.hcbsdk.service.TuitaData;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.service.msgBean.Order;
-import com.hcb.hcbsdk.service.msgBean.OrderForm;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
 import com.hcb.hcbsdk.util.BarcodeUtils;
@@ -100,6 +101,7 @@ public class SDKManager {
     public static String API_URL = "";//线上
     private AlertDialog.Builder alert;
     private HCBPushService mPushService;
+    private ServiceConnectListener mServiceListener;
 
     /**
      * 提供系统调用的构造函数，
@@ -121,27 +123,25 @@ public class SDKManager {
     }
 
 
-    private void init(Context ctx, String deviceNo, boolean isDebug) {
+    private void init(Context ctx, boolean isDebug) {
         if (ctx == null) {
             L.info("", "WARNING ============>> ctx is null,service start failed...");
             return;
         }
         L.debug = isDebug;
-        L.deviceNo = deviceNo;
+        L.deviceNo = DeviceUtil.getDeviceId2Ipad(ctx);
         this.ctx = ctx;
         initImServices();
         IntentFilter mFilter = new IntentFilter();
         mFilter.addAction(IConstants.SERVICE_STOP);
         ctx.registerReceiver(mReceiver, mFilter);
 
-//        if (IS_NEED_LOG) {
-//            LOGSDKManager.getInstance().setApiUrl("http://39.107.107.82:3000");
-//            LOGSDKManager.getInstance().init(ctx);
-//        }
 
     }
-    public void init(Context ctx, String deviceNo) {
-      init(ctx,deviceNo,true);
+    public void init(Context ctx,ServiceConnectListener mServiceListener) {
+
+        this.mServiceListener = mServiceListener;
+        init(ctx,true);
 
     }
 
@@ -167,12 +167,16 @@ public class SDKManager {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            if(mServiceListener !=null)
+                mServiceListener.onFailure();
             L.info("PushService", "service conn onServiceDisconnected " + name);
         }
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             L.info("PushService", "service 开启成功！！！ ");
+            if(mServiceListener !=null)
+                mServiceListener.onSuccess();
             C.SOCKET_CONNECT_COUNT = 0;
 
             mPushService = ((HCBPushService.LocalBinder) service).getService();
@@ -382,10 +386,10 @@ public class SDKManager {
 
     /**
      * 金豆充值页面
-     * @param activity
+     * @param ctx
      * @param appid
      */
-    public void startRechargeGoldPage(Activity activity, String appid) {
+    public void startRechargeGoldPage(Context ctx, String appid) {
 
         if (Utils.isFastClick(1000)) {
             return;
@@ -393,9 +397,9 @@ public class SDKManager {
 
         if (ActivityCollector.isActivityExist(RechargeGoldActivity.class)) return;
 
-        Intent intent = new Intent(activity, RechargeGoldActivity.class);
+        Intent intent = new Intent(ctx, RechargeGoldActivity.class);
         intent.putExtra("appid", appid);
-        activity.startActivity(intent);
+        ctx.startActivity(intent);
     }
 
     /**
@@ -423,11 +427,11 @@ public class SDKManager {
     }
 
     /**
-     * 游戏支付充值 调用
+     * 游戏金豆消耗 调用
      * @param appid
      * @param consumeGoldCoinCount
      */
-    public void startGamePayPage(String appid, int consumeGoldCoinCount) {
+    public void reduceGoldBean(String appid, int consumeGoldCoinCount) {
         mPushService.startPayPage(appid, "", "", 3, consumeGoldCoinCount + "", null, 0);
     }
 
@@ -472,7 +476,7 @@ public class SDKManager {
         L.info("", " 检查服务 =========  isServiceWorked   " + CheckUtil.isServiceWorked(ctx, SERVICE_NAME));
         if (!CheckUtil.isServiceWorked(ctx, SERVICE_NAME)) {
             L.info("", "服务已死，重启服务。。。");
-            init(ctx, deviceNo, isDebug);
+            init(ctx, isDebug);
         }
 
     }
@@ -640,7 +644,7 @@ public class SDKManager {
         });
     }
 
-    public void goldCoinAddOrLess(String appId, String goldNum,String type) {
+    private void goldCoinAddOrLess(String appId, String goldNum,String type) {
         RequestCenter.goldCoinAddOrLess(appId, goldNum, type, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
@@ -668,6 +672,53 @@ public class SDKManager {
 
             @Override
             public void onFailure(Object reasonObj) {
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
+
+                L.info("PushService", ((OkHttpException) reasonObj).getMsg() + "");
+            }
+        });
+    }
+
+    /**
+     * 游戏增加金豆
+     * @param appId
+     * @param goldNum
+     * @param mListener
+     */
+    public void addGoldBean(String appId, String goldNum, final SDKGoldDisposeDataListener mListener) {
+        RequestCenter.goldCoinAddOrLess(appId, goldNum, "1", new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
+
+                        JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
+                        int goldCoin = data.getInt("goldCoin");
+                        SDKManager.getInstance().getUser().setGoldCoin(goldCoin);
+
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_SUCCESS, null);
+                        if(mListener!=null)
+                            mListener.onSuccess();
+
+                        L.info("PushService", "游戏金豆...成功！！！  goldCoin: "+goldCoin);
+                        L.info("PushService", "游戏金豆...成功！！！  user_goldCoin: "+SDKManager.getInstance().getUser().getGoldCoin());
+                    } else {
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
+                        if(mListener!=null)
+                            mListener.onFailure();
+                        L.info("PushService", "游戏金豆...失败！！！  ");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                if(mListener!=null)
+                    mListener.onFailure();
+
                 BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
 
                 L.info("PushService", ((OkHttpException) reasonObj).getMsg() + "");

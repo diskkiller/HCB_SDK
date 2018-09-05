@@ -54,7 +54,7 @@ public class DeviceUtil {
 
     public static String getDeviceId2Ipad(Context context){
 
-        return L.deviceNo;//Build.SERIAL;
+        return Build.SERIAL;
     }
 
     /**
