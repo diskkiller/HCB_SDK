@@ -347,7 +347,7 @@ public class SDKManager {
         activity.startActivity(intent);
     }
 
-    private void startAboutPage(Activity activity) {
+    public void startAboutPage(Activity activity) {
 
         if (Utils.isFastClick(1000)) {
             return;
