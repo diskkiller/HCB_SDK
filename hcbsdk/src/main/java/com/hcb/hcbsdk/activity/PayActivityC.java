@@ -427,6 +427,7 @@ public class PayActivityC extends JKCBaseActivity {
             @Override
             public void onTimeComplete() {
 //                cancelOrder(orderId);
+                BroadcastUtil.sendBroadcastToUI(PayActivityC.this, IConstants.ORDER_CANCEL, null);
                 finish();
             }
         });
