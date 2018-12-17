@@ -426,7 +426,8 @@ public class PayActivityC extends JKCBaseActivity {
         tv_jkc_paytime.setOnTimeCompleteListener(new TasktimerView.OnTimeCompleteListener() {
             @Override
             public void onTimeComplete() {
-                cancelOrder(orderId);
+//                cancelOrder(orderId);
+                finish();
             }
         });
 

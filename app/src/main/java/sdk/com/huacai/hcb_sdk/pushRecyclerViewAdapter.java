@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import sdk.hecaibao.com.hcb_sdk.R;
 
 
 /**
