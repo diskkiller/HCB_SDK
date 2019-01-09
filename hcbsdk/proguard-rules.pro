@@ -43,10 +43,10 @@
 -keep class com.hcb.hcbsdk.util.dodo.**{*;}
 -keep class com.google.zxing**{*;}
 
-
--obfuscationdictionary dictionary-obf.txt
--classobfuscationdictionary dictionary-hanzi.txt
--packageobfuscationdictionary dictionary-drakeet.txt
+#代码混淆
+#-obfuscationdictionary dictionary-obf.txt
+#-classobfuscationdictionary dictionary-hanzi.txt
+#-packageobfuscationdictionary dictionary-drakeet.txt
 
 
 #-------------------------------------------定制化区域----------------------------------------------
