@@ -441,10 +441,10 @@ public class SDKManager {
         C.IS_SOCKET_CLOSE = false;
         if (L.debug) {
             this.API_URL = C.getDebugapiURL();//测试
-            mPushService.push_connect(0, deviceNo);
+//            mPushService.push_connect(0, deviceNo);
         } else {
             this.API_URL = C.getAPIURL();//线上
-            mPushService.push_connect(2, deviceNo);
+//            mPushService.push_connect(2, deviceNo);
         }
 
         L.info("PushService", " 当前环境   L.debug:  " + L.debug + "   API_URL: " + API_URL);
