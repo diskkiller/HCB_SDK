@@ -1,3 +1,4 @@
+/*
 package com.hcb.hcbsdk.activity;
 
 import android.app.Activity;
@@ -38,6 +39,7 @@ import org.json.JSONObject;
 
 import static com.hcb.hcbsdk.R.id.sweepIV;
 
+*/
 /**
  * @author WangGuoWei
  * @time 2018/2/1 12:17
@@ -70,7 +72,8 @@ import static com.hcb.hcbsdk.R.id.sweepIV;
  * @updateAuthor $Author$
  * @updateDate $Date$
  * @updateDes ${TODO}
- */
+ *//*
+
 public class PayActivityCC extends JKCBaseActivity {
     private OrderForm mOrder;
     private String payType;
@@ -244,10 +247,12 @@ public class PayActivityCC extends JKCBaseActivity {
 
                 finish();
 
-                /*tv_title.setText("金豆支付");
+                */
+/*tv_title.setText("金豆支付");
                 tv_chang1.setText("确认支付 ");
 
-                ll_has_to_pay.setVisibility(View.GONE);*/
+                ll_has_to_pay.setVisibility(View.GONE);*//*
+
             }
 
 
@@ -538,3 +543,4 @@ public class PayActivityCC extends JKCBaseActivity {
         return;
     }
 }
+*/

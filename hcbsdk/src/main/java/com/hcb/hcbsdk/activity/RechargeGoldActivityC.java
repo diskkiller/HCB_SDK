@@ -1,3 +1,4 @@
+/*
 package com.hcb.hcbsdk.activity;
 
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.hcb.hcbsdk.util.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+*/
 /**
  * @author WangGuoWei
  * @time 2018/4/13 16:34
@@ -60,7 +62,8 @@ import org.json.JSONObject;
  * @updateAuthor $Author$
  * @updateDate $Date$
  * @updateDes ${TODO}
- */
+ *//*
+
 public class RechargeGoldActivityC extends JKCBaseActivity {
 
 
@@ -233,3 +236,4 @@ public class RechargeGoldActivityC extends JKCBaseActivity {
         rgChoose.check(R.id.rb_recharge_gold1);
     }
 }
+*/
