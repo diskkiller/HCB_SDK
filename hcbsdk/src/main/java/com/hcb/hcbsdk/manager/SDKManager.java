@@ -20,6 +20,7 @@ import com.hcb.hcbsdk.activity.LoginActivity;
 import com.hcb.hcbsdk.activity.RechargeGoldActivity;
 import com.hcb.hcbsdk.activity.TestLottieAnimaActivity;
 import com.hcb.hcbsdk.activity.UserAuthenticationActivity;
+import com.hcb.hcbsdk.dialog.ImProgressMsgDialog;
 import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
@@ -100,6 +101,7 @@ public class SDKManager {
     public static String API_URL = "";//线上
     private AlertDialog.Builder alert;
     private HCBPushService mPushService;
+    private ImProgressMsgDialog progressDialog;
 
     /**
      * 提供系统调用的构造函数，
@@ -255,6 +257,29 @@ public class SDKManager {
     public Bitmap createQRCode(String content) {
         Bitmap bitmap = Utils.createQRImage(content);
         return bitmap;
+    }
+
+
+    /**
+     * 显示对话框
+     */
+    public void showProgress(String message) {
+        progressDialog = new ImProgressMsgDialog.Builder(ctx).setTextContent(message).create();
+        progressDialog.show();
+    }
+
+    /**
+     * 取消等待框
+     */
+    public void dismissProgress() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            try {
+                progressDialog.dismiss();
+                progressDialog = null;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
