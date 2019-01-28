@@ -229,6 +229,13 @@ public class SDKManager {
     private int QR_WIDTH = 300;
     private int QR_HEIGHT = 300;
 
+    /**
+     * 兑奖码专用
+     * @param content
+     * @param width
+     * @param height
+     * @return
+     */
     public Bitmap createDMBarcode(String content, int width, int height) {
 
         if (width != 0)
@@ -237,6 +244,16 @@ public class SDKManager {
             QR_HEIGHT = height;
 
         Bitmap bitmap = BarcodeUtils.createBarcode(content, null, QR_WIDTH, QR_HEIGHT, BarcodeFormat.DATA_MATRIX, Color.BLACK, Color.WHITE);
+        return bitmap;
+    }
+
+    /**
+     * 支付/登陆专用
+     * @param content
+     * @return
+     */
+    public Bitmap createQRCode(String content) {
+        Bitmap bitmap = Utils.createQRImage(content);
         return bitmap;
     }
 
