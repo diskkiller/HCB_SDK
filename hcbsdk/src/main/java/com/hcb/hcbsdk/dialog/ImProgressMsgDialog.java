@@ -39,7 +39,7 @@ public class ImProgressMsgDialog extends Dialog {
             this.msg = msg;
             return this;
         }
-        
+
         public Builder setTextContent(int id){
             this.msg = (String) context.getText(id);
             return this;
@@ -58,7 +58,8 @@ public class ImProgressMsgDialog extends Dialog {
             if (msg != null && tmsg != null) {
                 tmsg.setText(msg);
             } else {
-                tmsg.setText(context.getText(R.string.message_progress_def));
+//                tmsg.setText(context.getText(R.string.message_progress_def));
+                tmsg.setVisibility(View.GONE);
             }
             dialog.addContentView(layout, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
             return dialog;
