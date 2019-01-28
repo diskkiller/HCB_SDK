@@ -561,7 +561,8 @@ public class PushServerConnection implements IEmitterListener {
 
     public void closeConnection() {
         L.info(LOGTAG, "closeConnection-------------");
-        AppSocket.getInstance().disConnnect();
+        if(AppSocket.getInstance()!=null)
+            AppSocket.getInstance().disConnnect();
     }
 
     public void offEmitterListener() {
