@@ -234,12 +234,23 @@ public static void deletRequest(String url, RequestParams params,
         RequestParams params = new RequestParams();
         if(SDKManager.getInstance().getUser()!=null)
             params.put("token", SDKManager.getInstance().getUser().getToken());
-//        params.put("snNo", "A8A198FFD48C335");
         params.put("snNo", "D428D5116ACE596");
         params.put("singles", "2599");
         params.put("amount", "30");
         params.put("lotteryId", "39");
         RequestCenter.postRequest(C.API_SERVER_USER_ORDER_URL, params, listener);
+    }
+
+    public static void gameOrder(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("snNo", "D428D5116ACE596");
+        params.put("gameId", "20");
+        params.put("amount", "1");
+        params.put("type", "11");
+        RequestCenter.postRequest(C.API_SERVER_GAME_ORDER_URL, params, listener);
     }
     /**
      * 锁票

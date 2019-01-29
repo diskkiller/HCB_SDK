@@ -112,6 +112,12 @@ public class C {
      */
     public static final String API_SERVER_USER_ORDER_URL = "/api/common/wechat/order";
 
+
+    /**
+     *游戏下单
+     */
+    public static final String API_SERVER_GAME_ORDER_URL = "/api/common/game/order";
+
     /**
      *
      */
