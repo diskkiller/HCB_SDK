@@ -23,6 +23,13 @@ public interface IConstants {
 
     //支付
     String PAY_SUCCESS = ACTION+"pay_success";
+    //拼图支付二维码
+    String PINTU_PAY_CODE = ACTION+"pintu_pay_code";
+    String PINTU_PAY_SUCCESS = ACTION+"pintu_pay_success";
+    String PINTU_GIVE_SUCCESS = ACTION+"pintu_give_success";
+    String PINTU_GAME_INFO = ACTION+"pintu_game_info";
+
+
     String PAY_FAIL = ACTION+"pay_fail";
 
     //扫码支付

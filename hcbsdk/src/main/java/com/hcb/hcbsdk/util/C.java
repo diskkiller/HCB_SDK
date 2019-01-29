@@ -73,6 +73,10 @@ public class C {
      */
     public static final String API_USER_PAY_CONFIRM_PAYINFO = "/api/common/polling/pay";
     /**
+     * 游戏轮询支付结果
+     */
+    public static final String API_GAME_PAY_CONFIRM_PAYINFO = "/api/common/game/polling/pay";
+    /**
      * 轮询登录
      */
     public static final String API_USER_PAY_CONFIRM_LOGIN = "/api/common/polling/login";
@@ -111,6 +115,11 @@ public class C {
      *
      */
     public static final String API_SERVER_USER_ORDER_URL = "/api/common/wechat/order";
+
+    /**
+     *
+     */
+    public static final String API_GAME_INFO_URL = "/api/game/add/info";
 
 
     /**

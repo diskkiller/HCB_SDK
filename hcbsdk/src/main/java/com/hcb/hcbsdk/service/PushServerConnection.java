@@ -16,6 +16,7 @@ import com.hcb.hcbsdk.manager.SDKManager;
 import com.hcb.hcbsdk.manager.schedulerTask.CheckSocketConnectScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.GoldPayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.LoginScheduledExecutor;
+import com.hcb.hcbsdk.manager.schedulerTask.PayGameScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.PayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.UploadLogScheduledExecutor;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
@@ -402,6 +403,9 @@ public class PushServerConnection implements IEmitterListener {
 
     public void runPayScheduledTask(String snNo) {
         sdkManager.getScheduler().scheduleWithFixedDelay(new PayScheduledExecutor(snNo, ctx), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
+    }
+    public void runGamePayScheduledTask(String snNo) {
+        sdkManager.getScheduler().scheduleWithFixedDelay(new PayGameScheduledExecutor(snNo, ctx), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
     }
 
     public void runGoldPayScheduledTask(String snNo, int orderType) {

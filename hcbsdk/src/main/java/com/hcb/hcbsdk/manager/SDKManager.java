@@ -212,6 +212,9 @@ public class SDKManager {
     public void runPayScheduledTask(String snNo) {
         mPushService.mPushConn.runPayScheduledTask(snNo);
     }
+    public void runGamePayScheduledTask(String snNo) {
+        mPushService.mPushConn.runPayScheduledTask(snNo);
+    }
 
     public void runGoldPayScheduledTask(String snNo, int orderType) {
         mPushService.mPushConn.runGoldPayScheduledTask(snNo, orderType);
@@ -608,6 +611,7 @@ public class SDKManager {
 
     }
 
+
     public void orderList() {
 
         RequestCenter.orderList(new DisposeDataListener() {
@@ -631,6 +635,10 @@ public class SDKManager {
         });
 
     }
+
+    /**
+     * 游戏下单生成付款二维码
+     */
     public void gameOrder() {
 
         RequestCenter.gameOrder(new DisposeDataListener() {
@@ -639,7 +647,63 @@ public class SDKManager {
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
+                        String url = ((JSONObject) responseObj).getString("url");
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_PAY_CODE, url + "");
+                    } else
+                        Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
+            @Override
+            public void onFailure(Object reasonObj) {
+                Utils.showToastCenter(ctx, ((OkHttpException) reasonObj).getMsg() + "");
+            }
+        });
+
+    }
+
+    /**
+     * 游戏送彩票
+     */
+    public void give_caipiao() {
+
+        RequestCenter.give_caipiao(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GIVE_SUCCESS, null + "");
+                    } else
+                        Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                Utils.showToastCenter(ctx, ((OkHttpException) reasonObj).getMsg() + "");
+            }
+        });
+
+    }
+
+    /**
+     * 发送游戏进度信息
+     * @param info
+     */
+    public void game_info(String info) {
+
+        RequestCenter.game_info(info,new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GAME_INFO, null + "");
                     } else
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
                 } catch (Exception e) {

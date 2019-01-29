@@ -184,6 +184,19 @@ public static void deletRequest(String url, RequestParams params,
             params.put("token", SDKManager.getInstance().getUser().getToken());
         RequestCenter.postRequest(C.API_USER_PAY_CONFIRM_PAYINFO, params, disposeDataListener);
     }
+
+    /**
+     * 轮询——支付游戏
+     * @param snNo
+     * @param disposeDataListener
+     */
+    public static void confirm_gamePay(String snNo, DisposeDataListener disposeDataListener) {
+        RequestParams params = new RequestParams();
+        params.put("snNo", snNo);
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        RequestCenter.postRequest(C.API_GAME_PAY_CONFIRM_PAYINFO, params, disposeDataListener);
+    }
     /**
      * 轮询——支付
      * @param snNo
@@ -234,11 +247,34 @@ public static void deletRequest(String url, RequestParams params,
         RequestParams params = new RequestParams();
         if(SDKManager.getInstance().getUser()!=null)
             params.put("token", SDKManager.getInstance().getUser().getToken());
-        params.put("snNo", "D428D5116ACE596");
-        params.put("singles", "2599");
-        params.put("amount", "30");
-        params.put("lotteryId", "39");
+        params.put("snNo", L.deviceNo);
+        params.put("singles", "1");
+        params.put("amount", "1");
+        params.put("lotteryId", "1");
         RequestCenter.postRequest(C.API_SERVER_USER_ORDER_URL, params, listener);
+    }
+    public static void give_caipiao(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("snNo", L.deviceNo);
+        params.put("singles", "1");
+        params.put("amount", "1");
+        params.put("lotteryId", "1");
+        params.put("type", "9");
+        params.put("gameId", "20");
+        params.put("packages", "1");
+        RequestCenter.postRequest(C.API_SERVER_USER_ORDER_URL, params, listener);
+    }
+public static void game_info(String info,DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        if(SDKManager.getInstance().getUser()!=null)
+            params.put("token", SDKManager.getInstance().getUser().getToken());
+        params.put("snNo", L.deviceNo);
+        params.put("info", info);
+        RequestCenter.postRequest(C.API_GAME_INFO_URL, params, listener);
     }
 
     public static void gameOrder(DisposeDataListener listener) {
