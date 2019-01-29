@@ -647,7 +647,8 @@ public class SDKManager {
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
-                        String url = ((JSONObject) responseObj).getString("url");
+                        JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
+                        String url = data.getString("url");
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_PAY_CODE, url + "");
                     } else
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
