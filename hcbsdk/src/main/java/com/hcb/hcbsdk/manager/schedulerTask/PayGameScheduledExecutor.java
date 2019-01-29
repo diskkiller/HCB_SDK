@@ -58,7 +58,7 @@ public class PayGameScheduledExecutor implements Runnable {
 
     @Override
     public void run() {
-        L.info("PushService", "支付----开始任务----  "+Thread.currentThread().getName());
+        L.info("PushService", "游戏--支付----开始任务----  "+Thread.currentThread().getName());
 
 
         confirm_gamePay();
