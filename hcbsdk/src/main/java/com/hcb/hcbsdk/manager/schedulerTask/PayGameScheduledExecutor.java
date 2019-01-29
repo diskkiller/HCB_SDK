@@ -72,7 +72,7 @@ public class PayGameScheduledExecutor implements Runnable {
             @Override
             public void onSuccess(Object responseObj) {
 
-                L.info("PushService", "游戏---支付----定时请求成功。。。。。  "+responseObj.toString());
+                L.info("PushService", "游戏-----支付----定时请求成功。。。。。  "+responseObj.toString());
                 JSONObject data = (JSONObject) responseObj;
                 try {
                     if(data.get("data").equals("success")){
