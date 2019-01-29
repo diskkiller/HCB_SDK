@@ -246,7 +246,7 @@ public static void deletRequest(String url, RequestParams params,
         RequestParams params = new RequestParams();
         if(SDKManager.getInstance().getUser()!=null)
             params.put("token", SDKManager.getInstance().getUser().getToken());
-        params.put("snNo", "D428D5116ACE596");
+        params.put("snNo", L.deviceNo);
         params.put("gameId", "20");
         params.put("amount", "1");
         params.put("type", "11");
