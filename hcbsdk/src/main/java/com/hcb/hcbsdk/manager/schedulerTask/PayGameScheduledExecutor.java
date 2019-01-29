@@ -72,15 +72,15 @@ public class PayGameScheduledExecutor implements Runnable {
             @Override
             public void onSuccess(Object responseObj) {
 
-                L.info("PushService", "支付----定时请求成功。。。。。  "+responseObj.toString());
+                L.info("PushService", "游戏---支付----定时请求成功。。。。。  "+responseObj.toString());
                 JSONObject data = (JSONObject) responseObj;
                 try {
                     if(data.get("data").equals("success")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_PAY_SUCCESS,null);
-                        L.info("PushService", "支付----定时请求支付成功-----  "+responseObj.toString());
+                        L.info("PushService", "游戏---支付----定时请求支付成功-----  "+responseObj.toString());
                     }else if(data.get("data").equals("fail")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,null);
-                        L.info("PushService", "支付----定时请求支付失败-----  "+responseObj.toString());
+                        L.info("PushService", "游戏---支付----定时请求支付失败-----  "+responseObj.toString());
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -91,7 +91,7 @@ public class PayGameScheduledExecutor implements Runnable {
             @Override
             public void onFailure(Object reasonObj) {
                 BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
-                L.info("PushService", "支付----定时请求失败。。。。。  ");
+                L.info("PushService", "游戏---支付----定时请求失败。。。。。  ");
             }
         });
     }

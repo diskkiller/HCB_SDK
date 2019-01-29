@@ -213,7 +213,7 @@ public class SDKManager {
         mPushService.mPushConn.runPayScheduledTask(snNo);
     }
     public void runGamePayScheduledTask(String snNo) {
-        mPushService.mPushConn.runPayScheduledTask(snNo);
+        mPushService.mPushConn.runGamePayScheduledTask(snNo);
     }
 
     public void runGoldPayScheduledTask(String snNo, int orderType) {
