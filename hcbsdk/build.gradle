@@ -4,8 +4,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.diskkiller'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '28.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 16
@@ -55,7 +55,9 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    //noinspection GradleCompatible
     implementation 'com.android.support:design:27.1.1'
     testImplementation 'junit:junit:4.12'
     implementation files('libs/okio-1.13.0.jar')
