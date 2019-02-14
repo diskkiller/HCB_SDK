@@ -668,7 +668,7 @@ public class SDKManager {
     /**
      * 游戏送彩票
      */
-    public void give_caipiao() {
+    public void give_caipiao(String ticketType) {
 
         RequestCenter.give_caipiao(new DisposeDataListener() {
             @Override
@@ -676,7 +676,10 @@ public class SDKManager {
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
-                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GIVE_SUCCESS, null + "");
+                        JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
+                        String orderId = data.getString("orderId");
+                        if(orderId != "" && orderId!=null)
+                            BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GIVE_SUCCESS, null + "");
                     } else
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
                 } catch (Exception e) {
@@ -688,7 +691,7 @@ public class SDKManager {
             public void onFailure(Object reasonObj) {
                 Utils.showToastCenter(ctx, ((OkHttpException) reasonObj).getMsg() + "");
             }
-        });
+        },ticketType);
 
     }
 

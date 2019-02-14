@@ -253,19 +253,15 @@ public static void deletRequest(String url, RequestParams params,
         params.put("lotteryId", "1");
         RequestCenter.postRequest(C.API_SERVER_USER_ORDER_URL, params, listener);
     }
-    public static void give_caipiao(DisposeDataListener listener) {
+    public static void give_caipiao(DisposeDataListener listener,String ticketType) {
 
         RequestParams params = new RequestParams();
         if(SDKManager.getInstance().getUser()!=null)
             params.put("token", SDKManager.getInstance().getUser().getToken());
         params.put("snNo", L.deviceNo);
-        params.put("singles", "1");
-        params.put("amount", "1");
-        params.put("lotteryId", "1");
-        params.put("type", "9");
+        params.put("ticketType", ticketType);
         params.put("gameId", "20");
-        params.put("packages", "1");
-        RequestCenter.postRequest(C.API_SERVER_USER_ORDER_URL, params, listener);
+        RequestCenter.postRequest(C.API_SERVER_OINTU_GIVE_ORDER_URL, params, listener);
     }
 public static void game_info(String info,DisposeDataListener listener) {
 

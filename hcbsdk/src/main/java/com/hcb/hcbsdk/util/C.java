@@ -116,6 +116,13 @@ public class C {
      */
     public static final String API_SERVER_USER_ORDER_URL = "/api/common/wechat/order";
 
+
+    /**
+     *拼图送彩票
+     */
+    public static final String API_SERVER_OINTU_GIVE_ORDER_URL = "/api/common/give/order";
+
+
     /**
      *
      */
