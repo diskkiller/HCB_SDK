@@ -86,6 +86,7 @@ public class HuoDong_Activity extends JKCBaseActivity {
     private void initRecever() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(IConstants.PINTU_GIVE_SUCCESS);
+        filter.addAction(IConstants.PAY_FAIL);
         mRecever = new MyRecever();
         this.registerReceiver(mRecever,filter);
 
@@ -96,7 +97,6 @@ public class HuoDong_Activity extends JKCBaseActivity {
         public void onReceive(Context context, Intent intent) {
          if (IConstants.PAY_FAIL.equals(intent.getAction())) {
              dismissProgress();
-             Utils.showToastCenter(HuoDong_Activity.this, "订单异常，请重新下单");
          }else if (IConstants.PINTU_GIVE_SUCCESS.equals(intent.getAction())) {
              dismissProgress();
              Utils.showToastCenter(HuoDong_Activity.this, "彩票领取成功！请到个人中心兑奖！");
