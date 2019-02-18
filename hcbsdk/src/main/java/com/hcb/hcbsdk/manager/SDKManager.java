@@ -402,6 +402,7 @@ public class SDKManager {
         if (ActivityCollector.isActivityExist(HuoDong_Activity.class)) return;
 
         Intent intent = new Intent(ctx, HuoDong_Activity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(intent);
     }
 
