@@ -99,7 +99,7 @@ public class HuoDong_Activity extends JKCBaseActivity {
              Utils.showToastCenter(HuoDong_Activity.this, "订单异常，请重新下单");
          }else if (IConstants.PINTU_GIVE_SUCCESS.equals(intent.getAction())) {
              dismissProgress();
-             Utils.showToastCenter(HuoDong_Activity.this, "领取成功！请到个人中心兑奖！");
+             Utils.showToastCenter(HuoDong_Activity.this, "彩票领取成功！请到个人中心兑奖！");
          }
 
         }
