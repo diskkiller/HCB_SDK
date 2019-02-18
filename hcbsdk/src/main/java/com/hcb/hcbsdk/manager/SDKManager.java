@@ -702,12 +702,15 @@ public class SDKManager {
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
-                        JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
-                        String orderId = data.getString("orderId");
-                        if (orderId != "" && orderId != null)
-                            BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GIVE_SUCCESS, null + "");
-                    } else
+//                        JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
+//                        String orderId = data.getString("orderId");
+//                        if (orderId != "" && orderId != null)
+                            BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GIVE_SUCCESS, null);
+                    } else{
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
+                        BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, null);
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -715,6 +718,7 @@ public class SDKManager {
 
             @Override
             public void onFailure(Object reasonObj) {
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, null);
                 Utils.showToastCenter(ctx, ((OkHttpException) reasonObj).getMsg() + "");
             }
         }, ticketType,gameId);
