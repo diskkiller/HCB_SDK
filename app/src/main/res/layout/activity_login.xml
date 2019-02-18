@@ -38,7 +38,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="startLoginpage"
-                android:visibility="gone"
+                android:visibility="visible"
                 />
 
             <Button

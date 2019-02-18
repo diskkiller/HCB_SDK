@@ -21,6 +21,11 @@ public interface IConstants {
     String LOGIN_ERROR = ACTION+"hcb_login_error";
     String SERVICE_STOP = ACTION+"push_service_stop";
 
+    /**
+     * 节日活动广播
+     */
+    String HCB_HAPPYDAY_WINDOW = ACTION+"happyday_window";
+
     //支付
     String PAY_SUCCESS = ACTION+"pay_success";
     //拼图支付二维码

@@ -109,7 +109,8 @@ public class MainActivity extends Activity {
 //                tx_double.setText(""+(((float) hasPayNum)*100));
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
-                SDKManager.getInstance().delOrderList();
+//                SDKManager.getInstance().delOrderList();
+                SDKManager.getInstance().startHuodongPage();
 //                AppSocket.getInstance().sdk_logout();
 
                 //                SDKManager.getInstance().runPayScheduledTask();

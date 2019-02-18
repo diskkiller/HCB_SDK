@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.hcb.hcbsdk.activity.AboutActivity;
 import com.hcb.hcbsdk.activity.ActivityCollector;
+import com.hcb.hcbsdk.activity.HuoDong_Activity;
 import com.hcb.hcbsdk.activity.LoginActivity;
 import com.hcb.hcbsdk.activity.RechargeGoldActivity;
 import com.hcb.hcbsdk.activity.TestLottieAnimaActivity;
@@ -134,6 +135,7 @@ public class SDKManager {
         initImServices();
         IntentFilter mFilter = new IntentFilter();
         mFilter.addAction(IConstants.SERVICE_STOP);
+        mFilter.addAction(IConstants.HCB_HAPPYDAY_WINDOW);
         ctx.registerReceiver(mReceiver, mFilter);
 
         if (IS_NEED_LOG) {
@@ -156,6 +158,7 @@ public class SDKManager {
     public void startServices() {
         IntentFilter mFilter = new IntentFilter();
         mFilter.addAction(IConstants.SERVICE_STOP);
+        mFilter.addAction(IConstants.HCB_HAPPYDAY_WINDOW);
         ctx.registerReceiver(mReceiver, mFilter);
         Intent intent = new Intent(ctx, HCBPushService.class);
         ctx.bindService(intent, conn, ctx.BIND_AUTO_CREATE);
@@ -212,6 +215,7 @@ public class SDKManager {
     public void runPayScheduledTask(String snNo) {
         mPushService.mPushConn.runPayScheduledTask(snNo);
     }
+
     public void runGamePayScheduledTask(String snNo) {
         mPushService.mPushConn.runGamePayScheduledTask(snNo);
     }
@@ -236,6 +240,7 @@ public class SDKManager {
 
     /**
      * 兑奖码专用
+     *
      * @param content
      * @param width
      * @param height
@@ -254,6 +259,7 @@ public class SDKManager {
 
     /**
      * 支付/登陆专用
+     *
      * @param content
      * @return
      */
@@ -364,6 +370,9 @@ public class SDKManager {
                 startServices();
                 C.SOCKET_CONNECT_COUNT = 0;
                 C.SOCKET_RECONNECT = false;
+            } else if (action.equals(IConstants.HCB_HAPPYDAY_WINDOW)) {
+                L.info("PushService", "收到活动广播  弹出活动页面... ");
+                startHuodongPage();
             }
         }
     };
@@ -382,6 +391,18 @@ public class SDKManager {
 
         Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
+    }
+
+    public void startHuodongPage() {
+
+        if (Utils.isFastClick(1000)) {
+            return;
+        }
+
+        if (ActivityCollector.isActivityExist(HuoDong_Activity.class)) return;
+
+        Intent intent = new Intent(ctx, HuoDong_Activity.class);
+        ctx.startActivity(intent);
     }
 
     public void startAboutPage(Activity activity) {
@@ -423,6 +444,7 @@ public class SDKManager {
 
     /**
      * 金豆充值页面
+     *
      * @param activity
      * @param appid
      */
@@ -441,9 +463,10 @@ public class SDKManager {
 
     /**
      * 支付/充值 调用
+     *
      * @param orderId
      * @param authorizeUrl
-     * @param orderType orderType = 0（金豆消耗）；1（彩票支付）；2（金豆充值 废弃）；3（金豆消耗）(不够显示充值二维码)
+     * @param orderType            orderType = 0（金豆消耗）；1（彩票支付）；2（金豆充值 废弃）；3（金豆消耗）(不够显示充值二维码)
      * @param consumeGoldCoinCount
      */
     public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount) {
@@ -452,12 +475,13 @@ public class SDKManager {
 
     /**
      * 好运来一包/好运来一张 调用 需显示彩票包号票号
+     *
      * @param orderId
      * @param authorizeUrl
      * @param orderType
      * @param consumeGoldCoinCount
      * @param ticketNum
-     * @param numType 0（单张购买）；1（整包购买）
+     * @param numType              0（单张购买）；1（整包购买）
      */
     public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType) {
         mPushService.startPayPage("", orderId, authorizeUrl, orderType, consumeGoldCoinCount, ticketNum, numType);
@@ -465,6 +489,7 @@ public class SDKManager {
 
     /**
      * 游戏支付充值 调用（金豆消耗）(不够显示充值二维码)
+     *
      * @param appid
      * @param consumeGoldCoinCount
      */
@@ -668,7 +693,7 @@ public class SDKManager {
     /**
      * 游戏送彩票
      */
-    public void give_caipiao(String ticketType) {
+    public void give_caipiao(String ticketType,String gameId) {
 
         RequestCenter.give_caipiao(new DisposeDataListener() {
             @Override
@@ -678,7 +703,7 @@ public class SDKManager {
                     if (status == 1) {
                         JSONObject data = ((JSONObject) responseObj).getJSONObject("data");
                         String orderId = data.getString("orderId");
-                        if(orderId != "" && orderId!=null)
+                        if (orderId != "" && orderId != null)
                             BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PINTU_GIVE_SUCCESS, null + "");
                     } else
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
@@ -691,17 +716,18 @@ public class SDKManager {
             public void onFailure(Object reasonObj) {
                 Utils.showToastCenter(ctx, ((OkHttpException) reasonObj).getMsg() + "");
             }
-        },ticketType);
+        }, ticketType,gameId);
 
     }
 
     /**
      * 发送游戏进度信息
+     *
      * @param info
      */
     public void game_info(String info) {
 
-        RequestCenter.game_info(info,new DisposeDataListener() {
+        RequestCenter.game_info(info, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
                 try {
@@ -769,7 +795,7 @@ public class SDKManager {
         });
     }
 
-    public void goldCoinAddOrLess(String appId, String goldNum,String type) {
+    public void goldCoinAddOrLess(String appId, String goldNum, String type) {
         RequestCenter.goldCoinAddOrLess(appId, goldNum, type, new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
@@ -783,8 +809,8 @@ public class SDKManager {
 
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_SUCCESS, null);
 
-                        L.info("PushService", "象棋游戏金豆...成功！！！  goldCoin: "+goldCoin);
-                        L.info("PushService", "象棋游戏金豆...成功！！！  user_goldCoin: "+SDKManager.getInstance().getUser().getGoldCoin());
+                        L.info("PushService", "象棋游戏金豆...成功！！！  goldCoin: " + goldCoin);
+                        L.info("PushService", "象棋游戏金豆...成功！！！  user_goldCoin: " + SDKManager.getInstance().getUser().getGoldCoin());
                     } else {
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.CHESS_GOLD_FAIL, null);
 

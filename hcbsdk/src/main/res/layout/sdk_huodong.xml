@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_wechat_capture"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent60">
+
+    <RelativeLayout
+        android:id="@+id/rl_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/yuanxiao_bg"
+        >
+
+
+
+
+
+        <ImageButton
+            android:id="@+id/ib_closed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="500dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/yuanxiao_closed" />
+
+        <ImageButton
+            android:id="@+id/ib_lingqu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/yuanxiao_lingqu" />
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
