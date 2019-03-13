@@ -50,7 +50,7 @@ import java.lang.ref.WeakReference;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
-public class WifiStateView extends ImageView {
+public class WifiStateView extends android.support.v7.widget.AppCompatImageView {
 
 
     public static final String TAG = "WifiStateView";

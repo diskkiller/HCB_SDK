@@ -25,6 +25,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:theme="@style/sdktheme_transparent"
+            android:name="com.hcb.hcbsdk.activity.NetErrorActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:theme="@style/sdktheme_transparent"
             android:name="com.hcb.hcbsdk.activity.HuoDong_Activity"
             android:screenOrientation="landscape" />
         <activity

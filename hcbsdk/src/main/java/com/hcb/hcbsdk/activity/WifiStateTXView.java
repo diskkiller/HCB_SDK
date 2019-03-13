@@ -49,7 +49,7 @@ import java.lang.ref.WeakReference;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
-public class WifiStateTXView extends TextView {
+public class WifiStateTXView extends android.support.v7.widget.AppCompatTextView {
 
     /**
      * WifiManager wifi_service = (WifiManager)getSystemService(WIFI_SERVICE);
@@ -162,7 +162,7 @@ public class WifiStateTXView extends TextView {
     public WifiStateTXView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        mWifiManager = (WifiManager) getContext().getSystemService(Context.WIFI_SERVICE);
+        mWifiManager = (WifiManager) getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         mCM = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         mWifiHandler = new WifiHandler(this);
     }

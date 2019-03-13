@@ -1,7 +1,9 @@
 package com.hcb.hcbsdk.service;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
@@ -10,6 +12,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.hcb.hcbsdk.activity.ActivityCollector;
 import com.hcb.hcbsdk.activity.LoginActivity;
+import com.hcb.hcbsdk.activity.NetErrorActivity;
 import com.hcb.hcbsdk.activity.PayActivityC;
 import com.hcb.hcbsdk.logutils.LogUtil;
 import com.hcb.hcbsdk.manager.SDKManager;
@@ -92,9 +95,9 @@ public class PushServerConnection implements IEmitterListener {
     public PushServerConnection(Context ctx) {
         this.ctx = ctx;
         fileUtil = new FileUtil();
-//        IntentFilter mFilter = new IntentFilter();
-//        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-//        ctx.registerReceiver(mReceiver, mFilter);
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        ctx.registerReceiver(mReceiver, mFilter);
 
         checkSocketConect();
 
@@ -107,7 +110,7 @@ public class PushServerConnection implements IEmitterListener {
     /**
      * 监听网络变化广播 做出相应的提示
      */
-    /*
+
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
         @Override
@@ -117,14 +120,14 @@ public class PushServerConnection implements IEmitterListener {
                 connectivityManager = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
                 info = connectivityManager.getActiveNetworkInfo();
                 if (info != null && info.isAvailable()) {
-                    if(AppSocket.getInstance()!=null&&!AppSocket.getInstance().isConnected()&&sdkManager!=null)
-                        sdkManager.startconnect();
+//                    if(AppSocket.getInstance()!=null&&!AppSocket.getInstance().isConnected()&&sdkManager!=null)
+//                        sdkManager.startconnect();
                 } else {
-
+                        startNetErrorPage();
                 }
             }
         }
-    };*/
+    };
     public SocketPushDataListener mListener;
 
     public void setSocketPushDataListener(SocketPushDataListener mListener) {
@@ -522,6 +525,19 @@ public class PushServerConnection implements IEmitterListener {
         ctx.startActivity(intent);
     }
 
+public void startNetErrorPage() {
+
+        if (Utils.isFastClick(1000)) {
+            return;
+        }
+
+        if (ActivityCollector.isActivityExist(NetErrorActivity.class)) return;
+
+        Intent intent = new Intent(ctx, NetErrorActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(intent);
+    }
+
     public void startPayPage(String appid, String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType) {
         if (Utils.isFastClick(1000)) {
             return;
@@ -585,6 +601,9 @@ public class PushServerConnection implements IEmitterListener {
 
     public void stopConnection() {
         mHandler.removeCallbacksAndMessages(null);
+        if(mReceiver!=null)
+            ctx.unregisterReceiver(mReceiver);
+
         closeConnection();
         cancleScheduledTask();
         cancleUploadLogScheduledTask();
