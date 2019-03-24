@@ -4,8 +4,11 @@ import com.hcb.hcbsdk.manager.SDKManager;
 import com.hcb.hcbsdk.okhttp.client.CommonOkHttpClient;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataHandle;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
+import com.hcb.hcbsdk.service.msgBean.VersionManage;
 import com.hcb.hcbsdk.util.C;
 import com.hcb.hcbsdk.util.L;
+
+import java.io.FileNotFoundException;
 
 /**
  * <br/>
@@ -19,6 +22,11 @@ public class RequestCenter {
                                    DisposeDataListener listener) {
         CommonOkHttpClient.request(CommonRequest.
                 createPostRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener));
+    }
+    public static void postOblectRequest(String url, RequestParams params,
+                                   DisposeDataListener listener) {
+        CommonOkHttpClient.request(CommonRequest.
+                createPostOblectRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener));
     }
     public static void postLogRequest(String url, RequestParams params,
                                    DisposeDataListener listener) {
@@ -62,6 +70,31 @@ public static void deletRequest(String url, RequestParams params,
     }
 
 
+
+    /**
+     *
+     */
+    public static void testUpdata(DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+
+        VersionManage versionManage = new VersionManage();
+         versionManage.setSnCode("28BE03829C59011");
+         versionManage.setVersionNo("1.1.8");
+         versionManage.setType(2019);
+         versionManage.setCntn("我我。。。yyyyyy。。。");
+
+        try {
+            params.put("VersionManage", versionManage);
+            params.put("versionNo", "1.1.8");
+            params.put("snCode", "28BE03829C590");
+            params.put("type", "2011");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        RequestCenter.postOblectRequest(C.API_TEST_UPDATA_URL, params, listener);
+    }
 
     /**
      * 用户登录请求

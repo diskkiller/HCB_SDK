@@ -611,7 +611,33 @@ public class SDKManager {
     }
 
 
-    public void ticketLock() {
+    public void testUpdata() {
+
+        RequestCenter.testUpdata(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+                try {
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
+
+                        Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));;
+
+                    } else
+                        Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+                Utils.showToastCenter(ctx, ((OkHttpException) reasonObj).getMsg() + "");
+            }
+        });
+
+    }
+
+public void ticketLock() {
 
         RequestCenter.ticketLock(new DisposeDataListener() {
             @Override

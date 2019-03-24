@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -52,13 +53,15 @@ public class MainActivity extends Activity {
     private EditText et_deviceno;
     private String  deviceNo = "2aa5f1a4";
     private AnimationDrawable animationDrawable;
+    private int screenWidth;
+    private int screenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        test();
 
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
@@ -95,7 +98,7 @@ public class MainActivity extends Activity {
                     SDKManager.getInstance().startServices();*/
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
-                SDKManager.getInstance().delOrderList();
+                SDKManager.getInstance().testUpdata();
 
             }
         });
@@ -206,6 +209,27 @@ public class MainActivity extends Activity {
 
 
     }
+
+
+    public void test(){
+        // 获取屏幕密度（方法2）
+        DisplayMetrics dm = new DisplayMetrics();
+        dm = getResources().getDisplayMetrics();
+
+        float density  = dm.density;        // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）
+        int densityDPI = dm.densityDpi;     // 屏幕密度（每寸像素：120/160/240/320）
+        float xdpi = dm.xdpi;
+        float ydpi = dm.ydpi;
+
+        Log.i(getString(R.string.TAG) + "  DisplayMetrics", "xdpi=" + xdpi + "; ydpi=" + ydpi);
+        Log.e(getString(R.string.TAG) + "  DisplayMetrics", "density=" + density + "; densityDPI=" + densityDPI);
+
+        screenWidth  = dm.widthPixels;      // 屏幕宽（像素，如：480px）
+        screenHeight = dm.heightPixels;     // 屏幕高（像素，如：800px）
+
+        Log.e(getString(R.string.TAG) + "  DisplayMetrics(111)", "screenWidth=" + screenWidth + "; screenHeight=" + screenHeight);
+    }
+
 
     public void getDMcode(){
 

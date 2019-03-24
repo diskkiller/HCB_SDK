@@ -3,6 +3,8 @@ package com.hcb.hcbsdk.okhttp.client;
 
 import com.hcb.hcbsdk.okhttp.https.HttpsUtils;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataHandle;
+import com.hcb.hcbsdk.okhttp.request.HttpLogger;
+import com.hcb.hcbsdk.okhttp.request.LogInterceptor;
 import com.hcb.hcbsdk.okhttp.response.CommonJsonCallback;
 
 import java.util.concurrent.TimeUnit;
@@ -13,6 +15,7 @@ import javax.net.ssl.SSLSession;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class CommonOkHttpClient {
 
@@ -52,6 +55,13 @@ public class CommonOkHttpClient {
             BUILDER.readTimeout(TIME_OUT, TimeUnit.SECONDS);
             BUILDER.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
             BUILDER.followRedirects(true);
+
+            HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLogger());
+            logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            BUILDER.addNetworkInterceptor(logInterceptor);
+//            BUILDER.addNetworkInterceptor(new LogInterceptor());  //自定义的拦截日志，拦截简单东西用，后面会有介绍
+
             /**
              * trust all the https point
              */

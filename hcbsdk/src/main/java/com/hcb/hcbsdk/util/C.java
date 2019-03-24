@@ -51,6 +51,10 @@ public class C {
     /**
      * 用户登录
      */
+    public static final String API_TEST_UPDATA_URL = "/api/common/versionControl";
+    /**
+     * 用户登录
+     */
     public static final String API_SERVER_LOGIN_URL = "/api/mbr/user/code/login";
     /**
      * 清除服务器用户缓存请求

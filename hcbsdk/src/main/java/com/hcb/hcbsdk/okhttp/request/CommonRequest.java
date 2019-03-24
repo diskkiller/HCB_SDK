@@ -1,14 +1,21 @@
 package com.hcb.hcbsdk.okhttp.request;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.hcb.hcbsdk.service.msgBean.VersionManage;
 import com.hcb.hcbsdk.util.L;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import okhttp3.FormBody;
 import okhttp3.Headers;
+import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * 创建请求对象，包括get请求对象和post请求对象
@@ -100,6 +107,67 @@ public class CommonRequest {
      */
     public static Request createPostRequest(String url, RequestParams params) {
         return createPostRequest(url, params, null);
+    }
+
+    public static Request createPostOblectRequest(String url, RequestParams params) {
+        return createPostOblectRequest(url, params, null);
+    }
+
+
+    public static void putJson(JSONObject json,String key,Object value){
+        try{
+            json.put(key,value);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+    /**可以带请求头和object参数的Post请求
+     * @param url
+     * @param params
+     * @param headers
+     * @return
+     */
+    public static Request createPostOblectRequest(String url, RequestParams params, RequestParams headers) {
+
+        RequestBody body = null;
+        Gson gson = new Gson();
+        JSONObject jsonObject= new JSONObject();
+        if (params != null) {
+
+            for (Map.Entry<String, String> entry : params.urlParams.entrySet()) {
+
+                putJson(jsonObject,entry.getKey(), entry.getValue());
+            }
+            for (Map.Entry<String, Object> entry : params.fileParams.entrySet()) {
+
+                VersionManage testBean = (VersionManage) entry.getValue();
+
+
+                String json = gson.toJson(testBean);
+                putJson(jsonObject,entry.getKey(), json);
+                body = RequestBody.create(JSON,jsonObject.toString());
+
+            }
+
+        }
+        //添加请求头
+        Headers.Builder mHeaderBuild = new Headers.Builder();
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.urlParams.entrySet()) {
+                mHeaderBuild.add(entry.getKey(), entry.getValue());
+            }
+        }
+        Headers mHeader = mHeaderBuild.build();
+        Request request = new Request.Builder().url(url).
+                post(body).
+                headers(mHeader)
+                .build();
+        L.info("PushService", "请求数据----url:  "+url+"  data:  " + jsonObject.toString());
+        return request;
     }
 
     /**可以带请求头的Post请求
