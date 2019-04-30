@@ -129,7 +129,7 @@ public class PayScheduledExecutor implements Runnable {
 
             @Override
             public void onFailure(Object reasonObj) {
-                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
+//                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
                 L.info("PushService", "支付宝支付----定时请求失败。。。。。  ");
             }
         });
