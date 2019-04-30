@@ -79,7 +79,7 @@ public class C {
     /**
      * 支付宝轮询支付结果
      */
-    public static final String API_USER_ALIPAY_CONFIRM_PAYINFO = "/alipay/query";
+    public static final String API_USER_ALIPAY_CONFIRM_PAYINFO = "/api/alipay/query";
     /**
      * 游戏轮询支付结果
      */

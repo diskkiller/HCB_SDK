@@ -231,7 +231,7 @@ public static void deletRequest(String url, RequestParams params,
         RequestParams params = new RequestParams();
         params.put("outTradeNo", outTradeNo);
 
-        RequestCenter.gettestRequest(C.API_USER_ALIPAY_CONFIRM_PAYINFO, params, disposeDataListener);
+        RequestCenter.getRequest(C.API_USER_ALIPAY_CONFIRM_PAYINFO, params, disposeDataListener);
     }
 
     /**
