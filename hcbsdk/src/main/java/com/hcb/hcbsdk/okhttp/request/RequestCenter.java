@@ -43,6 +43,11 @@ public class RequestCenter {
         CommonOkHttpClient.request(CommonRequest.
                 createGetRequest(SDKManager.API_URL+url, params), new DisposeDataHandle(listener));
     }
+    public static void gettestRequest(String url, RequestParams params,
+                                  DisposeDataListener listener) {
+        CommonOkHttpClient.request(CommonRequest.
+                createGetRequest("http://60.205.228.117:8080/"+url, params), new DisposeDataHandle(listener));
+    }
 public static void deletRequest(String url, RequestParams params,
                                   DisposeDataListener listener) {
         CommonOkHttpClient.request(CommonRequest.
@@ -226,7 +231,7 @@ public static void deletRequest(String url, RequestParams params,
         RequestParams params = new RequestParams();
         params.put("outTradeNo", outTradeNo);
 
-        RequestCenter.getRequest(C.API_USER_ALIPAY_CONFIRM_PAYINFO, params, disposeDataListener);
+        RequestCenter.gettestRequest(C.API_USER_ALIPAY_CONFIRM_PAYINFO, params, disposeDataListener);
     }
 
     /**
