@@ -538,7 +538,7 @@ public void startNetErrorPage() {
         ctx.startActivity(intent);
     }
 
-    public void startPayPage(String appid, String aliPayQueryId,String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType,String payType) {
+    public void startPayPage(String appid, String orderId,String aliPayQueryId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType,String payType) {
         if (Utils.isFastClick(1000)) {
             return;
         }

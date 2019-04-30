@@ -140,12 +140,10 @@ public class PayActivityC extends JKCBaseActivity {
             ticketNum = getIntent().getStringExtra("ticketNum");
             numType = getIntent().getIntExtra("numType", 0);
             payType = getIntent().getStringExtra("payType");
-            if(payType.equals("2"))
-                orderId = getIntent().getStringExtra("aliPayQueryId");
-            else
-                orderId = getIntent().getStringExtra("orderId");
 
-            aliPayScheduledId = orderId = getIntent().getStringExtra("orderId");
+            orderId = getIntent().getStringExtra("orderId");
+
+            aliPayScheduledId = getIntent().getStringExtra("aliPayQueryId");
 
 
             L.info("", "consumeGoldCoinCount ------------: " + consumeGoldCoinCount);
