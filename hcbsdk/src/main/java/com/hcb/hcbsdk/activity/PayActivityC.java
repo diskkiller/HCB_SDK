@@ -138,6 +138,7 @@ public class PayActivityC extends JKCBaseActivity {
 
             ticketNum = getIntent().getStringExtra("ticketNum");
             numType = getIntent().getIntExtra("numType", 0);
+            payType = getIntent().getStringExtra("payType");
             L.info("", "consumeGoldCoinCount ------------: " + consumeGoldCoinCount);
         }
 
@@ -416,7 +417,7 @@ public class PayActivityC extends JKCBaseActivity {
 
         Bitmap bitmap = Utils.createQRImage(authorizeUrl);
         mSweepIV.setImageBitmap(bitmap);
-        SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this));
+        SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this),orderId,payType);
 
 
         //初始化时间

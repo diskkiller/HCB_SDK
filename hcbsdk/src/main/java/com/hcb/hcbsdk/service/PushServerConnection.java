@@ -404,8 +404,8 @@ public class PushServerConnection implements IEmitterListener {
     private static final long PERIOD = 6;//两次开始执行最小间隔时间
     private static final long AWAITTIME = 1;
 
-    public void runPayScheduledTask(String snNo) {
-        sdkManager.getScheduler().scheduleWithFixedDelay(new PayScheduledExecutor(snNo, ctx), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
+    public void runPayScheduledTask(String snNo,String orderId,String payType) {
+        sdkManager.getScheduler().scheduleWithFixedDelay(new PayScheduledExecutor(snNo, ctx,orderId,payType), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
     }
     public void runGamePayScheduledTask(String snNo) {
         sdkManager.getScheduler().scheduleWithFixedDelay(new PayGameScheduledExecutor(snNo, ctx), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
@@ -538,7 +538,7 @@ public void startNetErrorPage() {
         ctx.startActivity(intent);
     }
 
-    public void startPayPage(String appid, String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType) {
+    public void startPayPage(String appid, String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType,String payType) {
         if (Utils.isFastClick(1000)) {
             return;
         }
@@ -553,6 +553,7 @@ public void startNetErrorPage() {
         intent.putExtra("consumeGoldCoinCount", consumeGoldCoinCount);
         intent.putExtra("ticketNum", ticketNum);
         intent.putExtra("numType", numType);
+        intent.putExtra("payType", payType);
         ctx.startActivity(intent);
     }
 

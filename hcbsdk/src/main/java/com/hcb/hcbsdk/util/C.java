@@ -77,6 +77,10 @@ public class C {
      */
     public static final String API_USER_PAY_CONFIRM_PAYINFO = "/api/common/polling/pay";
     /**
+     * 支付宝轮询支付结果
+     */
+    public static final String API_USER_ALIPAY_CONFIRM_PAYINFO = "/alipay/query";
+    /**
      * 游戏轮询支付结果
      */
     public static final String API_GAME_PAY_CONFIRM_PAYINFO = "/api/common/game/polling/pay";

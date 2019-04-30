@@ -124,8 +124,8 @@ public class HCBPushService extends Service{
 	public void startLoginPage() {
 		mPushConn.startLoginPage();
 	}
-	public void startPayPage(String appid,String orderId,String authorizeUrl,int orderType,String consumeGoldCoinCount,String ticketNum,int numType) {
-		mPushConn.startPayPage(appid,orderId,authorizeUrl,orderType,consumeGoldCoinCount,ticketNum,numType);
+	public void startPayPage(String appid,String orderId,String authorizeUrl,int orderType,String consumeGoldCoinCount,String ticketNum,int numType,String payType) {
+		mPushConn.startPayPage(appid,orderId,authorizeUrl,orderType,consumeGoldCoinCount,ticketNum,numType,payType);
 	}
 
 	public void push_connect(int code, String deviceNo) {
