@@ -112,16 +112,16 @@ public class PayScheduledExecutor implements Runnable {
             public void onSuccess(Object responseObj) {
 
                 L.info("PushService", "支付宝支付----定时请求成功。。。。。  "+responseObj.toString());
-                String data = (String) responseObj;
+                JSONObject data = (JSONObject) responseObj;
                 try {
-                    if(data.equals("success")){
+                    if(data.get("data").equals("success")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS,null);
                         L.info("PushService", "支付宝支付----定时请求支付成功-----  "+responseObj.toString());
-                    }else if(data.equals("fail")){
+                    }else if(data.get("data").equals("fail")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,null);
                         L.info("PushService", "支付宝支付----定时请求支付失败-----  "+responseObj.toString());
                     }
-                } catch (Exception e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
@@ -129,7 +129,7 @@ public class PayScheduledExecutor implements Runnable {
 
             @Override
             public void onFailure(Object reasonObj) {
-//                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,((OkHttpException)reasonObj).getMsg().toString());
                 L.info("PushService", "支付宝支付----定时请求失败。。。。。  ");
             }
         });
