@@ -470,8 +470,8 @@ public class SDKManager {
      * @param orderType            orderType = 0（金豆消耗）；1（彩票支付）；2（金豆充值 废弃）；3（金豆消耗）(不够显示充值二维码)
      * @param consumeGoldCoinCount
      */
-    public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount,String payType) {
-        mPushService.startPayPage("", orderId, authorizeUrl, orderType, consumeGoldCoinCount, null, 0,payType);
+    public void startPayPage(String aliPayQueryId,String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount,String payType) {
+        mPushService.startPayPage("", aliPayQueryId,orderId, authorizeUrl, orderType, consumeGoldCoinCount, null, 0,payType);
     }
 
     /**
@@ -485,7 +485,7 @@ public class SDKManager {
      * @param numType              0（单张购买）；1（整包购买）
      */
     public void startPayPage(String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType) {
-        mPushService.startPayPage("", orderId, authorizeUrl, orderType, consumeGoldCoinCount, ticketNum, numType,"");
+        mPushService.startPayPage("", "",orderId, authorizeUrl, orderType, consumeGoldCoinCount, ticketNum, numType,"");
     }
 
     /**
@@ -495,7 +495,7 @@ public class SDKManager {
      * @param consumeGoldCoinCount
      */
     public void startGamePayPage(String appid, int consumeGoldCoinCount) {
-        mPushService.startPayPage(appid, "", "", 3, consumeGoldCoinCount + "", null, 0,"");
+        mPushService.startPayPage(appid, "","", "", 3, consumeGoldCoinCount + "", null, 0,"");
     }
 
 
@@ -593,7 +593,7 @@ public class SDKManager {
 
                         Order mOrder = new Gson().fromJson(((JSONObject) responseObj).toString(), Order.class);
                         if (mOrder != null)
-                            startPayPage(mOrder.getData().getOrderId() + "", mOrder.getData().getUrl(), 1, "0","");
+                            startPayPage("",mOrder.getData().getOrderId() + "", mOrder.getData().getUrl(), 1, "0","");
 
                     } else
                         Utils.showToastCenter(ctx, ((JSONObject) responseObj).getString("message"));

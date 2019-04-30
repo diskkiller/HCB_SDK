@@ -110,6 +110,7 @@ public class PayActivityC extends JKCBaseActivity {
     private TextView tv_code_weixin_need_pay;
     private TextView tv_price;
     private LinearLayout ll_jkc_ticket_content;
+    private String aliPayScheduledId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -131,7 +132,7 @@ public class PayActivityC extends JKCBaseActivity {
 
         if (getIntent() != null) {
             appid = getIntent().getStringExtra("appid");
-            orderId = getIntent().getStringExtra("orderId");
+
             authorizeUrl = getIntent().getStringExtra("authorizeUrl");
             consumeGoldCoinCount = getIntent().getStringExtra("consumeGoldCoinCount");
             orderType = getIntent().getIntExtra("orderType", 1);
@@ -139,6 +140,14 @@ public class PayActivityC extends JKCBaseActivity {
             ticketNum = getIntent().getStringExtra("ticketNum");
             numType = getIntent().getIntExtra("numType", 0);
             payType = getIntent().getStringExtra("payType");
+            if(payType.equals("2"))
+                orderId = getIntent().getStringExtra("aliPayQueryId");
+            else
+                orderId = getIntent().getStringExtra("orderId");
+
+            aliPayScheduledId = orderId = getIntent().getStringExtra("orderId");
+
+
             L.info("", "consumeGoldCoinCount ------------: " + consumeGoldCoinCount);
         }
 
@@ -417,7 +426,10 @@ public class PayActivityC extends JKCBaseActivity {
 
         Bitmap bitmap = Utils.createQRImage(authorizeUrl);
         mSweepIV.setImageBitmap(bitmap);
-        SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this),orderId,payType);
+        if(payType.equals("2"))
+            SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this),aliPayScheduledId,payType);
+        else
+            SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this),orderId,payType);
 
 
         //初始化时间

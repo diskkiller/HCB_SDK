@@ -538,7 +538,7 @@ public void startNetErrorPage() {
         ctx.startActivity(intent);
     }
 
-    public void startPayPage(String appid, String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType,String payType) {
+    public void startPayPage(String appid, String aliPayQueryId,String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount, String ticketNum, int numType,String payType) {
         if (Utils.isFastClick(1000)) {
             return;
         }
@@ -548,6 +548,7 @@ public void startNetErrorPage() {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("appid", appid);
         intent.putExtra("orderId", orderId);
+        intent.putExtra("aliPayQueryId", aliPayQueryId);
         intent.putExtra("authorizeUrl", authorizeUrl);
         intent.putExtra("orderType", orderType);
         intent.putExtra("consumeGoldCoinCount", consumeGoldCoinCount);
