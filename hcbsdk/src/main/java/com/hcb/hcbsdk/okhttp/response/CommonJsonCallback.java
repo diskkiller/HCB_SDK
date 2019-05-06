@@ -140,7 +140,7 @@ public class CommonJsonCallback implements Callback {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.has(RESULT_CODE)) {
                 // 取出响应码，如果响应码为1，说明响应成功
-                if (jsonObject.optInt(RESULT_CODE) == RESULT_CODE_VALUE) {
+                if (jsonObject.optInt(RESULT_CODE) == RESULT_CODE_VALUE || jsonObject.optInt(RESULT_CODE) == 200) {
                     if (mClass == null) {
                         /*if(url.toString().contains("user/login")){
                             L.info("PushService", "写入user数据----url:" + url.toString()+"  data:"+result.toString());
