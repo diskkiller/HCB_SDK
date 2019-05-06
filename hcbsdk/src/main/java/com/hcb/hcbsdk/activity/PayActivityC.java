@@ -108,7 +108,7 @@ public class PayActivityC extends JKCBaseActivity {
     private ImageButton ib_gold_closed;
     private ImageButton ib_code_closed;
     private TextView tv_code_weixin_need_pay;
-    private TextView tv_price;
+    private TextView tv_price,jkc_pay_str;
     private LinearLayout ll_jkc_ticket_content;
     private String aliPayScheduledId;
 
@@ -321,6 +321,12 @@ public class PayActivityC extends JKCBaseActivity {
 
 
         tx_tips = (TextView) findViewById(R.id.tx_tips);
+        jkc_pay_str = (TextView) findViewById(R.id.jkc_pay_str);
+        if(payType.equals("2"))
+            jkc_pay_str.setText("请使用支付宝扫码支付");
+        else
+            jkc_pay_str.setText("请使用微信扫码支付");
+
         tv_yuan = (TextView) findViewById(R.id.tv_yuan);
         tv_weixin_need_pay = (TextView) findViewById(R.id.tv_weixin_need_pay);
         tv_code_weixin_need_pay = (TextView) findViewById(R.id.tv_code_weixin_need_pay);
