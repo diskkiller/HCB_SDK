@@ -114,10 +114,10 @@ public class PayScheduledExecutor implements Runnable {
                 L.info("PushService", "支付宝支付----定时请求成功。。。。。  "+responseObj.toString());
                 JSONObject data = (JSONObject) responseObj;
                 try {
-                    if(data.get("data").equals("success")){
+                    if(data.get("body").equals("success")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS,null);
                         L.info("PushService", "支付宝支付----定时请求支付成功-----  "+responseObj.toString());
-                    }else if(data.get("data").equals("fail")){
+                    }else if(data.get("body").equals("fail")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL,null);
                         L.info("PushService", "支付宝支付----定时请求支付失败-----  "+responseObj.toString());
                     }
