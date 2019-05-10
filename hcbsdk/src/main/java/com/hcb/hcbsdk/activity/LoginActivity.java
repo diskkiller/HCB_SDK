@@ -375,7 +375,7 @@ public class LoginActivity extends JKCBaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (IConstants.LOGIN.equals(intent.getAction())) {
-                Utils.showToastCenter(LoginActivity.this, "登陆成功");
+                Utils.showToastCenter(LoginActivity.this, "登录成功");
 
                 /*if(StringUtils.isEmpty(SDKManager.getInstance().getUser().getIdCard())){
                     SDKManager.getInstance().startUserAuPage(LoginActivity.this);
