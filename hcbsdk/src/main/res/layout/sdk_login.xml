@@ -52,7 +52,6 @@
                     android:text="支付宝登录"
                     android:textColor="@drawable/jia_title"
                     android:textSize="@dimen/x30" />
-
             </RadioGroup>
 
 
