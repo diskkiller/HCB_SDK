@@ -71,7 +71,7 @@ public class BindTelActivity extends JKCBaseActivity {
     private TextInputLayout tel_input_layout, vecode_input_layout;
 
 
-    private View mBtn_login;
+    private View mBtn_login,btn_cancle;
     private BroadcastReceiver mRecever;
     private View activity_wechat_capture;
     private TextView link_signup;
@@ -128,6 +128,13 @@ public class BindTelActivity extends JKCBaseActivity {
         et_phone = (EditText) findViewById(R.id.et_phone);
 
 
+        btn_cancle = findViewById(R.id.btn_cancle);
+        btn_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mBtn_login = findViewById(R.id.btn_login);
         mBtn_login.setClickable(false);
         mBtn_login.setEnabled(false);

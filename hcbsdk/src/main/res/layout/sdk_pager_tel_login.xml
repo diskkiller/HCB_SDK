@@ -108,17 +108,37 @@
 
             </LinearLayout>
 
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="@dimen/x350"
-                android:layout_height="@dimen/y70"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/y24"
                 android:layout_marginBottom="@dimen/y24"
-                android:background="@drawable/bt_default_bg"
-                android:padding="@dimen/y12"
-                android:textSize="@dimen/x23"
-                android:text="确  认"/>
+                >
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_cancle"
+                    android:layout_width="@dimen/x200"
+                    android:layout_height="@dimen/y50"
+                    android:background="@drawable/bt_default_bg"
+                    android:padding="@dimen/y12"
+                    android:gravity="center"
+                    android:textSize="@dimen/x23"
+                    android:text="取  消"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="@dimen/x200"
+                    android:layout_height="@dimen/y50"
+                    android:background="@drawable/bt_default_bg"
+                    android:padding="@dimen/y12"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/x35"
+                    android:textSize="@dimen/x23"
+                    android:text="确  认"/>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
