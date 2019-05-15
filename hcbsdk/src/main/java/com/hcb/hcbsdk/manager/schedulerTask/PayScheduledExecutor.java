@@ -64,7 +64,6 @@ public class PayScheduledExecutor implements Runnable {
     public void run() {
         L.info("PushService", "支付----开始任务----  "+Thread.currentThread().getName());
 
-
         if(payType.equals("2"))
             confirm_aliPayInfo();
         else {
