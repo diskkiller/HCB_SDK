@@ -32,6 +32,7 @@ import com.hcb.hcbsdk.service.TuitaData;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.service.msgBean.Order;
 import com.hcb.hcbsdk.service.msgBean.OrderForm;
+import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
 import com.hcb.hcbsdk.util.BarcodeUtils;
@@ -227,6 +228,9 @@ public class SDKManager {
     public void runLoginScheduledTask(String deviceNo) {
         mPushService.mPushConn.runLoginScheduledTask(ctx, deviceNo);
     }
+    public void runAliLoginScheduledTask(String queryCode) {
+            mPushService.mPushConn.runAliLoginScheduledTask(ctx, queryCode);
+    }
 
     public void cancleScheduledTask() {
 
@@ -292,7 +296,7 @@ public class SDKManager {
     }
 
 
-    public LoginReslut.User getUser() {
+    public User getUser() {
 
         try {
 
@@ -301,7 +305,7 @@ public class SDKManager {
                 return null;
             }
 
-            LoginReslut.User user = mPushService.mPushConn.getUser();
+            User user = mPushService.mPushConn.getUser();
 
             if (user != null)
                 return user;
@@ -312,7 +316,7 @@ public class SDKManager {
         }
     }
 
-    private void setUser(LoginReslut.User user) {
+    private void setUser(User user) {
         mPushService.mPushConn.setUser(user);
     }
 
@@ -473,6 +477,9 @@ public class SDKManager {
     public void startPayPage(String aliPayQueryId,String orderId, String authorizeUrl, int orderType, String consumeGoldCoinCount,String payType) {
         mPushService.startPayPage("", aliPayQueryId,orderId, authorizeUrl, orderType, consumeGoldCoinCount, null, 0,payType);
     }
+    public void startBindPage(String token,String openId) {
+            mPushService.startBindPage(token, openId);
+        }
 
     /**
      * 好运来一包/好运来一张 调用 需显示彩票包号票号

@@ -21,7 +21,12 @@
 
         <activity
             android:theme="@style/sdktheme_transparent"
-            android:name="com.hcb.hcbsdk.activity.LoginActivity"
+            android:name="com.hcb.hcbsdk.activity.Login_weichat_alipay_Activity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:theme="@style/sdktheme_transparent"
+            android:name="com.hcb.hcbsdk.activity.BindTelActivity"
             android:screenOrientation="landscape" />
         <activity
             android:theme="@style/sdktheme_transparent"

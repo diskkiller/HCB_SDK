@@ -57,6 +57,10 @@ public class C {
      */
     public static final String API_SERVER_LOGIN_URL = "/api/mbr/user/code/login";
     /**
+     * 绑定手机
+     */
+    public static final String API_SERVER_BIND_TEL_URL = "/api/alipay/bindMobile";
+    /**
      * 清除服务器用户缓存请求
      */
     public static final String API_SERVER_CLEAR_SERVER_USERDATA_URL = "/api/common/logout";
@@ -73,6 +77,10 @@ public class C {
      */
     public static final String API_SERVER_AUTHORIZE_URL = "/api/common/qrcode/url";
     /**
+     * 获取支付宝二维码链接
+     */
+    public static final String API_SERVER_ALI_AUTHORIZE_URL = "/api/alipay/login/qrcode";
+    /**
      * 轮询支付结果
      */
     public static final String API_USER_PAY_CONFIRM_PAYINFO = "/api/common/polling/pay";
@@ -88,6 +96,10 @@ public class C {
      * 轮询登录
      */
     public static final String API_USER_PAY_CONFIRM_LOGIN = "/api/common/polling/login";
+    /**
+     * Ali轮询登录
+     */
+    public static final String API_USER_ALI_CONFIRM_LOGIN = "/api/alipay/login/query";
     /**
      * 查询订单信息
      */

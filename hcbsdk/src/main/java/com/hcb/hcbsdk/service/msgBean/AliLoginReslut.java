@@ -33,7 +33,7 @@ package com.hcb.hcbsdk.service.msgBean;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
-public class LoginReslut {
+public class AliLoginReslut {
 
 
     /**
@@ -73,7 +73,7 @@ public class LoginReslut {
 
 
     private int status;
-    private User data;
+    private User body;
 
     public int getStatus() {
         return status;
@@ -84,11 +84,11 @@ public class LoginReslut {
     }
 
     public User getData() {
-        return data;
+        return body;
     }
 
     public void setData(User data) {
-        this.data = data;
+        this.body = data;
     }
 
 
@@ -97,7 +97,7 @@ public class LoginReslut {
     public String toString() {
         return "LoginReslut{" +
                 "status=" + status +
-                ", data=" + data +
+                ", data=" + body +
                 '}';
     }
 }

@@ -43,13 +43,13 @@
                     android:textSize="@dimen/x30" />
 
                 <RadioButton
-                    android:id="@+id/rb_tel"
+                    android:id="@+id/rb_ali"
                     android:layout_width="@dimen/x300"
                     android:layout_height="match_parent"
                     android:background="@drawable/jia_chat_selector_right"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="手机登录"
+                    android:text="支付宝登录"
                     android:textColor="@drawable/jia_title"
                     android:textSize="@dimen/x30" />
             </RadioGroup>

@@ -7,10 +7,7 @@
         android:radius="30dp"
         />
 
-    <gradient
-        android:startColor="#FF9903"
-        android:endColor="#FF9903"
-        android:angle="0" />
+
 
 
     <!--&lt;!&ndash;填充  填充的颜色&ndash;&gt;

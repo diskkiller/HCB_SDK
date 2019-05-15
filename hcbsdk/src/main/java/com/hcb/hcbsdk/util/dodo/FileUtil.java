@@ -3,6 +3,7 @@ package com.hcb.hcbsdk.util.dodo;
 import android.content.Context;
 import android.os.Environment;
 
+import com.hcb.hcbsdk.util.L;
 import com.hcb.hcbsdk.util.StringUtils;
 
 import java.io.BufferedInputStream;
@@ -588,6 +589,7 @@ public class FileUtil
 			makeDirs(filePath);
 			fileWriter = new FileWriter(filePath, append);
 			fileWriter.write(content);
+			L.info("huacaisdk", " 写入文件成功");
 			return true;
 		} catch (IOException e) {
 			throw new RuntimeException("IOException occurred. ", e);

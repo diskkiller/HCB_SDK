@@ -48,6 +48,17 @@ public class BroadcastUtil {
 		L.info("BPushService", "sendBroadcast success " + action
 				+ "------------->" + data);
 	}
+	public static void sendAliBroadcastToUI(Context context, String action,String token,String openId) {
+		intent = new Intent();
+		intent.setAction(action);
+		intent.putExtra("token", token);
+		intent.putExtra("openId", openId);
+		if (context != null) {
+			context.sendBroadcast(intent);
+		}
+		L.info("BPushService", "sendBroadcast success " + action
+				+ "------------->" + "token:  "+token);
+	}
 	public static void sendLogBroadcastToUI(Context context,String data) {
 		intent = new Intent();
 		intent.setAction(IConstants.EXTRA_LOG_ACTION);

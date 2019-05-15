@@ -11,11 +11,14 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hcb.hcbsdk.activity.ActivityCollector;
+import com.hcb.hcbsdk.activity.BindTelActivity;
 import com.hcb.hcbsdk.activity.LoginActivity;
+import com.hcb.hcbsdk.activity.Login_weichat_alipay_Activity;
 import com.hcb.hcbsdk.activity.NetErrorActivity;
 import com.hcb.hcbsdk.activity.PayActivityC;
 import com.hcb.hcbsdk.logutils.LogUtil;
 import com.hcb.hcbsdk.manager.SDKManager;
+import com.hcb.hcbsdk.manager.schedulerTask.AliLoginScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.CheckSocketConnectScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.GoldPayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.LoginScheduledExecutor;
@@ -23,6 +26,7 @@ import com.hcb.hcbsdk.manager.schedulerTask.PayGameScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.PayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.UploadLogScheduledExecutor;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
+import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.IEmitterListener;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
@@ -418,6 +422,9 @@ public class PushServerConnection implements IEmitterListener {
     public void runLoginScheduledTask(Context ctx, String deviceNo) {
         sdkManager.getScheduler().scheduleWithFixedDelay(new LoginScheduledExecutor(ctx, deviceNo), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
     }
+    public void runAliLoginScheduledTask(Context ctx, String queryCode) {
+        sdkManager.getScheduler().scheduleWithFixedDelay(new AliLoginScheduledExecutor(ctx, queryCode), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
+    }
 
     public void runLogScheduledTask() {
         isLogTaskRuning = true;
@@ -482,10 +489,10 @@ public class PushServerConnection implements IEmitterListener {
     }
 
 
-    public LoginReslut.User getUser() {
+    public User getUser() {
 
         LoginReslut loginReslut;
-        LoginReslut.User user = TuitaData.getInstance().getUser();
+       User user = TuitaData.getInstance().getUser();
         L.debug("userdata", "读取内存数据  " + user);
         if (user == null) {
             L.debug("userdata", "内存数据为空  读取本地用户文件");
@@ -508,7 +515,7 @@ public class PushServerConnection implements IEmitterListener {
         return user;
     }
 
-    public void setUser(LoginReslut.User user) {
+    public void setUser(User user) {
         TuitaData.getInstance().setUser(user);
     }
 
@@ -518,9 +525,9 @@ public class PushServerConnection implements IEmitterListener {
             return;
         }
 
-        if (ActivityCollector.isActivityExist(LoginActivity.class)) return;
+        if (ActivityCollector.isActivityExist(Login_weichat_alipay_Activity.class)) return;
 
-        Intent intent = new Intent(ctx, LoginActivity.class);
+        Intent intent = new Intent(ctx, Login_weichat_alipay_Activity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ctx.startActivity(intent);
     }
@@ -555,6 +562,19 @@ public void startNetErrorPage() {
         intent.putExtra("ticketNum", ticketNum);
         intent.putExtra("numType", numType);
         intent.putExtra("payType", payType);
+        ctx.startActivity(intent);
+    }
+
+    public void startBindPage(String token, String openId) {
+        if (Utils.isFastClick(1000)) {
+            return;
+        }
+        if (ActivityCollector.isActivityExist(BindTelActivity.class)) return;
+
+        Intent intent = new Intent(ctx, BindTelActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("token", token);
+        intent.putExtra("openId", openId);
         ctx.startActivity(intent);
     }
 

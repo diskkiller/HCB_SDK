@@ -113,7 +113,7 @@ public class MainActivity extends Activity {
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
 //                SDKManager.getInstance().delOrderList();
-                SDKManager.getInstance().startHuodongPage();
+                SDKManager.getInstance().startLoginPage();
 //                AppSocket.getInstance().sdk_logout();
 
                 //                SDKManager.getInstance().runPayScheduledTask();

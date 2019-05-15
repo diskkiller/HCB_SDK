@@ -14,6 +14,7 @@ public interface IConstants {
 
     // 登录
     String LOGIN = ACTION+"login";
+    String LOGIN_BIND_TEL = ACTION+"login_bind_tel";
     String LOGIN_OUT = ACTION+"login_out";
     String LOGIN_OUT_EQUIP = ACTION+"logoutEquip";
     String ORDER_CANCEL = ACTION+"order_cancle";

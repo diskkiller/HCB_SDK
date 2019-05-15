@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+        android:id="@+id/ali_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/ali_sweepIV"
+            android:layout_width="@dimen/x350"
+            android:layout_height="@dimen/x350"
+            android:background="@drawable/sdk_code_error"
+            />
+
+        <TextView
+            android:id="@+id/ali_tx_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/x25"
+            android:text="请用支付宝扫码登录"
+            android:textColor="@color/color_aeaeae"
+            />
+    </LinearLayout>
+</ScrollView>

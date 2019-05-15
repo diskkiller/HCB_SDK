@@ -128,6 +128,10 @@ public class HCBPushService extends Service{
 		mPushConn.startPayPage(appid,aliPayQueryId,orderId,authorizeUrl,orderType,consumeGoldCoinCount,ticketNum,numType,payType);
 	}
 
+	public void startBindPage(String token,String openId) {
+		mPushConn.startBindPage(token,openId);
+	}
+
 	public void push_connect(int code, String deviceNo) {
 		mPushConn.push_connect(code,deviceNo);
 	}

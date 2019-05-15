@@ -74,6 +74,15 @@ public static void deletRequest(String url, RequestParams params,
         RequestCenter.getRequest(C.API_SERVER_AUTHORIZE_URL, params, listener);
     }
 
+    /**
+     * 支付宝二维码请求
+     */
+    public static void getAliAuthorize( DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        RequestCenter.getRequest(C.API_SERVER_ALI_AUTHORIZE_URL, params, listener);
+    }
+
 
 
     /**
@@ -111,6 +120,20 @@ public static void deletRequest(String url, RequestParams params,
         params.put("smsCode", code);
         params.put("snNo", snNo);
         RequestCenter.postRequest(C.API_SERVER_LOGIN_URL, params, listener);
+    }
+
+
+    /**
+     * 用户登录请求
+     */
+    public static void bindTel(String mobile, String code,String token,String openId, DisposeDataListener listener) {
+
+        RequestParams params = new RequestParams();
+        params.put("token", token);
+        params.put("openId", openId);
+        params.put("mobile", mobile);
+        params.put("smsCode", code);
+        RequestCenter.getRequest(C.API_SERVER_BIND_TEL_URL, params, listener);
     }
 
 
@@ -268,6 +291,16 @@ public static void deletRequest(String url, RequestParams params,
         RequestParams params = new RequestParams();
         params.put("snNo", deviceNo);
         RequestCenter.postRequest(C.API_USER_PAY_CONFIRM_LOGIN, params, disposeDataListener);
+    }
+    /**
+     * 轮询——支付宝登陆
+     * @param queryCode
+     * @param disposeDataListener
+     */
+    public static void confirm_AliLogin(String queryCode, DisposeDataListener disposeDataListener) {
+        RequestParams params = new RequestParams();
+        params.put("queryCode", queryCode);
+        RequestCenter.getRequest(C.API_USER_ALI_CONFIRM_LOGIN, params, disposeDataListener);
     }
 
     /**
