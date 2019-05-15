@@ -5,17 +5,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.view.PagerAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -24,8 +21,6 @@ import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -38,12 +33,10 @@ import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
 import com.hcb.hcbsdk.service.TuitaData;
-import com.hcb.hcbsdk.service.msgBean.AliLoginReslut;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.util.BroadcastUtil;
-import com.hcb.hcbsdk.util.DeviceUtil;
 import com.hcb.hcbsdk.util.L;
 import com.hcb.hcbsdk.util.StringUtils;
 import com.hcb.hcbsdk.util.Utils;
@@ -52,8 +45,6 @@ import com.hcb.hcbsdk.util.dodo.NetStatus;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
 import static com.hcb.hcbsdk.util.C.KEY_FILE_NAME;
@@ -323,9 +314,9 @@ public class BindTelActivity extends JKCBaseActivity {
                 dismissProgress();
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
-                    if (status == 200) {
+                    if (status == 1) {
 
-                        AliLoginReslut loginReslut = new Gson().fromJson(responseObj.toString(), AliLoginReslut.class);
+                        LoginReslut loginReslut = new Gson().fromJson(responseObj.toString(), LoginReslut.class);
 
                         User user = loginReslut.getData();
 

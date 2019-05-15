@@ -9,7 +9,6 @@ import com.hcb.hcbsdk.activity.Login_weichat_alipay_Activity;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
 import com.hcb.hcbsdk.service.TuitaData;
-import com.hcb.hcbsdk.service.msgBean.AliLoginReslut;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
@@ -87,9 +86,9 @@ public class AliLoginScheduledExecutor implements Runnable {
                 Log.i("huacaisdk", "登录----定时请求成功  "+responseObj.toString());
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
-                    if (status == 200) {
+                    if (status == 1) {
 
-                        AliLoginReslut loginReslut = new Gson().fromJson(responseObj.toString(), AliLoginReslut.class);
+                        LoginReslut loginReslut = new Gson().fromJson(responseObj.toString(), LoginReslut.class);
 
                         User user = loginReslut.getData();
 

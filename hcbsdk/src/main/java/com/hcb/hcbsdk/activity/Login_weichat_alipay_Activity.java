@@ -156,9 +156,9 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
 
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
-                    if (status == 200) {
+                    if (status == 1) {
 
-                        JSONObject body = ((JSONObject) responseObj).getJSONObject("body");
+                        JSONObject body = ((JSONObject) responseObj).getJSONObject("data");
 
                         queryCode = body.getString("queryCode");
 
@@ -286,24 +286,6 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
             hideSystemUI(this);
         super.onWindowFocusChanged(hasFocus);
     }
-
-    private boolean registVerify() {
-        boolean isValid = false;
-        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-        try {
-            Phonenumber.PhoneNumber swissNumberProto = phoneUtil.parse(globalRoaming + phone,
-                    globalRoamingRegions);
-            isValid = phoneUtil.isValidNumber(swissNumberProto); // returns true
-        } catch (NumberParseException e) {
-            System.err.println("NumberParseException was thrown: " + e.toString());
-        }
-
-        if (phone == null || "".equals(phone) || !isValid) {
-            return false;
-        }
-        return true;
-    }
-
 
 
     private void startAnimation() {
