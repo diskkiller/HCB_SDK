@@ -3,7 +3,14 @@
     android:id="@+id/activity_wechat_capture"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent60">
+    >
+
+    <com.cunoraz.gifview.library.GifView
+        android:id="@+id/iv_main_banner_zjwz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        />
 
     <RelativeLayout
         android:id="@+id/rl_login"

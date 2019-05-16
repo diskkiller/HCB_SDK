@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.cunoraz.gifview.library.GifView;
 import com.google.gson.Gson;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -85,6 +86,7 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
     private ImageView ali_sweepIV;
     private TextView ali_tx_tips;
     private String queryCode;
+    private GifView ivZjwz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +194,11 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
         filter.addAction(IConstants.LOGIN_BIND_TEL);
         mRecever = new MyRecever();
         this.registerReceiver(mRecever, filter);
+
+
+        ivZjwz = findViewById(R.id.iv_main_banner_zjwz);
+        ivZjwz.setGifResource(R.drawable.login_bg);
+        ivZjwz.play();
 
 
         activity_wechat_capture = findViewById(R.id.activity_wechat_capture);
