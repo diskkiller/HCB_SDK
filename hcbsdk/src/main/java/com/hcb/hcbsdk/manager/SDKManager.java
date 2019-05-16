@@ -32,6 +32,7 @@ import com.hcb.hcbsdk.service.TuitaData;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.service.msgBean.Order;
 import com.hcb.hcbsdk.service.msgBean.OrderForm;
+import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
 import com.hcb.hcbsdk.util.BarcodeUtils;
@@ -292,7 +293,7 @@ public class SDKManager {
     }
 
 
-    public LoginReslut.User getUser() {
+    public User getUser() {
 
         try {
 
@@ -301,7 +302,7 @@ public class SDKManager {
                 return null;
             }
 
-            LoginReslut.User user = mPushService.mPushConn.getUser();
+            User user = mPushService.mPushConn.getUser();
 
             if (user != null)
                 return user;
@@ -312,7 +313,7 @@ public class SDKManager {
         }
     }
 
-    private void setUser(LoginReslut.User user) {
+    private void setUser(User user) {
         mPushService.mPushConn.setUser(user);
     }
 

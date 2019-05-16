@@ -1,6 +1,7 @@
 package com.hcb.hcbsdk.service;
 
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
+import com.hcb.hcbsdk.service.msgBean.User;
 
 /**
  * @author WangGuoWei
@@ -59,12 +60,12 @@ public class TuitaData {
         return INSTANCE;
     }
 
-    private LoginReslut.User user;
-    public void setUser(LoginReslut.User user){
+    private User user;
+    public void setUser(User user){
         this.user = user;
     }
 
-    public LoginReslut.User getUser(){
+    public User getUser(){
         return this.user;
     }
 

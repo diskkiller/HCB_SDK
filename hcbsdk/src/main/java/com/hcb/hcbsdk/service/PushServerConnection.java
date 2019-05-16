@@ -23,6 +23,7 @@ import com.hcb.hcbsdk.manager.schedulerTask.PayGameScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.PayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.UploadLogScheduledExecutor;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
+import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.IEmitterListener;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
@@ -482,10 +483,10 @@ public class PushServerConnection implements IEmitterListener {
     }
 
 
-    public LoginReslut.User getUser() {
+    public User getUser() {
 
         LoginReslut loginReslut;
-        LoginReslut.User user = TuitaData.getInstance().getUser();
+        User user = TuitaData.getInstance().getUser();
         L.debug("userdata", "读取内存数据  " + user);
         if (user == null) {
             L.debug("userdata", "内存数据为空  读取本地用户文件");
@@ -508,7 +509,7 @@ public class PushServerConnection implements IEmitterListener {
         return user;
     }
 
-    public void setUser(LoginReslut.User user) {
+    public void setUser(User user) {
         TuitaData.getInstance().setUser(user);
     }
 
