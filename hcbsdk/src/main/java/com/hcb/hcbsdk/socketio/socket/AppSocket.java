@@ -1,9 +1,12 @@
 package com.hcb.hcbsdk.socketio.socket;
 
 
+import android.util.Log;
+
 import com.hcb.hcbsdk.logutils.save.imp.LogWriter;
 import com.hcb.hcbsdk.service.TuitaPacket;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
+import com.hcb.hcbsdk.util.C;
 import com.hcb.hcbsdk.util.L;
 
 /**
@@ -73,6 +76,19 @@ public class AppSocket extends BaseSocket {
             mSocket.emit(IConstants.BATTLE, msg);
         }else{
             L.info("PushService", "第三方发送数据----null");
+        }
+    }
+
+
+    public void sendLog2Server(String msg) {
+
+        Log.i("PushLogService","是否发送日志：----------"+ C.START_SEND_LOG);
+
+        if(!C.START_SEND_LOG) return;
+
+        if(msg!=null){
+            Log.i("PushLogService","msg：----------"+ msg);
+            mSocket.emit(IConstants.EVENT_SENDING_LOG, msg);
         }
     }
 

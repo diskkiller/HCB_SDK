@@ -17,9 +17,10 @@ public class C {
 
     public static final String SOCKET = "http://123.56.11.82:9999?snNo=";
 //    public static final String DEBUG_SOCKET = "http://mtest.zthuacai.com:9999?snNo=";
-    public static final String DEBUG_SOCKET = "http://47.104.104.40:9999?snNo=";
+    public static final String DEBUG_SOCKET = "http://192.168.1.46:9099?snNo=";
     public static final String APIURL = "https://m.zthuacai.com";
     public static final String DEBUG_APIURL = "http://mtest.zthuacai.com";
+    public static boolean START_SEND_LOG = true;
 
 
     public static String getSocketURL(){
@@ -39,7 +40,7 @@ public class C {
     };
 
     public static final boolean IS_LAUNCHER = true;
-    public static final boolean IS_NEED_LOG = false;
+    public static final boolean IS_NEED_LOG = true;
 
 
     public static final String DM_URL = "http://www.efittech.com/dm.aspx";

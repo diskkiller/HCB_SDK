@@ -78,8 +78,11 @@ public interface IConstants {
     String LOG_EVENT_CONNECT = ACTION+"log_connect";
     String LOG_EVENT_DISCONNECT = ACTION+"log_disconnect";
 
+    String EVENT_SENDING_LOG = ACTION+"send_log_message";
+    String EVENT_START_LOG = "SEND_START";
+
     String EXTRA_LOG_MESSAGE = ACTION+"log_message";
     String EXTRA_LOG_ACTION = ACTION+"log_message_action";
 
-    String EVENT_RECEIVE_LOG  = "SENDING_LOG";
+    String EVENT_RECEIVE_LOG  = "get_log_message";
 }

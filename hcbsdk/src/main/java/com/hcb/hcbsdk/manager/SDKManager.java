@@ -35,6 +35,7 @@ import com.hcb.hcbsdk.service.msgBean.OrderForm;
 import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
+import com.hcb.hcbsdk.socketio.socket.AppSocket;
 import com.hcb.hcbsdk.util.BarcodeUtils;
 import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.C;
@@ -139,10 +140,10 @@ public class SDKManager {
         mFilter.addAction(IConstants.HCB_HAPPYDAY_WINDOW);
         ctx.registerReceiver(mReceiver, mFilter);
 
-        if (IS_NEED_LOG) {
+        /*if (IS_NEED_LOG) {
             LOGSDKManager.getInstance().setApiUrl("http://39.107.107.82:3000");
             LOGSDKManager.getInstance().init(ctx);
-        }
+        }*/
 
     }
 
@@ -358,8 +359,10 @@ public class SDKManager {
 
     public void sendLog(String msg) {
 
-        if (IS_NEED_LOG && LOGSDKManager.getInstance().LogSocketConnect())
-            LOGSDKManager.getInstance().sendLog(msg);
+        if (IS_NEED_LOG && L.isConnected){
+            AppSocket.getInstance().sendLog2Server(msg);
+//            LOGSDKManager.getInstance().sendLog(msg);
+        }
 
     }
 
@@ -519,7 +522,7 @@ public class SDKManager {
         C.IS_SOCKET_CLOSE = false;
         if (L.debug) {
             this.API_URL = C.getDebugapiURL();//测试
-//            mPushService.push_connect(0, deviceNo);
+            mPushService.push_connect(0, deviceNo);
         } else {
             this.API_URL = C.getAPIURL();//线上
 //            mPushService.push_connect(2, deviceNo);
