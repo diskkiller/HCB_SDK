@@ -17,7 +17,8 @@ public class C {
 
     public static final String SOCKET = "http://123.56.11.82:9999?snNo=";
 //    public static final String DEBUG_SOCKET = "http://mtest.zthuacai.com:9999?snNo=";
-    public static final String DEBUG_SOCKET = "http://192.168.1.46:9099?snNo=";
+//    public static final String DEBUG_SOCKET = "http://192.168.1.46:9999?snNo=";
+    public static final String DEBUG_SOCKET = "http://60.205.228.117:9999?snNo=";
     public static final String APIURL = "https://m.zthuacai.com";
     public static final String DEBUG_APIURL = "http://mtest.zthuacai.com";
     public static boolean START_SEND_LOG = true;
