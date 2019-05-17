@@ -97,6 +97,7 @@
                 android:hint="请输入目标设备的DeviceNo"
                 android:gravity="center"
                 android:background="@drawable/bt_cancel_bg"
+                android:text="A8A19881267C685"
                 />
 
             <TextView

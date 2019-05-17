@@ -3,6 +3,7 @@ package com.hcb.hcbsdk.util;
 import android.util.Log;
 
 import com.hcb.hcbsdk.manager.SDKManager;
+import com.hcb.hcbsdk.socketio.listener.IConstants;
 
 import static com.hcb.hcbsdk.util.C.PUSH_SERVICE_LOG_TAG;
 
@@ -32,7 +33,7 @@ public class L {
     public static void info(String TAG,String info) {
         if (debugLog) {
             Log.i(PUSH_SERVICE_LOG_TAG, "" + info);
-            SDKManager.getInstance().sendLog(info);
+            SDKManager.getInstance().sendLog(IConstants.SOCTET_EVENT_CLIENT_LOG_MESSAGE,info);
         }
     }
 

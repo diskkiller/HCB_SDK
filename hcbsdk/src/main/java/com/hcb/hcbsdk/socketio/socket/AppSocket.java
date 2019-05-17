@@ -80,7 +80,7 @@ public class AppSocket extends BaseSocket {
     }
 
 
-    public void sendLog2Server(String msg) {
+    public void sendLog2Server(String event,String msg) {
 
         Log.i("PushLogService","是否发送日志：----------"+ C.START_SEND_LOG);
 
@@ -88,7 +88,17 @@ public class AppSocket extends BaseSocket {
 
         if(msg!=null){
             Log.i("PushLogService","msg：----------"+ msg);
-            mSocket.emit(IConstants.EVENT_SENDING_LOG, msg);
+            mSocket.emit(event, msg);
+        }
+    }
+
+    public void startSendLog2Server(String event,String msg) {
+
+        Log.i("PushLogService","开启发送日志：----------"+ C.START_SEND_LOG);
+
+        if(msg!=null){
+            Log.i("PushLogService","msg：----------"+ msg);
+            mSocket.emit(event, msg);
         }
     }
 

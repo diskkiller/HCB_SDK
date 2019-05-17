@@ -266,7 +266,7 @@ public class PushServerConnection implements IEmitterListener {
 //                Log.e("ScheduledTask", "EVENT_TEST---->"+testData.toString());
                 break;
             case IConstants.EVENT_USER_REFUND:
-                final JSONObject user_refund = (JSONObject) args[0];
+                /*final JSONObject user_refund = (JSONObject) args[0];
                 L.info(LOGTAG, "收到退款  " + user_refund.toString());
                 int status = 0;
                 final String data_msg;
@@ -280,17 +280,25 @@ public class PushServerConnection implements IEmitterListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+*/
+                break;
+            case IConstants.SOCTET_EVENT_LOG_BEGIN_SEND:
+
+                C.START_SEND_LOG = true;
 
                 break;
-            case IConstants.EVENT_SEND_LOG:
-                LogUtil.getInstance().upload(ctx);
+
+            case IConstants.SOCTET_EVENT_LOG_STOP_SEND:
+
+                C.START_SEND_LOG = false;
+
                 break;
 
 
             case IConstants.COIN_PAY://金豆充值
 
 
-                L.info(LOGTAG, "推送扫码--金豆充值接收=================>>>>  " + args[0].toString());
+               /* L.info(LOGTAG, "推送扫码--金豆充值接收=================>>>>  " + args[0].toString());
 
 //                cancleScheduledTask();
 
@@ -303,7 +311,7 @@ public class PushServerConnection implements IEmitterListener {
 
                     BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS, "2");
                 } else
-                    BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, "2");
+                    BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, "2");*/
 
                 break;
 
@@ -311,7 +319,7 @@ public class PushServerConnection implements IEmitterListener {
             case IConstants.COIN_CONSUME://金豆消耗
 
 
-                L.info(LOGTAG, "推送扫码--金豆消耗接收=================>>>>  " + args[0].toString());
+                /*L.info(LOGTAG, "推送扫码--金豆消耗接收=================>>>>  " + args[0].toString());
 
                 cancleScheduledTask();
 
@@ -324,12 +332,12 @@ public class PushServerConnection implements IEmitterListener {
 
                     BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS, "3");
                 } else
-                    BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, "3");
+                    BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_FAIL, "3");*/
                 break;
 
 
             case IConstants.PAY_NOTIFY:
-                L.info(LOGTAG, "推送扫码支付接收=================>>>>  " + args[0].toString());
+                /*L.info(LOGTAG, "推送扫码支付接收=================>>>>  " + args[0].toString());
 
                 cancleScheduledTask();
 
@@ -346,29 +354,29 @@ public class PushServerConnection implements IEmitterListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+*/
                 break;
 
             case IConstants.LOGIN_OUT_EQUIP:
-                L.info(LOGTAG, "退出登录接收。。。。。。");
+                /*L.info(LOGTAG, "退出登录接收。。。。。。");
                 TuitaData.getInstance().setUser(null);
                 DataCleanManager.deleteFolderFile(FileUtil.getSDDir(KEY_DIR_NAME), true);
 
-                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.LOGIN_OUT, null);
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.LOGIN_OUT, null);*/
 
                 break;
 
 
              case IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL:
-                 L.info(LOGTAG, "购买彩票通知的socket事件=================>>>>  " + args[0].toString());
+                /* L.info(LOGTAG, "购买彩票通知的socket事件=================>>>>  " + args[0].toString());
 
-                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL, args[0].toString());
+                BroadcastUtil.sendBroadcastToUI(ctx, IConstants.EVENT_HCB_LOTTERY_PURCHASE_ALL, args[0].toString());*/
 
                 break;
 
             case IConstants.LOGIN:
 
-                if (!IS_LAUNCHER)
+                /*if (!IS_LAUNCHER)
                     return;
 
                 final JSONObject data = (JSONObject) args[0];
@@ -396,7 +404,7 @@ public class PushServerConnection implements IEmitterListener {
                 } catch (Exception e) {
                     L.info(LOGTAG, "登录异常返回数据----" + e.toString());
                     return;
-                }
+                }*/
 
                 break;
 

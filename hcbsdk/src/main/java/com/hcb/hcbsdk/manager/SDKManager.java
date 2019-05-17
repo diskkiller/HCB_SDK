@@ -52,7 +52,6 @@ import org.json.JSONObject;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import static com.hcb.hcbsdk.util.C.IS_NEED_LOG;
 import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
 import static com.hcb.hcbsdk.util.C.SERVICE_NAME;
 import static com.hcb.hcbsdk.util.L.deviceNo;
@@ -346,22 +345,26 @@ public class SDKManager {
     }
 
 
-    public void startSendLog(String deviceNo) {
-        if (IS_NEED_LOG)
-            LOGSDKManager.getInstance().startSendLog(deviceNo);
+
+    public void sendLog(String event,String msg) {
+
+        if ( L.isConnected){
+            AppSocket.getInstance().sendLog2Server(event,msg);
+        }
+
     }
 
+    public void startSendLog(String event,String msg) {
 
-    public void endSendLog(String deviceNo) {
-        if (IS_NEED_LOG)
-            LOGSDKManager.getInstance().endSendLog(deviceNo);
+        if ( L.isConnected){
+            AppSocket.getInstance().startSendLog2Server(event,msg);
+        }
+
     }
+    public void endSendLog(String event,String msg) {
 
-    public void sendLog(String msg) {
-
-        if (IS_NEED_LOG && L.isConnected){
-            AppSocket.getInstance().sendLog2Server(msg);
-//            LOGSDKManager.getInstance().sendLog(msg);
+        if ( L.isConnected){
+            AppSocket.getInstance().sendLog2Server(event,msg);
         }
 
     }
@@ -556,8 +559,6 @@ public class SDKManager {
 
 
     public void destroy() {
-        if (IS_NEED_LOG)
-            LOGSDKManager.getInstance().destroy();
         ctx.unbindService(conn);
         L.info("PushService", "销毁OR重启  C.SOCKET_RECONNECT...  " + C.SOCKET_RECONNECT);
         if (!C.SOCKET_RECONNECT) {

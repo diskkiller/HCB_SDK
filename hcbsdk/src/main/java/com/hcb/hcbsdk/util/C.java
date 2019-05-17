@@ -41,7 +41,6 @@ public class C {
     };
 
     public static final boolean IS_LAUNCHER = true;
-    public static final boolean IS_NEED_LOG = true;
 
 
     public static final String DM_URL = "http://www.efittech.com/dm.aspx";
