@@ -65,7 +65,9 @@ public class MainActivity extends Activity {
 
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
-        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",true);
+//        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",false);
+//        SDKManager.getInstance().init(MainActivity.this,"HUA2018082117",false);
+        SDKManager.getInstance().init(MainActivity.this,"0123456789ABCDE",true);
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);

@@ -128,6 +128,9 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
                             tx_tips.setText("请用微信扫码登录");
                             sweepIV.setImageBitmap(bitmap);
                         }
+
+                        SDKManager.getInstance().runLoginScheduledTask(DeviceUtil.getDeviceId2Ipad(Login_weichat_alipay_Activity.this));
+
                     } else
                         Utils.showToastCenter(Login_weichat_alipay_Activity.this, "网络差，二维码加载失败");
                 } catch (Exception e) {

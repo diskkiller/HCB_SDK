@@ -33,7 +33,7 @@ public class L {
     public static void info(String TAG,String info) {
         if (debugLog) {
             Log.i(PUSH_SERVICE_LOG_TAG, "" + info);
-            SDKManager.getInstance().sendLog(IConstants.SOCTET_EVENT_CLIENT_LOG_MESSAGE,info);
+            SDKManager.getInstance().sendLog(IConstants.SOCTET_EVENT_CLIENT_LOG_MESSAGE,L.deviceNo+" : "+info);
         }
     }
 

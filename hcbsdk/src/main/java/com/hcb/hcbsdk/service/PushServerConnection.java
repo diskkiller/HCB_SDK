@@ -7,21 +7,18 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.hcb.hcbsdk.activity.ActivityCollector;
 import com.hcb.hcbsdk.activity.BindTelActivity;
-import com.hcb.hcbsdk.activity.LoginActivity;
 import com.hcb.hcbsdk.activity.Login_weichat_alipay_Activity;
 import com.hcb.hcbsdk.activity.NetErrorActivity;
 import com.hcb.hcbsdk.activity.PayActivityC;
-import com.hcb.hcbsdk.logutils.LogUtil;
 import com.hcb.hcbsdk.manager.SDKManager;
 import com.hcb.hcbsdk.manager.schedulerTask.AliLoginScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.CheckSocketConnectScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.GoldPayScheduledExecutor;
-import com.hcb.hcbsdk.manager.schedulerTask.LoginScheduledExecutor;
+import com.hcb.hcbsdk.manager.schedulerTask.WeiChatLoginScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.PayGameScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.PayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.UploadLogScheduledExecutor;
@@ -33,21 +30,15 @@ import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
 import com.hcb.hcbsdk.socketio.socket.AppSocket;
 import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.C;
-import com.hcb.hcbsdk.util.DataCleanManager;
-import com.hcb.hcbsdk.util.DeviceUtil;
 import com.hcb.hcbsdk.util.L;
 import com.hcb.hcbsdk.util.Utils;
 import com.hcb.hcbsdk.util.dodo.FileUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;
 
 import io.socket.client.Manager;
 import io.socket.client.Socket;
 
-import static com.hcb.hcbsdk.util.C.IS_LAUNCHER;
 import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
 import static com.hcb.hcbsdk.util.C.KEY_FILE_NAME;
 
@@ -148,6 +139,7 @@ public class PushServerConnection implements IEmitterListener {
     //子线程
     @Override
     public void emitterListenerResut(String key, Object... args) {
+        L.info(LOGTAG, "接收到Socket推送消息----"+key);
         switch (key) {
             case Manager.EVENT_TRANSPORT:
 
@@ -284,12 +276,13 @@ public class PushServerConnection implements IEmitterListener {
                 break;
             case IConstants.SOCTET_EVENT_LOG_BEGIN_SEND:
 
+                L.info(LOGTAG, "接收到Socket推送消息----日志开启--"+IConstants.SOCTET_EVENT_LOG_BEGIN_SEND);
                 C.START_SEND_LOG = true;
-
                 break;
 
             case IConstants.SOCTET_EVENT_LOG_STOP_SEND:
 
+                L.info(LOGTAG, "接收到Socket推送消息----日志关闭--"+IConstants.SOCTET_EVENT_LOG_STOP_SEND);
                 C.START_SEND_LOG = false;
 
                 break;
@@ -428,7 +421,7 @@ public class PushServerConnection implements IEmitterListener {
     }
 
     public void runLoginScheduledTask(Context ctx, String deviceNo) {
-        sdkManager.getScheduler().scheduleWithFixedDelay(new LoginScheduledExecutor(ctx, deviceNo), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
+        sdkManager.getScheduler().scheduleWithFixedDelay(new WeiChatLoginScheduledExecutor(ctx, deviceNo), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
     }
     public void runAliLoginScheduledTask(Context ctx, String queryCode) {
         sdkManager.getScheduler().scheduleWithFixedDelay(new AliLoginScheduledExecutor(ctx, queryCode), INITIALDELAY, PERIOD, TimeUnit.SECONDS);

@@ -289,8 +289,8 @@ public static void deletRequest(String url, RequestParams params,
      */
     public static void confirm_login(String deviceNo, DisposeDataListener disposeDataListener) {
         RequestParams params = new RequestParams();
-        params.put("snNo", deviceNo);
-        RequestCenter.postRequest(C.API_USER_PAY_CONFIRM_LOGIN, params, disposeDataListener);
+        params.put("queryCode", deviceNo);
+        RequestCenter.getRequest(C.API_USER_PAY_CONFIRM_LOGIN, params, disposeDataListener);
     }
     /**
      * 轮询——支付宝登陆

@@ -8,9 +8,11 @@ import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
 import com.hcb.hcbsdk.service.TuitaData;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
+import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.L;
+import com.hcb.hcbsdk.util.StringUtils;
 import com.hcb.hcbsdk.util.dodo.FileUtil;
 
 import org.json.JSONException;
@@ -52,13 +54,13 @@ import static com.hcb.hcbsdk.util.C.KEY_FILE_NAME;
  * @updateDate $Date$
  * @updateDes ${TODO}
  */
-public class LoginScheduledExecutor implements Runnable {
+public class WeiChatLoginScheduledExecutor implements Runnable {
 
 
     private final String deviceNo;
     private Context ctx;
 
-    public LoginScheduledExecutor(Context ctx, String deviceNo) {
+    public WeiChatLoginScheduledExecutor(Context ctx, String deviceNo) {
         this.deviceNo = deviceNo;
         this.ctx = ctx;
     }
@@ -77,30 +79,44 @@ public class LoginScheduledExecutor implements Runnable {
         RequestCenter.confirm_login(deviceNo,new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
-                Log.i("PushService", "登录----定时请求成功  "+responseObj.toString());
-                JSONObject data = (JSONObject) responseObj;
+                Log.i("huacaisdk", "微信-登录----定时请求成功  " + responseObj.toString());
                 try {
-                    if(data.get("data").equals("")) return;
-                } catch (JSONException e) {
+                    int status = ((JSONObject) responseObj).getInt("status");
+                    if (status == 1) {
+
+                        LoginReslut loginReslut = new Gson().fromJson(responseObj.toString(), LoginReslut.class);
+
+                        User user = loginReslut.getData();
+
+                        if (user != null) {
+                            if (user.isSuccess()) {
+                                if (StringUtils.isEmpty(user.getMobile())) {
+                                    L.info("huacaisdk", " 微信-需绑定手机");
+                                    BroadcastUtil.sendAliBroadcastToUI(ctx, IConstants.LOGIN_BIND_TEL, user.getToken(), user.getOpenId());
+                                } else {
+                                    FileUtil.writeFile
+                                            (FileUtil.getSDDir(KEY_DIR_NAME) + KEY_FILE_NAME, responseObj.toString(), false);
+                                    L.info("huacaisdk", "微信-登录成功");
+                                    TuitaData.getInstance().setUser(loginReslut.getData());
+                                    BroadcastUtil.sendBroadcastToUI(ctx, IConstants.LOGIN, "");
+                                }
+
+
+                                }
+
+                            }
+                        } else {
+                            BroadcastUtil.sendBroadcastToUI(ctx, IConstants.LOGIN_ERROR, responseObj.toString());
+                        }
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                LoginReslut loginReslut = new Gson().fromJson(responseObj.toString(), LoginReslut.class);
-                if (loginReslut.getStatus() == 1) {
-
-                    FileUtil.writeFile
-                            (FileUtil.getSDDir(KEY_DIR_NAME) + KEY_FILE_NAME,responseObj.toString(), false);
-                    L.info("PushService", "登录成功");
-                    TuitaData.getInstance().setUser(loginReslut.getData());
-                    BroadcastUtil.sendBroadcastToUI(ctx,IConstants.LOGIN,responseObj.toString());
-                }else{
-
-                    BroadcastUtil.sendBroadcastToUI(ctx,IConstants.LOGIN_ERROR,responseObj.toString());
-                }            }
+            }
 
             @Override
             public void onFailure(Object reasonObj) {
-                Log.i("PushService", "登录-----定时请求失败  ");
+                Log.i("PushService", "未定-登录-----定时请求失败  ");
             }
         });
     }

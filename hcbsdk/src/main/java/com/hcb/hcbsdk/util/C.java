@@ -21,7 +21,7 @@ public class C {
     public static final String DEBUG_SOCKET = "http://60.205.228.117:9999?snNo=";
     public static final String APIURL = "https://m.zthuacai.com";
     public static final String DEBUG_APIURL = "http://mtest.zthuacai.com";
-    public static boolean START_SEND_LOG = true;
+    public static boolean START_SEND_LOG = false;
 
 
     public static String getSocketURL(){
@@ -96,7 +96,8 @@ public class C {
     /**
      * 轮询登录
      */
-    public static final String API_USER_PAY_CONFIRM_LOGIN = "/api/common/polling/login";
+//    public static final String API_USER_PAY_CONFIRM_LOGIN = "/api/common/polling/login";
+    public static final String API_USER_PAY_CONFIRM_LOGIN = "/api/weixin/login/query";
     /**
      * Ali轮询登录
      */

@@ -83,7 +83,7 @@ public class AliLoginScheduledExecutor implements Runnable {
         RequestCenter.confirm_AliLogin(queryCode,new DisposeDataListener() {
             @Override
             public void onSuccess(Object responseObj) {
-                Log.i("huacaisdk", "登录----定时请求成功  "+responseObj.toString());
+                Log.i("huacaisdk", "支付宝登录----定时请求成功  "+responseObj.toString());
                 try {
                     int status = ((JSONObject) responseObj).getInt("status");
                     if (status == 1) {
@@ -95,12 +95,12 @@ public class AliLoginScheduledExecutor implements Runnable {
                         if(user!=null){
                             if(user.isSuccess()){
                                 if(StringUtils.isEmpty(user.getMobile())){
-                                    L.info("huacaisdk", " 需绑定手机");
+                                    L.info("huacaisdk", " 支付宝-需绑定手机");
                                     BroadcastUtil.sendAliBroadcastToUI(ctx,IConstants.LOGIN_BIND_TEL,user.getToken(),user.getOpenId());
                                 }else{
                                     FileUtil.writeFile
                                             (FileUtil.getSDDir(KEY_DIR_NAME) + KEY_FILE_NAME,responseObj.toString(), false);
-                                    L.info("huacaisdk", "登录成功");
+                                    L.info("huacaisdk", "支付宝-登录成功");
                                     TuitaData.getInstance().setUser(loginReslut.getData());
                                     BroadcastUtil.sendBroadcastToUI(ctx,IConstants.LOGIN,"");
                                 }

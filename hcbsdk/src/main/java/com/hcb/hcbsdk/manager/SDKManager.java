@@ -357,14 +357,14 @@ public class SDKManager {
     public void startSendLog(String event,String msg) {
 
         if ( L.isConnected){
-            AppSocket.getInstance().startSendLog2Server(event,msg);
+            AppSocket.getInstance().SendLog2ServerByEvent(event,msg);
         }
 
     }
     public void endSendLog(String event,String msg) {
 
         if ( L.isConnected){
-            AppSocket.getInstance().sendLog2Server(event,msg);
+            AppSocket.getInstance().SendLog2ServerByEvent(event,msg);
         }
 
     }
@@ -528,7 +528,7 @@ public class SDKManager {
             mPushService.push_connect(0, deviceNo);
         } else {
             this.API_URL = C.getAPIURL();//线上
-//            mPushService.push_connect(2, deviceNo);
+            mPushService.push_connect(2, deviceNo);
         }
 
         L.info("PushService", " 当前环境   L.debug:  " + L.debug + "   API_URL: " + API_URL);

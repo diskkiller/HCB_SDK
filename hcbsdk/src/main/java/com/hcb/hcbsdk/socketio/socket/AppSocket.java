@@ -92,7 +92,7 @@ public class AppSocket extends BaseSocket {
         }
     }
 
-    public void startSendLog2Server(String event,String msg) {
+    public void SendLog2ServerByEvent(String event,String msg) {
 
         Log.i("PushLogService","开启发送日志：----------"+ C.START_SEND_LOG);
 
