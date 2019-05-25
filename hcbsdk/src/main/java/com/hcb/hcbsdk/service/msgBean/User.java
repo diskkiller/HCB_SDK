@@ -19,9 +19,9 @@ public class User {
      */
 
 //        headPortrait,nickname,mobile,goldCoin
-    private String nickname;
+    private String nickName;
     private String mobile;
-    private String headPortrait;
+    private String headUrl;
     private double goldCoin;
     private String token;
     private String idCard;//
@@ -31,9 +31,9 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "nickname='" + nickname + '\'' +
+                "nickname='" + nickName + '\'' +
                 ", mobile='" + mobile + '\'' +
-                ", headPortrait='" + headPortrait + '\'' +
+                ", headPortrait='" + headUrl + '\'' +
                 ", goldCoin=" + goldCoin +
                 ", token='" + token + '\'' +
                 ", idCard='" + idCard + '\'' +
@@ -80,11 +80,11 @@ public class User {
 
 
     public String getNickname() {
-        return nickname;
+        return nickName;
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname;
+        this.nickName = nickname;
     }
 
     public String getMobile() {
@@ -96,11 +96,11 @@ public class User {
     }
 
     public String getHeadPortrait() {
-        return headPortrait;
+        return headUrl;
     }
 
-    public void setHeadPortrait(String headPortrait) {
-        this.headPortrait = headPortrait;
+    public void setHeadPortrait(String headUrl) {
+        this.headUrl = headUrl;
     }
 
     public double getGoldCoin() {
