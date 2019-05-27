@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_wechat_capture"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -15,73 +16,96 @@
 
     <RelativeLayout
         android:id="@+id/rl_login"
-        android:layout_width="@dimen/x850"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/x1240"
+        android:layout_height="@dimen/x720"
         android:layout_centerInParent="true"
+        android:gravity="center"
         >
 
 
         <LinearLayout
-            android:layout_width="@dimen/x850"
-            android:layout_height="@dimen/y550"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/sdk_dialog_bg"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
 
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="@dimen/x600"
-                android:layout_height="@dimen/y70"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/y30"
-                android:orientation="horizontal">
 
-
-                <RadioButton
-                    android:id="@+id/rb_weixin"
-                    android:layout_width="@dimen/x300"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/jia_chat_selector_left"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="微信登录"
-                    android:textColor="@drawable/jia_title"
-                    android:textSize="@dimen/x30" />
-
-                <RadioButton
-                    android:id="@+id/rb_ali"
-                    android:layout_width="@dimen/x300"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/jia_chat_selector_right"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="支付宝登录"
-                    android:textColor="@drawable/jia_title"
-                    android:textSize="@dimen/x30" />
-            </RadioGroup>
-
-
-            <com.hcb.hcbsdk.activity.ParentViewPager
-                android:id="@+id/pager_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+            <com.hcb.hcbsdk.activity.banner.MZBannerView
+                android:id="@+id/banner_main_lottery"
+                android:layout_width="530dp"
+                android:layout_height="594dp"
+                android:layout_marginLeft="60dp"
+                app:canLoop="true"
+                app:middle_page_cover="false"
+                app:open_mz_mode="false"
+                android:layout_gravity="center"
+                android:background="@color/white"
                 />
+
+
+            <LinearLayout
+                android:layout_width="@dimen/x530"
+                android:layout_height="@dimen/y594"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="@dimen/x400"
+                    android:layout_height="@dimen/y70"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y30"
+                    android:orientation="horizontal">
+
+
+                    <RadioButton
+                        android:id="@+id/rb_weixin"
+                        android:layout_width="@dimen/x200"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jia_chat_selector_left"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="微信登录"
+                        android:textColor="@drawable/jia_title"
+                        android:textSize="@dimen/x25" />
+
+                    <RadioButton
+                        android:id="@+id/rb_ali"
+                        android:layout_width="@dimen/x200"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jia_chat_selector_right"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="支付宝登录"
+                        android:textColor="@drawable/jia_title"
+                        android:textSize="@dimen/x25" />
+                </RadioGroup>
+
+
+                <com.hcb.hcbsdk.activity.ParentViewPager
+                    android:id="@+id/pager_login"
+                    android:layout_marginTop="40dp"
+                    android:layout_width="360dp"
+                    android:layout_height="360dp"
+                    android:layout_centerHorizontal="true"
+                    />
+
+
+            </LinearLayout>
+
 
 
         </LinearLayout>
 
 
-        <ImageButton
-            android:id="@+id/ib_closed"
-            android:layout_width="@dimen/x40"
-            android:layout_height="@dimen/x40"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x30"
-            android:layout_marginTop="@dimen/y20"
-            android:background="@drawable/close_icon" />
+
+
+
 
     </RelativeLayout>
 
@@ -109,4 +133,13 @@
         android:layout_marginRight="60dp"
         />-->
 
+
+    <ImageButton
+        android:id="@+id/ib_closed"
+        android:layout_width="@dimen/x40"
+        android:layout_height="@dimen/x40"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/x100"
+        android:layout_marginTop="@dimen/y100"
+        android:background="@drawable/sdk_closed" />
 </RelativeLayout>

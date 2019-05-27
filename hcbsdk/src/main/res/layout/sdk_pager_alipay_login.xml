@@ -14,12 +14,26 @@
         android:orientation="vertical"
         >
 
-        <ImageView
-            android:id="@+id/ali_sweepIV"
-            android:layout_width="@dimen/x350"
-            android:layout_height="@dimen/x350"
-            android:background="@drawable/sdk_code_error"
-            />
+        <RelativeLayout
+            android:layout_width="@dimen/x330"
+            android:layout_height="@dimen/y330"
+            >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/scan_code_bg"
+                />
+
+            <ImageView
+                android:id="@+id/ali_sweepIV"
+                android:layout_width="@dimen/x300"
+                android:layout_height="@dimen/x300"
+                android:background="@drawable/sdk_code_error"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/ali_tx_tips"

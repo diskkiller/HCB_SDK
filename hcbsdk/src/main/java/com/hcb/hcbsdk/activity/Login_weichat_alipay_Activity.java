@@ -12,8 +12,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -34,6 +36,10 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.hcb.hcbsdk.R;
+import com.hcb.hcbsdk.activity.banner.MZBannerView;
+import com.hcb.hcbsdk.activity.banner.bean.LoginBannerEntity;
+import com.hcb.hcbsdk.activity.banner.holder.MZHolderCreator;
+import com.hcb.hcbsdk.activity.banner.holder.MZViewHolder;
 import com.hcb.hcbsdk.manager.SDKManager;
 import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
@@ -42,6 +48,7 @@ import com.hcb.hcbsdk.service.TuitaData;
 import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.util.BroadcastUtil;
+import com.hcb.hcbsdk.util.DensityUtils;
 import com.hcb.hcbsdk.util.DeviceUtil;
 import com.hcb.hcbsdk.util.Utils;
 import com.hcb.hcbsdk.util.dodo.FileUtil;
@@ -51,6 +58,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
 import static com.hcb.hcbsdk.util.C.KEY_FILE_NAME;
@@ -87,6 +95,7 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
     private TextView ali_tx_tips;
     private String queryCode;
     private GifView ivZjwz;
+    private MZBannerView banner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +107,8 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
         setContentView(R.layout.sdk_login);
 
         initUI();
+
+        initBanner();
 
         getAuthorize();
         getAliAuthorize();
@@ -198,6 +209,8 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
         mRecever = new MyRecever();
         this.registerReceiver(mRecever, filter);
 
+        banner = (MZBannerView<LoginBannerEntity>)findViewById(R.id.banner_main_lottery);
+
 
         ivZjwz = findViewById(R.id.iv_main_banner_zjwz);
         ivZjwz.setGifResource(R.drawable.login_bg);
@@ -265,6 +278,34 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
 
 //        SDKManager.getInstance().runLoginScheduledTask(DeviceUtil.getDeviceId2Ipad(this));
 
+
+    }
+
+
+    private void initBanner() {
+
+
+        List list  = new ArrayList<LoginBannerEntity>();
+        list.add(new LoginBannerEntity(R.drawable.banner1));
+        list.add(new LoginBannerEntity(R.drawable.banner2));
+
+        ViewPager viewPager = banner.getViewPager();
+        if (viewPager != null) {
+            viewPager.setPageMargin(DensityUtils.dp2px(this,0));
+        }
+        //banner
+        banner.setIndicatorRes(R.drawable.banner_indicator_n, R.drawable.banner_indicator_s);
+        banner.setIndicatorVisible(false);
+        banner.setDuration(1000);
+        banner.setDelayedTime(5000);
+
+
+        banner.setPages(list, new MZHolderCreator<BannerViewHolder>() {
+            @Override
+            public BannerViewHolder createViewHolder() {
+                return new BannerViewHolder();
+            }
+        });
 
     }
 
@@ -371,4 +412,33 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
     }
 
 
+    public class BannerViewHolder implements MZViewHolder<LoginBannerEntity> {
+        private ImageView mImageView;
+
+        @Override
+        public View createView(Context context) {
+            View view = LayoutInflater.from(context).inflate(R.layout.mz_login_banner_layout, null);
+            mImageView = view.findViewById(R.id.iv_login_banner);
+            return view;
+        }
+
+        @Override
+        public void onBind(Context context, int position, LoginBannerEntity data) {
+            mImageView.setImageResource(data.getImageid());
+        }
+
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        banner.pause();//暂停轮播
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        banner.start();//开始轮播
+    }
 }
