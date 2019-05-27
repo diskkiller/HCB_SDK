@@ -6,15 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,44 +18,29 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cunoraz.gifview.library.GifView;
-import com.google.gson.Gson;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber;
 import com.hcb.hcbsdk.R;
 import com.hcb.hcbsdk.activity.banner.MZBannerView;
 import com.hcb.hcbsdk.activity.banner.bean.LoginBannerEntity;
 import com.hcb.hcbsdk.activity.banner.holder.MZHolderCreator;
 import com.hcb.hcbsdk.activity.banner.holder.MZViewHolder;
 import com.hcb.hcbsdk.manager.SDKManager;
-import com.hcb.hcbsdk.okhttp.exception.OkHttpException;
 import com.hcb.hcbsdk.okhttp.listener.DisposeDataListener;
 import com.hcb.hcbsdk.okhttp.request.RequestCenter;
-import com.hcb.hcbsdk.service.TuitaData;
-import com.hcb.hcbsdk.service.msgBean.LoginReslut;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
-import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.DensityUtils;
 import com.hcb.hcbsdk.util.DeviceUtil;
 import com.hcb.hcbsdk.util.Utils;
-import com.hcb.hcbsdk.util.dodo.FileUtil;
 import com.hcb.hcbsdk.util.dodo.NetStatus;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
-import static com.hcb.hcbsdk.util.C.KEY_FILE_NAME;
 
 
 public class Login_weichat_alipay_Activity extends JKCBaseActivity {
@@ -294,7 +273,7 @@ public class Login_weichat_alipay_Activity extends JKCBaseActivity {
             viewPager.setPageMargin(DensityUtils.dp2px(this,0));
         }
         //banner
-        banner.setIndicatorRes(R.drawable.banner_indicator_n, R.drawable.banner_indicator_s);
+        banner.setIndicatorRes(R.drawable.sdk_banner_indicator_n, R.drawable.sdk_banner_indicator_s);
         banner.setIndicatorVisible(false);
         banner.setDuration(1000);
         banner.setDelayedTime(5000);

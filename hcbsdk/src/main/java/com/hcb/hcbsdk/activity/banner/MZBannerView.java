@@ -32,7 +32,6 @@ import com.hcb.hcbsdk.activity.banner.holder.MZHolderCreator;
 import com.hcb.hcbsdk.activity.banner.holder.MZViewHolder;
 import com.hcb.hcbsdk.activity.banner.transformer.CoverModeTransformer;
 import com.hcb.hcbsdk.activity.banner.transformer.ScaleYTransformer;
-import com.hcb.hcbsdk.util.L;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class MZBannerView<T> extends RelativeLayout {
     private LinearLayout mIndicatorContainer;//indicator容器
     private ArrayList<ImageView> mIndicators = new ArrayList<>();
     //mIndicatorRes[0] 为为选中，mIndicatorRes[1]为选中
-    private int[] mIndicatorRes = new int[]{R.drawable.indicator_normal, R.drawable.indicator_selected};
+    private int[] mIndicatorRes = new int[]{R.drawable.sdk_indicator_normal, R.drawable.sdk_indicator_selected};
     private int mIndicatorPaddingLeft = 0;// indicator 距离左边的距离
     private int mIndicatorPaddingRight = 0;//indicator 距离右边的距离
     private int mIndicatorPaddingTop = 0;//indicator 距离上边的距离
@@ -119,9 +118,9 @@ public class MZBannerView<T> extends RelativeLayout {
     private void init() {
         View view = null;
         if (mIsOpenMZEffect) {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.mz_banner_effect_layout, this, true);
+            view = LayoutInflater.from(getContext()).inflate(R.layout.mz_sdk_banner_effect_layout, this, true);
         } else {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.mz_banner_normal_layout, this, true);
+            view = LayoutInflater.from(getContext()).inflate(R.layout.mz_sdk_banner_normal_layout, this, true);
         }
         mIndicatorContainer = (LinearLayout) view.findViewById(R.id.banner_indicator_container);
         mViewPager = (CustomViewPager) view.findViewById(R.id.mzbanner_vp);
