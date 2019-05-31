@@ -52,6 +52,10 @@ public class EmitterEvent {
         emitterEventMap.put(IConstants.SOCTET_EVENT_LOG_BEGIN_SEND, null);
         emitterEventMap.put(IConstants.SOCTET_EVENT_LOG_STOP_SEND, null);
 
+        emitterEventMap.put(IConstants.SOCTET_EVENT_SOCKET_LOGIN, null);
+        emitterEventMap.put(IConstants.SOCTET_EVENT_SOCKET_LOGOUT, null);
+        emitterEventMap.put(IConstants.SOCTET_EVENT_ALL_CLIENT_LOGIN, null);
+
     }
 
     public void onEmitterEvent(Socket socket, final IEmitterListener emitterListener) {

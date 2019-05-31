@@ -19,15 +19,27 @@
 
         <TextView
             android:id="@+id/radioGroup"
-            android:layout_width="@dimen/x600"
-            android:layout_height="@dimen/y70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/y30"
-            android:background="@drawable/jia_shape_check_bt"
-            android:text="绑定手机号"
+            android:text="关联手机号"
             android:gravity="center"
-            android:textColor="@drawable/jia_title"
+            android:textColor="#333"
             android:textSize="30sp"
+            />
+
+        <TextView
+            android:id="@+id/login_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/radioGroup"
+            android:text="@string/login_msg"
+            android:gravity="center"
+            android:textColor="#f5222d"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
             />
 
         <LinearLayout
@@ -35,8 +47,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_below="@id/login_msg"
             android:gravity="center"
-            android:paddingTop="@dimen/y30"
+            android:paddingTop="@dimen/y20"
             android:layout_centerHorizontal="true"
             >
 

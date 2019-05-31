@@ -80,6 +80,13 @@ public interface IConstants {
     String SOCTET_EVENT_LOG_STOP_SEND = "hcb_log_stop_send";
 
 
+    String SOCTET_EVENT_SOCKET_LOGIN = "hcb_soctet_event_socket_login";
+
+    String SOCTET_EVENT_SOCKET_LOGOUT = "hcb_soctet_event_socket_logout";
+
+    String SOCTET_EVENT_ALL_CLIENT_LOGIN = "hcb_soctet_event_all_client_login";
+
+
     String LOG_EVENT_CONNECT = ACTION+"log_connect";
     String LOG_EVENT_DISCONNECT = ACTION+"log_disconnect";
 

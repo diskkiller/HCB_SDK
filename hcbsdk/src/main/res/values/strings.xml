@@ -29,4 +29,7 @@
     <string name="permission_white_external_hint">当前应用缺少正常运行需要的权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限</string>
     <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO</string>
 
+    <string name="login_msg">注：为保证票面归属的唯一性，微信和支付宝首次登录\n需关联手机号，才能继续操作，感谢配合。</string>
+
+
 </resources>
