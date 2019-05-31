@@ -289,17 +289,17 @@ public class PushServerConnection implements IEmitterListener {
             case IConstants.SOCTET_EVENT_SOCKET_LOGIN:
 
                 L.info(LOGTAG, "接收到Socket推送消息----设备登录--"+IConstants.SOCTET_EVENT_SOCKET_LOGIN);
-
+                L.info(LOGTAG, "设备登录=================>>>>  " + args[0].toString());
                 break;
             case IConstants.SOCTET_EVENT_SOCKET_LOGOUT:
 
                 L.info(LOGTAG, "接收到Socket推送消息----设备下线--"+IConstants.SOCTET_EVENT_SOCKET_LOGOUT);
-
+                L.info(LOGTAG, "设备下线=================>>>>  " + args[0].toString());
                 break;
             case IConstants.SOCTET_EVENT_ALL_CLIENT_LOGIN:
 
                 L.info(LOGTAG, "接收到Socket推送消息----获取在线设备--"+IConstants.SOCTET_EVENT_ALL_CLIENT_LOGIN);
-
+                L.info(LOGTAG, "获取在线设备=================>>>>  " + args[0].toString());
                 break;
 
 
