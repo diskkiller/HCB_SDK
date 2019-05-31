@@ -67,7 +67,8 @@ public class MainActivity extends Activity {
         modelList = new ArrayList<>();
 //        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",false);
 //        SDKManager.getInstance().init(MainActivity.this,"HUA2018082117",false);
-        SDKManager.getInstance().init(MainActivity.this,"0123456789ABCDE",true);
+        SDKManager.getInstance().init(MainActivity.this,"diskkiller",false);
+//        SDKManager.getInstance().init(MainActivity.this,"0123456789ABCDE",true);
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);

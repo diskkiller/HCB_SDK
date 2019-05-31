@@ -7,7 +7,33 @@
 
     >
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        >
 
+        <EditText
+            android:id="@+id/et_deviceno"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:hint="请输入目标设备的DeviceNo"
+            android:gravity="center"
+            android:background="@drawable/bt_cancel_bg"
+            />
+
+        <TextView
+            android:id="@+id/tx_socket_status"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="当前设备未连接"
+            android:textColor="@color/red"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
 
 
 
@@ -83,33 +109,7 @@
             />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="30dp"
-            >
 
-            <EditText
-                android:id="@+id/et_deviceno"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:hint="请输入目标设备的DeviceNo"
-                android:gravity="center"
-                android:background="@drawable/bt_cancel_bg"
-                />
-
-            <TextView
-                android:id="@+id/tx_socket_status"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="当前设备未连接"
-                android:textColor="@color/red"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-                />
-
-        </LinearLayout>
 
     </LinearLayout>
 
