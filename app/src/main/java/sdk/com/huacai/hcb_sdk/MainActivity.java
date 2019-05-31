@@ -65,7 +65,9 @@ public class MainActivity extends Activity {
 
         left_recycler_view = (RecyclerView) findViewById(R.id.left_recycler_view);
         modelList = new ArrayList<>();
-        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",true);
+//        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",false);
+//        SDKManager.getInstance().init(MainActivity.this,"HUA2018082117",false);
+        SDKManager.getInstance().init(MainActivity.this,"0123456789ABCDE",true);
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);
@@ -113,7 +115,7 @@ public class MainActivity extends Activity {
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
 //                SDKManager.getInstance().delOrderList();
-                SDKManager.getInstance().startHuodongPage();
+                SDKManager.getInstance().startLoginPage();
 //                AppSocket.getInstance().sdk_logout();
 
                 //                SDKManager.getInstance().runPayScheduledTask();
@@ -158,7 +160,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
 //                SDKManager.getInstance().startPayPage("5abdf845a209f21fdadf264e");
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,null);
-                SDKManager.getInstance().startLoginPage();
+//                SDKManager.getInstance().startLoginPage();
 //                SDKManager.getInstance().ScratchDemoActivity(MainActivity.this);
 
 
@@ -169,9 +171,9 @@ public class MainActivity extends Activity {
 
 //                getDMcode();
 
-                /*if(et_deviceno.getText() != null && !et_deviceno.getText().toString().equals(""))
+                if(et_deviceno.getText() != null && !et_deviceno.getText().toString().equals(""))
                     deviceNo = et_deviceno.getText().toString();
-                SDKManager.getInstance().startSendLog(deviceNo);*/
+                SDKManager.getInstance().startSendLog("hcb_begin_send_log_message_by_sn",deviceNo);
             }
         });
         bt_endLog.setOnClickListener(new View.OnClickListener() {
@@ -180,15 +182,15 @@ public class MainActivity extends Activity {
 //                SDKManager.getInstance().logOut();
 //                SDKManager.getInstance().startPayPage("442","weixin://wxpay/bizpayurl?pr=TaUckqR",1,"0");
 
-//                if(et_deviceno.getText() != null && !et_deviceno.getText().equals(""))
-//                    deviceNo = et_deviceno.getText().toString();
-//                SDKManager.getInstance().endSendLog(deviceNo);
+                if(et_deviceno.getText() != null && !et_deviceno.getText().equals(""))
+                    deviceNo = et_deviceno.getText().toString();
+                SDKManager.getInstance().endSendLog("hcb_stop_send_log_message_by_sn",deviceNo);
 //                Log.i("pushservice",SDKManager.getInstance().serverIslive()+"----------");
 
 
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this);
-                SDKManager.getInstance().startGamePayPage("",110);
+//                SDKManager.getInstance().startGamePayPage("",110);
 //                SDKManager.getInstance().startUserAuPage(MainActivity.this);
 //                SDKManager.getInstance().startTestLottieAnimaPage(MainActivity.this);
 //                SDKManager.getInstance().goldCoinAddOrLess("","100","1");

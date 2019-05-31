@@ -74,11 +74,19 @@ public interface IConstants {
     //====================LOG==========================================
 
 
+    String SOCTET_EVENT_LOG_BEGIN_SEND = "hcb_log_begin_send";
+
+    String SOCTET_EVENT_LOG_STOP_SEND = "hcb_log_stop_send";
+
+
     String LOG_EVENT_CONNECT = ACTION+"log_connect";
     String LOG_EVENT_DISCONNECT = ACTION+"log_disconnect";
+
+    String SOCTET_EVENT_CLIENT_LOG_MESSAGE = "hcb_client_log_message";
+    String EVENT_START_LOG = "SEND_START";
 
     String EXTRA_LOG_MESSAGE = ACTION+"log_message";
     String EXTRA_LOG_ACTION = ACTION+"log_message_action";
 
-    String EVENT_RECEIVE_LOG  = "SENDING_LOG";
+    String EVENT_RECEIVE_LOG  = "get_log_message";
 }

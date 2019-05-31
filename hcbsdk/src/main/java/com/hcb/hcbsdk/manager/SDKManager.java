@@ -35,6 +35,7 @@ import com.hcb.hcbsdk.service.msgBean.OrderForm;
 import com.hcb.hcbsdk.service.msgBean.User;
 import com.hcb.hcbsdk.socketio.listener.IConstants;
 import com.hcb.hcbsdk.socketio.listener.SocketPushDataListener;
+import com.hcb.hcbsdk.socketio.socket.AppSocket;
 import com.hcb.hcbsdk.util.BarcodeUtils;
 import com.hcb.hcbsdk.util.BroadcastUtil;
 import com.hcb.hcbsdk.util.C;
@@ -51,7 +52,6 @@ import org.json.JSONObject;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import static com.hcb.hcbsdk.util.C.IS_NEED_LOG;
 import static com.hcb.hcbsdk.util.C.KEY_DIR_NAME;
 import static com.hcb.hcbsdk.util.C.SERVICE_NAME;
 import static com.hcb.hcbsdk.util.L.deviceNo;
@@ -139,10 +139,10 @@ public class SDKManager {
         mFilter.addAction(IConstants.HCB_HAPPYDAY_WINDOW);
         ctx.registerReceiver(mReceiver, mFilter);
 
-        if (IS_NEED_LOG) {
+        /*if (IS_NEED_LOG) {
             LOGSDKManager.getInstance().setApiUrl("http://39.107.107.82:3000");
             LOGSDKManager.getInstance().init(ctx);
-        }
+        }*/
 
     }
 
@@ -342,21 +342,27 @@ public class SDKManager {
     }
 
 
-    public void startSendLog(String deviceNo) {
-        if (IS_NEED_LOG)
-            LOGSDKManager.getInstance().startSendLog(deviceNo);
+
+    public void sendLog(String event,String msg) {
+
+        if ( L.isConnected){
+            AppSocket.getInstance().sendLog2Server(event,msg);
+        }
+
     }
 
+    public void startSendLog(String event,String msg) {
 
-    public void endSendLog(String deviceNo) {
-        if (IS_NEED_LOG)
-            LOGSDKManager.getInstance().endSendLog(deviceNo);
+        if ( L.isConnected){
+            AppSocket.getInstance().SendLog2ServerByEvent(event,msg);
+        }
+
     }
+    public void endSendLog(String event,String msg) {
 
-    public void sendLog(String msg) {
-
-        if (IS_NEED_LOG && LOGSDKManager.getInstance().LogSocketConnect())
-            LOGSDKManager.getInstance().sendLog(msg);
+        if ( L.isConnected){
+            AppSocket.getInstance().SendLog2ServerByEvent(event,msg);
+        }
 
     }
 
@@ -513,10 +519,10 @@ public class SDKManager {
         C.IS_SOCKET_CLOSE = false;
         if (L.debug) {
             this.API_URL = C.getDebugapiURL();//测试
-//            mPushService.push_connect(0, deviceNo);
+            mPushService.push_connect(0, deviceNo);
         } else {
             this.API_URL = C.getAPIURL();//线上
-//            mPushService.push_connect(2, deviceNo);
+            mPushService.push_connect(2, deviceNo);
         }
 
         L.info("PushService", " 当前环境   L.debug:  " + L.debug + "   API_URL: " + API_URL);
@@ -547,8 +553,6 @@ public class SDKManager {
 
 
     public void destroy() {
-        if (IS_NEED_LOG)
-            LOGSDKManager.getInstance().destroy();
         ctx.unbindService(conn);
         L.info("PushService", "销毁OR重启  C.SOCKET_RECONNECT...  " + C.SOCKET_RECONNECT);
         if (!C.SOCKET_RECONNECT) {

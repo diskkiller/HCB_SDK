@@ -48,6 +48,10 @@ public class EmitterEvent {
 
         emitterEventMap.put("login_test", null);
 
+
+        emitterEventMap.put(IConstants.SOCTET_EVENT_LOG_BEGIN_SEND, null);
+        emitterEventMap.put(IConstants.SOCTET_EVENT_LOG_STOP_SEND, null);
+
     }
 
     public void onEmitterEvent(Socket socket, final IEmitterListener emitterListener) {
