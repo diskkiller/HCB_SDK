@@ -76,7 +76,7 @@ public class FullrichPayScheduledExecutor implements Runnable {
                 L.info("PushService", "祥付宝支付----定时请求成功。。。。。  "+responseObj.toString());
                 JSONObject data = (JSONObject) responseObj;
                 try {
-                    if(data.get("body").equals("true")){
+                    if(data.getBoolean("data")){
                         BroadcastUtil.sendBroadcastToUI(ctx, IConstants.PAY_SUCCESS,null);
                         L.info("PushService", "祥付宝支付----定时请求支付成功-----  "+responseObj.toString());
                     }
