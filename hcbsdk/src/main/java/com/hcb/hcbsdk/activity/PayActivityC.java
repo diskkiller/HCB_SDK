@@ -430,10 +430,12 @@ public class PayActivityC extends JKCBaseActivity {
 
         Bitmap bitmap = Utils.createQRImage(authorizeUrl);
         mSweepIV.setImageBitmap(bitmap);
-        if(payType.equals("2"))
+        /*if(payType.equals("2"))
             SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this),aliPayScheduledId,payType);
         else
             SDKManager.getInstance().runPayScheduledTask(DeviceUtil.getDeviceId2Ipad(this),orderId,payType);
+            */
+        SDKManager.getInstance().runFullrichPayScheduledTask(aliPayScheduledId);
 
 
         //初始化时间

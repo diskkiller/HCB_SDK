@@ -245,7 +245,7 @@ public static void deletRequest(String url, RequestParams params,
             params.put("token", SDKManager.getInstance().getUser().getToken());
         RequestCenter.postRequest(C.API_USER_PAY_CONFIRM_PAYINFO, params, disposeDataListener);
     }
-/**
+    /**
      * 支付宝轮询——支付
      * @param outTradeNo
      * @param disposeDataListener
@@ -255,6 +255,19 @@ public static void deletRequest(String url, RequestParams params,
         params.put("outTradeNo", outTradeNo);
 
         RequestCenter.getRequest(C.API_USER_ALIPAY_CONFIRM_PAYINFO, params, disposeDataListener);
+    }
+
+
+    /**
+     * 祥付宝轮询——支付
+     * @param outTradeNo
+     * @param disposeDataListener
+     */
+    public static void confirm_FullrichPayInfo(String outTradeNo, DisposeDataListener disposeDataListener) {
+        RequestParams params = new RequestParams();
+        params.put("outTradeNo", outTradeNo);
+
+        RequestCenter.getRequest(C.API_USER_FULLRICHPAY_CONFIRM_PAYINFO, params, disposeDataListener);
     }
 
     /**

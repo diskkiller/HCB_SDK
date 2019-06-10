@@ -89,6 +89,11 @@ public class C {
      * 支付宝轮询支付结果
      */
     public static final String API_USER_ALIPAY_CONFIRM_PAYINFO = "/api/alipay/query";
+
+    /**
+     * 祥付宝轮询支付结果
+     */
+    public static final String API_USER_FULLRICHPAY_CONFIRM_PAYINFO = "/api/fullrich/query";
     /**
      * 游戏轮询支付结果
      */

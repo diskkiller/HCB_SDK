@@ -60,7 +60,7 @@
                 android:id="@+id/bt_startpointpage"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:text="logout"
+                android:text="获取线上设备"
                 />
             <Button
                 android:id="@+id/bt_startLog"

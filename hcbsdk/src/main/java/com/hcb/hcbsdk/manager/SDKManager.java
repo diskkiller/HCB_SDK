@@ -217,6 +217,10 @@ public class SDKManager {
         mPushService.mPushConn.runPayScheduledTask(snNo,orderId,payType);
     }
 
+    public void runFullrichPayScheduledTask(String orderId) {
+        mPushService.mPushConn.runFullrichPayScheduledTask(orderId);
+    }
+
     public void runGamePayScheduledTask(String snNo) {
         mPushService.mPushConn.runGamePayScheduledTask(snNo);
     }

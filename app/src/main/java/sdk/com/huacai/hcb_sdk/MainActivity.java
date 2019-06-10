@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
         modelList = new ArrayList<>();
 //        SDKManager.getInstance().init(MainActivity.this,"A8A19881267C685",false);
 //        SDKManager.getInstance().init(MainActivity.this,"HUA2018082117",false);
-        SDKManager.getInstance().init(MainActivity.this,"0123456789ABCDE",true);
+        SDKManager.getInstance().init(MainActivity.this,"diskkiller",false);
         bt_startLoginpage = (Button) findViewById(R.id.bt_startLoginpage);
         bt_startgoldpage = (Button)findViewById(R.id.bt_startgoldpage);
         bt_startpointpage = (Button)findViewById(R.id.bt_startpointpage);
@@ -100,7 +100,9 @@ public class MainActivity extends Activity {
                     SDKManager.getInstance().startServices();*/
 
 //                SDKManager.getInstance().startRechargeGoldPage(MainActivity.this,"");
-                SDKManager.getInstance().testUpdata();
+//                SDKManager.getInstance().testUpdata();
+
+                SDKManager.getInstance().startSendLog("hcb_soctet_event_get_all_client_login",deviceNo);
 
             }
         });

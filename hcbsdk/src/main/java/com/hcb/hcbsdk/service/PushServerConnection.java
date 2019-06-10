@@ -17,6 +17,7 @@ import com.hcb.hcbsdk.activity.PayActivityC;
 import com.hcb.hcbsdk.manager.SDKManager;
 import com.hcb.hcbsdk.manager.schedulerTask.AliLoginScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.CheckSocketConnectScheduledExecutor;
+import com.hcb.hcbsdk.manager.schedulerTask.FullrichPayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.GoldPayScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.WeiChatLoginScheduledExecutor;
 import com.hcb.hcbsdk.manager.schedulerTask.PayGameScheduledExecutor;
@@ -426,6 +427,9 @@ public class PushServerConnection implements IEmitterListener {
 
     public void runPayScheduledTask(String snNo,String orderId,String payType) {
         sdkManager.getScheduler().scheduleWithFixedDelay(new PayScheduledExecutor(snNo, ctx,orderId,payType), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
+    }
+    public void runFullrichPayScheduledTask(String orderId) {
+        sdkManager.getScheduler().scheduleWithFixedDelay(new FullrichPayScheduledExecutor(ctx,orderId), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
     }
     public void runGamePayScheduledTask(String snNo) {
         sdkManager.getScheduler().scheduleWithFixedDelay(new PayGameScheduledExecutor(snNo, ctx), INITIALDELAY, PERIOD, TimeUnit.SECONDS);
